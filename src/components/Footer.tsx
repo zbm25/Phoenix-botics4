@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="footer" className="w-full bg-slate-950 text-white rounded-t-[2.5rem] rounded-b-none mt-12 px-12 lg:px-24 pt-16 pb-12 text-left relative overflow-hidden">
+    <footer id="footer" className="w-full bg-slate-950 text-white rounded-t-[2.5rem] rounded-b-none mt-12 px-6 sm:px-12 lg:px-24 pt-16 pb-12 text-left relative overflow-hidden">
       {/* Subtle background atmospheric glow */}
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-orange-500/5 via-transparent to-transparent rounded-full blur-[100px] pointer-events-none" />
       

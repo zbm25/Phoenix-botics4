@@ -665,7 +665,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1c]/85 via-[#0a0f1c]/60 to-transparent"></div>
           </div>
           
-          <div className={`relative z-10 h-full flex flex-col justify-center items-start text-left px-8 sm:px-16 lg:px-24 w-full ${config.sectorKey === "health" ? "lg:w-[46%]" : "lg:w-3/5"}`}>
+          <div className={`relative z-10 h-full flex flex-col justify-center items-start text-left px-6 sm:px-12 lg:px-24 w-full ${config.sectorKey === "health" ? "lg:w-[46%]" : "lg:w-3/5"}`}>
             <h1 className={`text-4xl sm:text-5xl lg:text-[54px] font-bold text-white font-display leading-[1.1] mb-6 ${config.sectorKey === "health" ? "max-w-[520px]" : ""}`}>
               {config.heroHeading}
             </h1>
@@ -817,13 +817,13 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
                       {item.desc}
                     </p>
                     
-                    <div className="block lg:hidden mt-6 rounded-xl overflow-hidden border border-white/10">
+                    <div className="block lg:hidden mt-6 rounded-xl overflow-hidden border border-white/10 bg-[#0a0f1c]/80 p-2">
                       <img 
                         src={optimizeCloudinaryUrl(item.image, 800)} 
                         alt={item.title} 
                         loading="lazy"
                         decoding="async"
-                        className="w-full aspect-[16/10] object-cover" 
+                        className="w-full max-h-[280px] object-contain mx-auto rounded-lg"
                       />
                     </div>
                   </div>

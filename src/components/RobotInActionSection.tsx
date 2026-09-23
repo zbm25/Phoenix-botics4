@@ -242,7 +242,7 @@ export const RobotInActionSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={togglePlay}
-                      className="w-10 h-10 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center cursor-pointer transition-transform active:scale-95 shadow-md shadow-orange-500/30"
+                      className="w-11 h-11 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center cursor-pointer transition-transform active:scale-95 shadow-md shadow-orange-500/30 shrink-0"
                       aria-label={isPlaying ? "Pause" : "Lecture"}
                     >
                       {isPlaying ? <Pause className="w-4 h-4 fill-current" aria-hidden="true" /> : <Play className="w-4 h-4 fill-current translate-x-0.5" aria-hidden="true" />}
@@ -257,7 +257,7 @@ export const RobotInActionSection: React.FC = () => {
                     type="button"
                     onClick={toggleMute}
                     aria-label={isMuted ? "Activer le son" : "Couper le son"}
-                    className={`w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-colors backdrop-blur-md ${
+                    className={`w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors backdrop-blur-md shrink-0 ${
                       isMuted ? "bg-white/15 hover:bg-white/25 text-white" : "bg-orange-500 text-white shadow-md"
                     }`}
                     title={isMuted ? "Activer le son" : "Couper le son"}

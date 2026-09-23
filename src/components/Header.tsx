@@ -306,7 +306,7 @@ export const Header: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2 lg:gap-4">
+          <nav className="hidden lg:flex items-center gap-2 lg:gap-4">
             {/* Robots with dropdown */}
             <div 
               className="py-2"
@@ -334,7 +334,7 @@ export const Header: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[940px] bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-6 z-50 grid grid-cols-12 gap-6 backdrop-blur-md before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-3 w-[940px] max-w-[calc(100vw-2rem)] bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-6 z-50 grid grid-cols-12 gap-6 backdrop-blur-md before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
                   >
                     {/* Left Column - List of Series */}
                     <div className="col-span-4 flex flex-col gap-1 pr-2 border-r border-white/5">
@@ -479,7 +479,7 @@ export const Header: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[580px] sm:w-[620px] md:w-[660px] bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-4 z-50 grid grid-cols-12 gap-4 backdrop-blur-md"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[580px] sm:w-[620px] md:w-[660px] max-w-[calc(100vw-2rem)] bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-4 z-50 grid grid-cols-12 gap-4 backdrop-blur-md"
                   >
                     <div className="col-span-7 flex flex-col gap-1 pr-2 border-r border-white/5">
                       {INDUSTRY_SECTORS_DATA.map((ind) => (
@@ -589,7 +589,7 @@ export const Header: React.FC = () => {
           </nav>
 
           {/* Desktop Call to Action Button */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <button
               id="header-cta-quote"
               onClick={() => goToSection("contact")}
@@ -599,11 +599,11 @@ export const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile hamburger button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile/Tablet hamburger button */}
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="focus:outline-none p-2 cursor-pointer transition-colors text-slate-800 hover:text-black"
+              className="focus:outline-none p-2 min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer transition-colors text-slate-800 hover:text-black active:bg-slate-100 rounded-full"
               aria-label="Toggle navigation menu"
             >
               <IconRenderer name={isMobileMenuOpen ? "X" : "Menu"} size={26} />
@@ -620,7 +620,7 @@ export const Header: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-4 top-[76px] z-45 bg-white/95 backdrop-blur-lg border border-slate-200 p-6 flex flex-col justify-between rounded-3xl shadow-2xl h-[calc(100vh-100px)] overflow-y-auto"
+            className="fixed inset-x-3 sm:inset-x-6 top-[76px] z-45 bg-white/95 backdrop-blur-lg border border-slate-200 p-4 sm:p-6 flex flex-col justify-between rounded-3xl shadow-2xl h-[calc(100vh-100px)] overflow-y-auto"
           >
             <div className="flex flex-col gap-3 py-2">
               {/* Accordéon 1 : Robots */}
@@ -628,7 +628,7 @@ export const Header: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setMobileRobotsOpen(!mobileRobotsOpen)}
-                  className="w-full text-left py-2.5 text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer"
+                  className="w-full text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer"
                 >
                   <span className="flex items-center gap-2.5">
                     <span>Robots</span>
@@ -717,7 +717,7 @@ export const Header: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
-                  className="w-full text-left py-2.5 text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer"
+                  className="w-full text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer"
                 >
                   <span className="flex items-center gap-2.5">
                     <span>Industries</span>
@@ -773,7 +773,7 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   navigate("/services");
                 }}
-                className="text-left py-2.5 text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
+                className="text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
               >
                 <span>Services & Intégration</span>
                 <IconRenderer name="ArrowRight" size={16} className="text-orange-500" />
@@ -785,7 +785,7 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   navigate("/technologie");
                 }}
-                className="text-left py-2.5 text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
+                className="text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
               >
                 <span>Technologie & Normes</span>
                 <IconRenderer name="ArrowRight" size={16} className="text-orange-500" />
@@ -797,7 +797,7 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   navigate("/a-propos");
                 }}
-                className="text-left py-2.5 text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
+                className="text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
               >
                 <span>À Propos & Alliance</span>
                 <IconRenderer name="ArrowRight" size={16} className="text-orange-500" />
@@ -809,7 +809,7 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   goToSection("contact");
                 }}
-                className="text-left py-2.5 text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
+                className="text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
               >
                 <span>Contact & Audit</span>
                 <IconRenderer name="ArrowRight" size={16} className="text-orange-500" />
@@ -820,14 +820,14 @@ export const Header: React.FC = () => {
               <button
                 id="mobile-cta-meeting"
                 onClick={() => goToSection("contact")}
-                className="w-full py-3.5 text-center rounded-xl bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-110 cursor-pointer"
+                className="w-full py-3.5 min-h-[44px] text-center rounded-xl bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-110 cursor-pointer flex items-center justify-center"
               >
                 Planifier une démo
               </button>
               <button
                 id="mobile-cta-callback"
                 onClick={() => goToSection("contact")}
-                className="w-full py-3 text-center rounded-xl border border-gray-200 text-slate-700 text-xs font-semibold uppercase tracking-wider hover:bg-black/5 cursor-pointer"
+                className="w-full py-3 min-h-[44px] text-center rounded-xl border border-gray-200 text-slate-700 text-xs font-semibold uppercase tracking-wider hover:bg-black/5 cursor-pointer flex items-center justify-center"
               >
                 Me faire rappeler
               </button>
