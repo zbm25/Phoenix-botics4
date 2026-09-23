@@ -229,7 +229,7 @@ export const RobotInActionSection: React.FC = () => {
               />
 
               {/* HUD / Contrôles overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 z-20 flex flex-col justify-between p-5 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 z-20 flex flex-col justify-between p-3 sm:p-5 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
                 
                 <div className="flex items-center justify-between">
                   <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[9px] font-mono uppercase tracking-wider border border-white/10">
@@ -237,19 +237,19 @@ export const RobotInActionSection: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                     <button
                       type="button"
                       onClick={togglePlay}
-                      className="w-11 h-11 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center cursor-pointer transition-transform active:scale-95 shadow-md shadow-orange-500/30 shrink-0"
+                      className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center cursor-pointer transition-transform active:scale-95 shadow-md shadow-orange-500/30 shrink-0"
                       aria-label={isPlaying ? "Pause" : "Lecture"}
                     >
-                      {isPlaying ? <Pause className="w-4 h-4 fill-current" aria-hidden="true" /> : <Play className="w-4 h-4 fill-current translate-x-0.5" aria-hidden="true" />}
+                      {isPlaying ? <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" aria-hidden="true" /> : <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current translate-x-0.5" aria-hidden="true" />}
                     </button>
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-white leading-tight">{activeCase.title}</h4>
-                      <p className="text-[11px] text-slate-300 font-light">{activeCase.subtitle}</p>
+                    <div className="min-w-0">
+                      <h4 className="text-xs sm:text-sm font-bold text-white leading-tight truncate">{activeCase.title}</h4>
+                      <p className="text-[10px] sm:text-[11px] text-slate-300 font-light truncate">{activeCase.subtitle}</p>
                     </div>
                   </div>
 
@@ -257,12 +257,12 @@ export const RobotInActionSection: React.FC = () => {
                     type="button"
                     onClick={toggleMute}
                     aria-label={isMuted ? "Activer le son" : "Couper le son"}
-                    className={`w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors backdrop-blur-md shrink-0 ${
-                      isMuted ? "bg-white/15 hover:bg-white/25 text-white" : "bg-orange-500 text-white shadow-md"
+                    className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors backdrop-blur-md shrink-0 ${
+                      isMuted ? "bg-white/20 hover:bg-white/30 text-white" : "bg-orange-500 text-white shadow-md"
                     }`}
                     title={isMuted ? "Activer le son" : "Couper le son"}
                   >
-                    {isMuted ? <VolumeX size={16} aria-hidden="true" /> : <Volume2 size={16} aria-hidden="true" />}
+                    {isMuted ? <VolumeX size={15} aria-hidden="true" /> : <Volume2 size={15} aria-hidden="true" />}
                   </button>
                 </div>
 

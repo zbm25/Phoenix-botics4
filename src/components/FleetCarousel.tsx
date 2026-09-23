@@ -207,7 +207,7 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
               {/* Conteneur des Cartes Blanches */}
               <div
                 ref={carouselRef}
-                className={`flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8 pt-4 px-6 md:px-12 scrollbar-none ${
+                className={`flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8 pt-4 px-4 sm:px-6 md:px-12 scrollbar-none ${
                   centerCardsOnDesktop ? "justify-start lg:justify-center" : "justify-start"
                 } [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -225,7 +225,7 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.35 }}
-                        className="snap-center shrink-0 w-[85vw] sm:w-[360px] lg:w-[390px] xl:w-[420px] bg-white rounded-[32px] p-6 lg:p-8 shadow-2xl flex flex-col group transition-all duration-300 hover:-translate-y-2 text-center"
+                        className="snap-center shrink-0 w-[82vw] max-w-[340px] sm:max-w-none sm:w-[360px] lg:w-[390px] xl:w-[420px] bg-white rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 lg:p-8 shadow-2xl flex flex-col group transition-all duration-300 hover:-translate-y-2 text-center"
                       >
                         {/* Zone d'image grise avec zoom au survol */}
                         <div className="w-full h-[200px] sm:h-[260px] bg-[#f9f9f9] rounded-[24px] flex items-center justify-center overflow-hidden mb-4 sm:mb-6 p-4 sm:p-6 group-hover:bg-[#f3f3f3] transition-colors border border-gray-100">
