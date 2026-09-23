@@ -594,7 +594,7 @@ export const RobotSeriesPage: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1c]/95 via-[#0a0f1c]/60 to-transparent"></div>
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-center items-start text-left px-8 sm:px-16 lg:px-24 w-full lg:w-3/5">
+          <div className="relative z-10 h-full flex flex-col justify-center items-start text-left px-6 sm:px-12 lg:px-24 w-full lg:w-3/5">
             <span className="text-orange-500 font-mono text-sm tracking-widest uppercase font-semibold mb-4 block">
               GAMME PROFESSIONNELLE B2B
             </span>
@@ -920,7 +920,7 @@ export const RobotSeriesPage: React.FC = () => {
                           {model.name}
                         </h3>
 
-                        <div className="bg-white rounded-[24px] p-5 flex items-center justify-center border border-gray-200/60 shadow-inner h-[400px] overflow-hidden">
+                        <div className="bg-white rounded-[24px] p-4 sm:p-5 flex items-center justify-center border border-gray-200/60 shadow-inner h-[260px] sm:h-[320px] lg:h-[400px] overflow-hidden">
                           <img 
                             src={optimizeCloudinaryUrl(model.image, 800)} 
                             alt={model.name} 
@@ -1829,7 +1829,7 @@ export const RobotSeriesPage: React.FC = () => {
                 type="button"
                 onClick={() => setIsModalOpen(false)}
                 aria-label="Fermer la fenêtre"
-                className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500/20 rounded p-1"
+                className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer bg-transparent border-none outline-none focus:ring-2 focus:ring-orange-500/20 rounded w-11 h-11 flex items-center justify-center"
               >
                 <Icons.X size={20} aria-hidden="true" />
               </button>

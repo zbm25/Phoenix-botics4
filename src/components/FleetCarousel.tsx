@@ -168,7 +168,7 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
                       type="button"
                       onClick={() => setActiveTab(tab.id)}
                       aria-pressed={activeTab === tab.id}
-                      className={`px-5 lg:px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer ${
+                      className={`px-5 lg:px-6 py-2.5 min-h-[44px] inline-flex items-center justify-center rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer ${
                         activeTab === tab.id
                           ? "bg-orange-500 text-white shadow-md shadow-orange-500/30"
                           : "bg-transparent text-gray-200 hover:text-white hover:bg-white/20"
@@ -228,7 +228,7 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
                         className="snap-center shrink-0 w-[85vw] sm:w-[360px] lg:w-[390px] xl:w-[420px] bg-white rounded-[32px] p-6 lg:p-8 shadow-2xl flex flex-col group transition-all duration-300 hover:-translate-y-2 text-center"
                       >
                         {/* Zone d'image grise avec zoom au survol */}
-                        <div className="w-full h-[260px] bg-[#f9f9f9] rounded-[24px] flex items-center justify-center overflow-hidden mb-6 p-6 group-hover:bg-[#f3f3f3] transition-colors border border-gray-100">
+                        <div className="w-full h-[200px] sm:h-[260px] bg-[#f9f9f9] rounded-[24px] flex items-center justify-center overflow-hidden mb-4 sm:mb-6 p-4 sm:p-6 group-hover:bg-[#f3f3f3] transition-colors border border-gray-100">
                           <img
                             src={optimizeCloudinaryUrl(item.image, 800)}
                             alt={item.name}
@@ -258,7 +258,7 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
                                   <button
                                     type="button"
                                     onClick={() => onPrimaryAction(item)}
-                                    className="w-full bg-orange-500 hover:bg-orange-600 active:scale-[0.99] text-white font-semibold py-3 sm:py-3.5 px-5 sm:px-6 rounded-full transition-all shadow-md shadow-orange-500/20 hover:shadow-orange-500/35 flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer"
+                                    className="w-full bg-orange-500 hover:bg-orange-600 active:scale-[0.99] text-white font-semibold py-3 sm:py-3.5 px-5 sm:px-6 min-h-[44px] rounded-full transition-all shadow-md shadow-orange-500/20 hover:shadow-orange-500/35 flex items-center justify-center gap-2 text-xs sm:text-sm cursor-pointer"
                                   >
                                     <span>{primaryCtaLabel || "Demander une étude de site"}</span>
                                     <ArrowRight size={16} aria-hidden="true" />
@@ -267,7 +267,7 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
                                 {secondaryLink && (
                                   <Link
                                     to={secondaryLink}
-                                    className="w-full bg-white hover:bg-slate-50 active:scale-[0.99] text-[#0a0f1c] hover:text-orange-500 border border-slate-200 hover:border-slate-300 font-semibold py-3 sm:py-3.5 px-5 sm:px-6 rounded-full transition-all shadow-sm flex items-center justify-center gap-2 text-xs sm:text-sm"
+                                    className="w-full bg-white hover:bg-slate-50 active:scale-[0.99] text-[#0a0f1c] hover:text-orange-500 border border-slate-200 hover:border-slate-300 font-semibold py-3 sm:py-3.5 px-5 sm:px-6 min-h-[44px] rounded-full transition-all shadow-sm flex items-center justify-center gap-2 text-xs sm:text-sm"
                                   >
                                     <span>{secondaryCtaLabel || "Voir les spécifications"}</span>
                                     <ArrowRight size={16} aria-hidden="true" />
