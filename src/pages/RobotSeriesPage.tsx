@@ -920,13 +920,13 @@ export const RobotSeriesPage: React.FC = () => {
                           {model.name}
                         </h3>
 
-                        <div className="bg-white rounded-[24px] p-4 sm:p-5 flex items-center justify-center border border-gray-200/60 shadow-inner h-[260px] sm:h-[320px] lg:h-[400px] overflow-hidden">
+                        <div className="bg-white rounded-[20px] sm:rounded-[24px] p-2 sm:p-5 flex items-center justify-center border border-gray-200/60 shadow-inner h-[220px] sm:h-[320px] lg:h-[400px] overflow-hidden">
                           <img 
                             src={optimizeCloudinaryUrl(model.image, 800)} 
                             alt={model.name} 
                             loading="lazy"
                             decoding="async"
-                            className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" 
+                            className="w-full h-full max-h-[200px] sm:max-h-none object-contain hover:scale-105 transition-transform duration-500"
                           />
                         </div>
                       </motion.div>

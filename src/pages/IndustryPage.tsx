@@ -755,6 +755,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
 
       {/* ==================== 5. SECTION "CAS D'USAGE" ==================== */}
       <section id="fonctionnalites" className="relative w-full bg-[#0a0f1c] text-white z-10 scroll-mt-20">
+        {/* Desktop Sticky Background (lg:block only) */}
         <div className="hidden lg:block sticky top-0 left-0 w-full h-screen overflow-hidden z-0 pointer-events-none">
           {config.usageItems.map((item, idx) => (
             <div
@@ -775,28 +776,17 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1c]/90 via-[#0a0f1c]/40 to-transparent" />
         </div>
 
-        <div className="lg:hidden absolute inset-0 z-0">
-          <img 
-            src={optimizeCloudinaryUrl(config.usageItems[activeUsageIdx]?.image || config.usageItems[0].image, 1200)} 
-            alt="Cas d'usage" 
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover" 
-          />
-          <div className="absolute inset-0 bg-[#0a0f1c]/70" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-            
-            <div className="lg:col-span-6 lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center py-16 lg:py-0">
+        {/* Desktop Sticky Layout (>= 1024px) */}
+        <div className="hidden lg:block relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-12 gap-16 items-start">
+            <div className="col-span-6 sticky top-0 h-screen flex flex-col justify-center py-0">
               <span className="text-orange-500 font-mono text-xs font-bold tracking-widest uppercase mb-4 block">CAS D'USAGE</span>
               <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mt-4 leading-tight font-display max-w-lg drop-shadow-md">
                 {config.usageSectionTitle}
               </h2>
             </div>
 
-            <div className="lg:col-span-6 flex flex-col items-end gap-[15vh] lg:gap-[30vh] pt-12 lg:pt-[30vh] pb-24 lg:pb-[40vh]">
+            <div className="col-span-6 flex flex-col items-end gap-[30vh] pt-[30vh] pb-[40vh]">
               {config.usageItems.map((item, idx) => {
                 const Icon = item.icon;
                 return (
@@ -807,7 +797,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
                     className="bg-[#0a0f1c]/80 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl transition-all duration-300 w-full max-w-[420px]"
                   >
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500">
+                      <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500 shrink-0">
                         <Icon size={24} />
                       </div>
                       <h3 className="text-xl font-bold text-white">{item.title}</h3>
@@ -816,21 +806,56 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
                     <p className="text-base text-gray-300 font-light leading-relaxed">
                       {item.desc}
                     </p>
-                    
-                    <div className="block lg:hidden mt-6 rounded-xl overflow-hidden border border-white/10 bg-[#0a0f1c]/80 p-2">
-                      <img 
-                        src={optimizeCloudinaryUrl(item.image, 800)} 
-                        alt={item.title} 
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full max-h-[280px] object-contain mx-auto rounded-lg"
-                      />
-                    </div>
                   </div>
                 );
               })}
             </div>
+          </div>
+        </div>
 
+        {/* Mobile & Tablet Vertical Flow (< 1024px) */}
+        <div className="lg:hidden relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="mb-8 text-left">
+            <span className="text-orange-500 font-mono text-xs font-bold tracking-widest uppercase mb-2 block">
+              CAS D'USAGE
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-display leading-tight">
+              {config.usageSectionTitle}
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-6 sm:gap-8">
+            {config.usageItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article
+                  key={item.id}
+                  id={`mobile-${item.id}`}
+                  className="bg-[#12192B] border border-white/10 rounded-2xl p-5 sm:p-7 shadow-xl flex flex-col"
+                >
+                  <div className="flex items-center gap-3 sm:gap-4 mb-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500 shrink-0">
+                      <Icon size={22} />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">{item.title}</h3>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-gray-300 font-light leading-relaxed mb-4">
+                    {item.desc}
+                  </p>
+
+                  <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden border border-white/10 relative bg-[#0a0f1c]">
+                    <img
+                      src={optimizeCloudinaryUrl(item.image, 1000)}
+                      alt={item.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
