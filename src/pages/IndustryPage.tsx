@@ -813,50 +813,59 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
           </div>
         </div>
 
-        {/* Mobile & Tablet Vertical Flow (< 1024px) */}
-        <div className="lg:hidden relative z-10 max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        {/* Mobile & Tablette Vertical Flow (< 1024px) - Version Immersive Plein Format */}
+        <div className="lg:hidden relative z-10 max-w-2xl mx-auto px-4 py-12">
+
           <div className="mb-8 text-left">
             <span className="text-orange-500 font-mono text-xs font-bold tracking-widest uppercase mb-2 block">
               CAS D'USAGE
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-display leading-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-display leading-tight">
               {config.usageSectionTitle}
             </h2>
           </div>
 
-          <div className="flex flex-col gap-6 sm:gap-8">
+          <div className="flex flex-col gap-6">
             {config.usageItems.map((item) => {
               const Icon = item.icon;
               return (
                 <article
                   key={item.id}
                   id={`mobile-${item.id}`}
-                  className="bg-[#12192B] border border-white/10 rounded-2xl p-5 sm:p-7 shadow-xl flex flex-col"
+                  className="bg-[#12192B] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col group"
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 mb-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500 shrink-0">
-                      <Icon size={22} />
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white">{item.title}</h3>
-                  </div>
-
-                  <p className="text-sm sm:text-base text-gray-300 font-light leading-relaxed mb-4">
-                    {item.desc}
-                  </p>
-
-                  <div className="w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden border border-white/10 relative bg-[#0a0f1c]">
+                  {/* Visuel immersif en tête : bord à bord, ratio 4/3 généreux */}
+                  <div className="w-full aspect-[4/3] relative bg-[#0a0f1c] overflow-hidden">
                     <img
                       src={optimizeCloudinaryUrl(item.image, 1000)}
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    {/* Dégradé de fondu vers le corps de la carte */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#12192B] via-transparent to-black/20" />
+
+                    {/* Badge icône flottant sur l'image */}
+                    <div className="absolute top-3.5 left-3.5 w-10 h-10 rounded-xl bg-[#0a0f1c]/80 backdrop-blur-md border border-orange-500/30 flex items-center justify-center text-orange-500 shadow-lg">
+                      <Icon size={20} />
+                    </div>
+                  </div>
+
+                  {/* Bloc textuel sous le visuel */}
+                  <div className="p-5 sm:p-6 flex flex-col -mt-2 relative z-10">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-300 font-light leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </article>
               );
             })}
           </div>
+
         </div>
       </section>
 
