@@ -813,8 +813,8 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
           </div>
         </div>
 
-        {/* Mobile & Tablette Vertical Flow (< 1024px) - Version Immersive Plein Format */}
-        <div className="lg:hidden relative z-10 max-w-2xl mx-auto px-4 py-12">
+        {/* Mobile & Tablette Vertical Flow (< 1024px) - Version Immersive Stacking Stack */}
+        <div className="lg:hidden relative z-10 max-w-2xl mx-auto px-4 py-12 pb-24">
 
           <div className="mb-8 text-left">
             <span className="text-orange-500 font-mono text-xs font-bold tracking-widest uppercase mb-2 block">
@@ -825,14 +825,18 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
             </h2>
           </div>
 
-          <div className="flex flex-col gap-6">
-            {config.usageItems.map((item) => {
+          <div className="flex flex-col gap-10 sm:gap-14">
+            {config.usageItems.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <article
                   key={item.id}
                   id={`mobile-${item.id}`}
-                  className="bg-[#12192B] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col group"
+                  className="sticky bg-[#12192B] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col group transition-all"
+                  style={{
+                    top: `${80 + idx * 20}px`,
+                    zIndex: idx + 10
+                  }}
                 >
                   {/* Visuel immersif en tête : bord à bord, ratio 4/3 généreux */}
                   <div className="w-full aspect-[4/3] relative bg-[#0a0f1c] overflow-hidden">
