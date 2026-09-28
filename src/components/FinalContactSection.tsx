@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { motion, AnimatePresence } from "motion/react";
-import { Phone, Mail, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
-import {
-  getAllRobotModels,
-  getRobotById
-} from "../data/robotSeries";
+import { Phone, Mail, MapPin } from "lucide-react";
+import { getRobotById } from "../data/robotSeries";
+import { ContactForm } from "./ContactForm";
 
 export const FinalContactSection: React.FC = () => {
   const [searchParams] = useSearchParams();
   const modelParam = searchParams.get("model");
   const industryParam = searchParams.get("industry");
-
-  const allModels = getAllRobotModels();
 
   const normalizeIndustry = (val: string | null): string => {
     if (!val) return "";
@@ -45,55 +40,8 @@ export const FinalContactSection: React.FC = () => {
     return found ? found.canonicalId : "";
   };
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    company: "",
-    industry: normalizeIndustry(industryParam),
-    technology: resolveCanonicalModel(modelParam),
-    details: ""
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (modelParam !== null) {
-      const resolved = resolveCanonicalModel(modelParam);
-      setFormData((prev) => ({
-        ...prev,
-        technology: resolved
-      }));
-    }
-    if (industryParam !== null) {
-      const norm = normalizeIndustry(industryParam);
-      setFormData((prev) => ({
-        ...prev,
-        industry: norm
-      }));
-    }
-  }, [modelParam, industryParam]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate real high-end B2B API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1200);
-  };
-
-  const handleReset = () => {
-    setFormData({
-      fullName: "",
-      email: "",
-      company: "",
-      industry: "",
-      technology: "",
-      details: ""
-    });
-    setIsSubmitted(false);
-  };
+  const defaultSector = normalizeIndustry(industryParam);
+  const defaultModel = resolveCanonicalModel(modelParam);
 
   return (
     <section 
@@ -175,184 +123,14 @@ export const FinalContactSection: React.FC = () => {
           </div>
 
           {/* COLONNE DE DROITE (Formulaire B2B - lg:col-span-7) */}
-          <div className="lg:col-span-7">
-            <AnimatePresence mode="wait">
-              {!isSubmitted ? (
-                <motion.div
-                  key="form"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-slate-900/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-800 shadow-lg"
-                >
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Nom & Prénom + Email */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="fullName" className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                          Nom & Prénom <span className="text-orange-500">*</span>
-                        </label>
-                        <input
-                          id="fullName"
-                          name="fullName"
-                          type="text"
-                          required
-                          placeholder="Jean Dupont"
-                          value={formData.fullName}
-                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors text-sm font-light"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                          Adresse E-mail Professionnelle <span className="text-orange-500">*</span>
-                        </label>
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          placeholder="j.dupont@entreprise.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors text-sm font-light"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Nom de l'entreprise + Secteur */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="company" className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                          Nom de l'entreprise <span className="text-orange-500">*</span>
-                        </label>
-                        <input
-                          id="company"
-                          name="company"
-                          type="text"
-                          required
-                          placeholder="Logistique SA"
-                          value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors text-sm font-light"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="industry" className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                          Secteur d'activité <span className="text-orange-500">*</span>
-                        </label>
-                        <select
-                          id="industry"
-                          name="industry"
-                          required
-                          value={formData.industry}
-                          onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                          className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors text-sm font-light cursor-pointer appearance-none"
-                        >
-                          <option value="" disabled className="bg-slate-950 text-slate-500">Sélectionnez votre secteur</option>
-                          <option value="retail" className="bg-slate-950 text-white">Retail & Commerce</option>
-                          <option value="hospitality" className="bg-slate-950 text-white">Hôtellerie & Restauration</option>
-                          <option value="health" className="bg-slate-950 text-white">Santé & Médical</option>
-                          <option value="industry" className="bg-slate-950 text-white">Industrie & Logistique</option>
-                          <option value="other" className="bg-slate-950 text-white">Autre secteur</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Technologie souhaitée */}
-                    <div>
-                      <label htmlFor="technology" className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                        Technologie souhaitée en évaluation <span className="text-orange-500">*</span>
-                      </label>
-                      <select
-                        id="technology"
-                        name="technology"
-                        required
-                        value={formData.technology}
-                        onChange={(e) => setFormData({ ...formData, technology: e.target.value })}
-                        className="w-full bg-slate-950/70 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-300 placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors text-sm font-light cursor-pointer appearance-none"
-                      >
-                        <option value="" disabled className="bg-slate-950 text-slate-500">Sélectionnez le type de robot</option>
-                        <optgroup label="Modèles de robots" className="bg-slate-950 text-slate-400">
-                          {allModels.map((model) => (
-                            <option key={model.canonicalId} value={model.canonicalId} className="bg-slate-950 text-white">
-                              {model.name} — {model.segmentLabel}
-                            </option>
-                          ))}
-                        </optgroup>
-                        <optgroup label="Flottes & Audits" className="bg-slate-950 text-slate-400">
-                          <option value="flotte-mixte" className="bg-slate-950 text-white">Flotte mixte</option>
-                          <option value="audit-site" className="bg-slate-950 text-white">Audit global de site</option>
-                        </optgroup>
-                      </select>
-                    </div>
-
-                    {/* Détails du projet */}
-                    <div>
-                      <label htmlFor="details" className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                        Détails de votre projet / Besoins
-                      </label>
-                      <textarea
-                        id="details"
-                        name="details"
-                        rows={4}
-                        placeholder="Décrivez brièvement vos défis opérationnels ou les tâches à automatiser..."
-                        value={formData.details}
-                        onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                        className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors text-sm font-light resize-none"
-                      />
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-orange-500/70 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 flex justify-center items-center gap-2 shadow-lg hover:shadow-orange-500/10 cursor-pointer text-sm"
-                    >
-                      {isSubmitting ? (
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden="true" />
-                      ) : (
-                        <>
-                          <span>Demander une étude de site</span>
-                          <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                        </>
-                      )}
-                    </button>
-                  </form>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-slate-900/40 border border-emerald-500/20 rounded-3xl p-8 sm:p-12 text-center flex flex-col items-center gap-6"
-                >
-                  <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400">
-                    <CheckCircle2 className="w-8 h-8 animate-bounce" aria-hidden="true" />
-                  </div>
-
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Demande enregistrée !</h3>
-                    <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-                      Merci <span className="font-semibold text-white">{formData.fullName}</span>. Un ingénieur expert de Phoenix Botics étudiera la faisabilité pour <span className="font-semibold text-white">{formData.company}</span> et vous recontactera sous 48 heures.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4 w-full justify-center pt-4">
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="text-xs text-slate-500 hover:text-white underline transition-colors cursor-pointer"
-                    >
-                      Soumettre une nouvelle demande
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <div className="lg:col-span-7 bg-slate-900/50 backdrop-blur-sm p-8 rounded-3xl border border-slate-800 shadow-lg">
+            <ContactForm
+              defaultSector={defaultSector}
+              defaultModel={defaultModel}
+              idPrefix="final-contact"
+              ctaLabel="Demander une étude de site"
+              emailPlaceholder="j.dupont@entreprise.com"
+            />
           </div>
 
         </div>
