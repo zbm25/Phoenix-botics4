@@ -20,6 +20,7 @@ import { IndustryPage } from "./pages/IndustryPage";
 import { TechnologyPage } from "./pages/TechnologyPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
+import { FeasibilityStudyPage } from "./pages/FeasibilityStudyPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { usePageMeta } from "./hooks/usePageMeta";
 
@@ -115,6 +116,7 @@ export default function App() {
         <Route path="/technologie" element={<TechnologyPage />} />
         <Route path="/a-propos" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/etude-faisabilite" element={<FeasibilityStudyPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
