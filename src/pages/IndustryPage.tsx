@@ -1,43 +1,23 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useParams, Link, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { 
-  ArrowLeft, 
-  Check, 
-  ShoppingBag, 
-  ArrowRight, 
-  Users, 
-  Clock, 
-  BarChart3, 
-  AlertTriangle, 
   Shield, 
   Zap, 
   Cpu, 
-  ChevronRight, 
-  ChevronDown,
   Layers,
-  Smile,
-  Layout,
-  MessageSquare,
-  BookOpen,
-  Calendar,
-  ConciergeBell,
-  Star,
+  ShoppingBag,
   Bell,
   Utensils,
-  HeartPulse,
-  Warehouse,
   Truck,
-  CheckCircle2,
   ShieldCheck
 } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { FleetCarousel, FleetCarouselItem, FleetCarouselTab } from "../components/FleetCarousel";
-import { motion, AnimatePresence, useInView, useMotionValue, animate } from "motion/react";
+import { ContactForm } from "../components/ContactForm";
+import { motion, useInView, useMotionValue, animate } from "motion/react";
 import { 
-  ROBOT_SERIES_DATA,
   getRobotById,
-  getRobotsBySeries,
   optimizeCloudinaryUrl,
   RobotModelData
 } from "../data/robotSeries";
@@ -247,7 +227,7 @@ const retailConfig: IndustrySectorConfig = {
   techFeatures: [
     { icon: Layers, title: "Cartographie Magasin 3D", desc: "Modélisation précise des rayons et gondoles." },
     { icon: Shield, title: "Navigation sécurisée public", desc: "Détection des piétons et arrêt d'urgence instantané." },
-    { icon: Layout, title: "Affichage promo HD", desc: "Écran dynamique pour la mise en valeur des offres." },
+    { icon: Layers, title: "Affichage promo HD", desc: "Écran dynamique pour la mise en valeur des offres." },
     { icon: Cpu, title: "Synchronisation stocks & SI", desc: "Connexion sécurisée aux données magasin." }
   ],
   robotsSubtitle: "pour le retail.",
@@ -464,8 +444,6 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
   const [activeUsageIdx, setActiveUsageIdx] = useState(0);
   const usageCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
   // Sector normalization
   const validSectors = ["hospitality", "retail", "health", "industry", "other"];
   const sectorAliases: Record<string, string> = {
@@ -498,32 +476,12 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
     if (!modelKey) return "";
     const robot = getRobotById(modelKey);
     if (!robot) return "";
-    // Verify it is part of this sector's recommended models
     const isInSector = config.robotList.some((r) => r.canonicalId === robot.canonicalId || r.id === robot.id);
     return isInSector ? robot.canonicalId : "";
   };
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    sector: normalizeSector(industryParam),
-    model: resolveCanonicalModel(modelParam),
-    details: ""
-  });
-
-  useEffect(() => {
-    if (modelParam) {
-      const resolved = resolveCanonicalModel(modelParam);
-      setFormData((prev) => ({
-        ...prev,
-        model: resolved
-      }));
-    }
-    if (industryParam) {
-      setFormData((prev) => ({ ...prev, sector: normalizeSector(industryParam) }));
-    }
-  }, [modelParam, industryParam, config.robotList]);
+  const selectedSector = normalizeSector(industryParam);
+  const selectedModel = resolveCanonicalModel(modelParam);
 
   useEffect(() => {
     const observerOptions = {
@@ -577,7 +535,6 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
       else if (robot.id.includes("scrub")) category = "scrub";
     }
 
-    // Lien de secours propre vers la série
     const fallbackLink = seriesId
       ? `/robots/${seriesId}?model=${encodeURIComponent(canonicalModelId)}#model-${encodeURIComponent(canonicalModelId)}`
       : `/robots/ulog-series`;
@@ -598,32 +555,23 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
   const handlePrimaryAction = (item: FleetCarouselItem) => {
     const rawId = item.canonicalId || item.id;
     const robot = getRobotById(rawId);
-    let selectedModel = "";
+    let chosenModel = "";
 
     if (robot && robot.canonicalId) {
-      selectedModel = robot.canonicalId;
+      chosenModel = robot.canonicalId;
     } else if (rawId === "flotte-mixte" || rawId === "audit-site") {
-      selectedModel = rawId;
+      chosenModel = rawId;
     } else {
-      selectedModel = "mixte";
+      chosenModel = "mixte";
     }
 
-    // Pré-sélectionner le robot exact dans le formulaire sectoriel
-    setFormData((prev) => ({
-      ...prev,
-      model: selectedModel,
-      sector: normalizeSector(config.sectorKey),
-    }));
-
-    // Mettre à jour l'URL en ?model=<canonicalId>&industry=<sectorKey>#contact
     const nextParams = new URLSearchParams(searchParams);
-    if (selectedModel) {
-      nextParams.set("model", selectedModel);
+    if (chosenModel) {
+      nextParams.set("model", chosenModel);
     }
     nextParams.set("industry", config.sectorKey);
     setSearchParams(nextParams, { replace: true });
 
-    // Faire défiler jusqu'à #contact
     if (window.location.hash !== "#contact") {
       window.location.hash = "contact";
     }
@@ -956,152 +904,15 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
             </div>
 
             <div className="w-full lg:w-7/12 bg-white/[0.02] p-8 lg:p-12 border-t lg:border-t-0 lg:border-l border-white/5">
-              <AnimatePresence mode="wait">
-                {!formSubmitted ? (
-                  <form
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setFormSubmitted(true);
-                    }}
-                  >
-                    <div className="space-y-1.5">
-                      <label htmlFor="industry-contact-name" className="text-[10px] font-bold text-gray-300 tracking-widest uppercase font-mono">
-                        Nom & Prénom <span className="text-orange-500">*</span>
-                      </label>
-                      <input
-                        id="industry-contact-name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-[#12192B] border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors"
-                        placeholder="Jean Dupont"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="industry-contact-email" className="text-[10px] font-bold text-gray-300 tracking-widest uppercase font-mono">
-                        Email professionnel <span className="text-orange-500">*</span>
-                      </label>
-                      <input
-                        id="industry-contact-email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-[#12192B] border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors"
-                        placeholder={config.contactEmailPlaceholder}
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="industry-contact-company" className="text-[10px] font-bold text-gray-300 tracking-widest uppercase font-mono">
-                        Entreprise <span className="text-orange-500">*</span>
-                      </label>
-                      <input
-                        id="industry-contact-company"
-                        name="company"
-                        type="text"
-                        required
-                        value={formData.company}
-                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-[#12192B] border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors"
-                        placeholder="Nom de l'établissement"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="industry-contact-sector" className="text-[10px] font-bold text-gray-300 tracking-widest uppercase font-mono">
-                        Secteur <span className="text-orange-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <select
-                          id="industry-contact-sector"
-                          name="sector"
-                          value={formData.sector}
-                          onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
-                          className="w-full bg-[#12192B] border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors appearance-none pr-10 cursor-pointer"
-                        >
-                          {config.contactSectorOptions.map((opt) => (
-                            <option key={opt.val} value={opt.val}>{opt.label}</option>
-                          ))}
-                          <option value="autre">Autre secteur</option>
-                        </select>
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                          <ChevronDown size={16} aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-1.5 sm:col-span-2">
-                      <label htmlFor="industry-contact-robot" className="text-[10px] font-bold text-gray-300 tracking-widest uppercase font-mono">
-                        Robot d'intérêt / Technologie <span className="text-orange-500">*</span>
-                      </label>
-                      <div className="relative">
-                        <select
-                          id="industry-contact-robot"
-                          name="model"
-                          value={formData.model}
-                          onChange={(e) => setFormData({ ...formData, model: e.target.value })}
-                          className="w-full bg-[#12192B] border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors appearance-none pr-10 cursor-pointer"
-                        >
-                          <option value="">Sélectionnez un modèle ou une flotte</option>
-                          {config.contactRobotOptions.map((opt) => (
-                            <option key={opt.val} value={opt.val}>{opt.label}</option>
-                          ))}
-                          <option value="mixte">Flotte Mixte (Plusieurs modèles)</option>
-                        </select>
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                          <ChevronDown size={16} aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-1.5 sm:col-span-2">
-                      <label htmlFor="industry-contact-details" className="text-[10px] font-bold text-gray-300 tracking-widest uppercase font-mono">
-                        Détails du projet
-                      </label>
-                      <textarea
-                        id="industry-contact-details"
-                        name="details"
-                        rows={2}
-                        value={formData.details}
-                        onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                        className="w-full bg-[#12192B] border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm focus:outline-none focus:border-orange-500 transition-colors resize-none"
-                        placeholder="Décrivez vos défis opérationnels ou flux à automatiser..."
-                      />
-                    </div>
-                    <div className="sm:col-span-2 pt-2">
-                      <button
-                        type="submit"
-                        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm py-3 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-orange-500/20"
-                      >
-                        <span>Demander une étude de site</span>
-                        <ArrowRight size={16} aria-hidden="true" />
-                      </button>
-                    </div>
-                  </form>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-12 flex flex-col items-center justify-center text-center gap-4"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                      <CheckCircle2 size={28} />
-                    </div>
-                    <h3 className="text-xl font-bold text-white font-display">Demande transmise avec succès !</h3>
-                    <p className="text-slate-400 text-xs max-w-sm leading-relaxed">
-                      Un ingénieur Phoenix Robotics expert du secteur <span className="text-white font-semibold">{formData.sector}</span> prendra contact sous 48h.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => setFormSubmitted(false)}
-                      className="text-xs text-orange-400 hover:text-orange-300 underline cursor-pointer mt-2"
-                    >
-                      Nouvelle demande
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <ContactForm
+                defaultSector={selectedSector}
+                defaultModel={selectedModel}
+                sectorOptions={config.contactSectorOptions}
+                robotOptions={config.contactRobotOptions}
+                emailPlaceholder={config.contactEmailPlaceholder}
+                ctaLabel="Demander une étude de site"
+                idPrefix={`industry-${config.sectorKey}`}
+              />
             </div>
           </div>
         </div>
@@ -1131,6 +942,5 @@ export const IndustryPage: React.FC = () => {
     return <SectorView config={industryConfig} />;
   }
 
-  // Default to hospitality for hospitality or any general / unrecognized sector view
   return <SectorView config={hospitalityConfig} />;
 };
