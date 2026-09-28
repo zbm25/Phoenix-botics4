@@ -820,7 +820,7 @@ export const Header: React.FC = () => {
               <button
                 id="mobile-cta-meeting"
                 onClick={() => goToSection("contact")}
-                className="w-full py-3.5 min-h-[44px] text-center rounded-xl bg-gradient-to-r from-orange-500 via-red-500 to-purple-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-110 cursor-pointer flex items-center justify-center"
+                className="w-full py-3.5 min-h-[44px] text-center rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-colors cursor-pointer flex items-center justify-center"
               >
                 Planifier une démo
               </button>

@@ -8,7 +8,7 @@ export const AboutSection: React.FC = () => {
     <section id="about" className="py-24 relative overflow-hidden bg-[color:var(--color-surface-page)]">
       
       {/* Background decoration elements */}
-      <div className="absolute top-[30%] left-[-15%] w-[40%] h-[40%] rounded-full bg-purple-900/5 blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-[30%] left-[-15%] w-[40%] h-[40%] rounded-full bg-orange-500/5 blur-[120px] -z-10 pointer-events-none" />
       <div className="absolute bottom-[20%] right-[-15%] w-[40%] h-[40%] rounded-full bg-orange-600/5 blur-[120px] -z-10 pointer-events-none" />
 
       <motion.div
@@ -34,7 +34,7 @@ export const AboutSection: React.FC = () => {
               className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900 mb-6 leading-tight"
             >
               Pionniers de la <br />
-              <span className="bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-orange-500 font-extrabold">
                 Robotique de Service
               </span>
             </motion.h2>

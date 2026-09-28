@@ -3,7 +3,6 @@ import { useParams, Link, useSearchParams } from "react-router-dom";
 import { 
   ArrowLeft, 
   Check, 
-  Sparkles, 
   ShoppingBag, 
   ArrowRight, 
   Users, 
@@ -28,7 +27,8 @@ import {
   HeartPulse,
   Warehouse,
   Truck,
-  CheckCircle2
+  CheckCircle2,
+  ShieldCheck
 } from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -152,7 +152,7 @@ const hospitalityConfig: IndustrySectorConfig = {
     },
     {
       id: "proprete",
-      icon: Sparkles,
+      icon: ShieldCheck,
       title: "Propreté automatisée",
       desc: "Nos gammes de nettoyage maintiennent les sols dans un état de propreté constant.",
       image: "https://res.cloudinary.com/df1x718yw/image/upload/v1785324422/ChatGPT_Image_28_juil._2026_13_45_43_d6fm1m.png"
@@ -229,7 +229,7 @@ const retailConfig: IndustrySectorConfig = {
     },
     {
       id: "nettoyage-allees",
-      icon: Sparkles,
+      icon: ShieldCheck,
       title: "Entretien continu des allées",
       desc: "Lavage et aspiration des surfaces de vente en toute sécurité au milieu des flux clients.",
       image: "https://res.cloudinary.com/df1x718yw/image/upload/v1786538828/ChatGPT_Image_12_ao%C3%BBt_2026_14_33_42_tnmnoc.png"
@@ -315,7 +315,7 @@ const healthConfig: IndustrySectorConfig = {
     },
     {
       id: "bionettoyage",
-      icon: Sparkles,
+      icon: ShieldCheck,
       title: "Bio-nettoyage des circulations",
       desc: "Entretien régulier et silencieux des espaces communs, chambres et couloirs.",
       image: "https://res.cloudinary.com/df1x718yw/image/upload/v1786443283/Gemini_Generated_Image_vqi2bwvqi2bwvqi2_obkh6h.png"
@@ -409,7 +409,7 @@ const industryConfig: IndustrySectorConfig = {
     },
     {
       id: "nettoyage-entrepot",
-      icon: Sparkles,
+      icon: ShieldCheck,
       title: "Nettoyage industriel intensif",
       desc: "Lavage à grande eau et séchage instantané des allées logistiques à fort trafic.",
       image: "https://res.cloudinary.com/df1x718yw/image/upload/v1785933751/Gemini_Generated_Image_ehix26ehix26ehix_vcxjhs.png"

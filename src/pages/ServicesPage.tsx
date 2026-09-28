@@ -219,7 +219,7 @@ export const ServicesPage: React.FC = () => {
   return (
     <div className="min-h-screen text-[color:var(--color-text-main)] relative bg-slate-50">
       {/* Sleek Interface Ambient Background Bulbs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-purple-900/10 via-orange-600/5 to-transparent rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-500/10 to-transparent rounded-full blur-[120px] pointer-events-none z-0" />
       
       <div className="bg-slate-950 relative pt-24 sm:pt-28 pb-12 lg:pb-16">
         <Header />
