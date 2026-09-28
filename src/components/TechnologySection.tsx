@@ -7,7 +7,7 @@ export const TechnologySection: React.FC = () => {
   return (
     <section id="technology" className="py-24 relative overflow-hidden cobiot-grid-bg">
       {/* Visual glowing center */}
-      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full bg-purple-900/5 blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full bg-orange-500/5 blur-[120px] -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -19,7 +19,7 @@ export const TechnologySection: React.FC = () => {
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900 mb-6">
             Une plateforme modulaire de robotique de service, <br />
-            <span className="bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-orange-500 font-extrabold">
               infiniment connectée
             </span>
           </h2>
@@ -70,7 +70,7 @@ export const TechnologySection: React.FC = () => {
               <p className="text-[11px] text-[color:var(--color-text-muted)] leading-tight mb-3">Protocoles MQTT, WebSocket de télémétrie en temps réel et ordonnanceur intelligent.</p>
               <div className="flex justify-center gap-1.5">
                 <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600">WebSocket SSL</span>
-                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-600">HTTPS REST</span>
+                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-orange-500/10 text-orange-500">HTTPS REST</span>
               </div>
             </div>
 

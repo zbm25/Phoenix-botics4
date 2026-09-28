@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link, useLocation, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence, useInView, useMotionValue, animate } from "motion/react";
-import { Users, Clock, TrendingUp, CheckCircle2, ShieldCheck, Sparkles, Download, ArrowRight, FileText, Cpu, Truck, Globe } from "lucide-react";
+import { Users, Clock, TrendingUp, CheckCircle2, ShieldCheck, Download, ArrowRight, FileText, Cpu, Truck, Globe } from "lucide-react";
 import * as Icons from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";

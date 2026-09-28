@@ -85,7 +85,7 @@ export const TechnologyPage: React.FC = () => {
   return (
     <div className="min-h-screen text-[#1a1a1a] bg-slate-50 font-sans relative overflow-x-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-500/10 via-purple-900/5 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-500/10 to-transparent rounded-full blur-[140px] pointer-events-none -z-10" />
 
       {/* Header Container */}
       <div className="bg-[#0B1121] relative pt-24 sm:pt-28">

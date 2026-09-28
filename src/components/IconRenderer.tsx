@@ -22,7 +22,6 @@ import {
   Phone,
   Info,
   Layers,
-  Sparkles,
   Award,
   Clock,
   Compass,
@@ -55,7 +54,6 @@ export type IconKey =
   | "Phone"
   | "Info"
   | "Layers"
-  | "Sparkles"
   | "Award"
   | "Clock"
   | "Compass"
@@ -116,8 +114,6 @@ export const IconRenderer: React.FC<IconRendererProps> = ({ name, className = ""
       return <Info className={className} size={size} />;
     case "Layers":
       return <Layers className={className} size={size} />;
-    case "Sparkles":
-      return <Sparkles className={className} size={size} />;
     case "Award":
       return <Award className={className} size={size} />;
     case "Clock":
@@ -133,6 +129,6 @@ export const IconRenderer: React.FC<IconRendererProps> = ({ name, className = ""
     case "MonitorPlay":
       return <MonitorPlay className={className} size={size} />;
     default:
-      return <Sparkles className={className} size={size} />;
+      return <CheckCircle2 className={className} size={size} />;
   }
 };

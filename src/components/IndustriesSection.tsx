@@ -9,7 +9,6 @@ import {
   ChevronRight, 
   Play, 
   Pause,
-  Sparkles,
   ArrowRight
 } from "lucide-react";
 
@@ -137,7 +136,7 @@ export const IndustriesSection: React.FC = () => {
       className="py-24 bg-slate-50 border-b border-slate-100 relative overflow-hidden"
     >
       {/* Visual ambient gradients */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-100/10 via-purple-50/5 to-transparent rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-100/10 to-transparent rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-slate-100/20 via-slate-200/10 to-transparent rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -151,8 +150,7 @@ export const IndustriesSection: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 shadow-xs rounded-full mb-4 text-[10px] uppercase tracking-[0.2em] font-mono font-bold text-slate-400"
           >
-            <Sparkles className="w-3.5 h-3.5 text-orange-500 animate-pulse" />
-            <span>Verticales d'intégration</span>
+            <span>- VERTICALES D'INTÉGRATION -</span>
           </motion.div>
           
           <motion.h2 

@@ -9,8 +9,7 @@
   --color-brand-primary: #f97316; /* phoenix flame orange */
   --color-brand-gold: #fbbf24; /* phoenix warm gold */
   --color-brand-red: #ef4444; /* phoenix crimson */
-  --color-brand-purple: #8b5cf6; /* cosmic deep purple */
-  --color-brand-dark-bg: #070318; /* deep sleek interface background with cosmic purple tint */
+  --color-brand-dark-bg: #0a0f1c; /* deep sleek industrial dark blue / slate */
   --color-brand-dark-card: rgba(255, 255, 255, 0.04); /* glassmorphic highly transparent card base */
   --color-brand-dark-border: rgba(255, 255, 255, 0.08); /* sleek interface border gray */
   --color-brand-muted: #9ca3af; /* gray-400 equivalent for professional sleek B2B text */
@@ -43,22 +42,15 @@
   box-shadow: 0 0 50px -5px rgba(249, 115, 22, 0.25);
 }
 
-.glow-purple {
-  box-shadow: 0 0 50px -5px rgba(139, 92, 246, 0.25);
-}
-
 /* Soft grid effect for futuristic background overlay */
 .cobiot-grid-bg {
   background-color: var(--color-surface-page);
   background-image:
     radial-gradient(circle at top left,
-      rgba(249, 115, 22, 0.10), transparent 55%),     /* halo orange phoenix très doux */
-    radial-gradient(circle at bottom right,
-      rgba(139, 92, 246, 0.12), transparent 55%),     /* halo violet doux */
+      rgba(249, 115, 22, 0.08), transparent 55%),     /* halo orange phoenix très doux */
     linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
   background-size:
-    auto,
     auto,
     40px 40px,
     40px 40px;
@@ -67,10 +59,8 @@
 .phoenix-section-alt {
   background:
     radial-gradient(circle at top center,
-      rgba(249, 115, 22, 0.22), transparent 60%),
-    radial-gradient(circle at bottom right,
-      rgba(139, 92, 246, 0.22), transparent 60%),
-    rgba(7, 3, 24, 0.96); /* peut rester sombre pour garder un Hero impactant */
+      rgba(249, 115, 22, 0.12), transparent 60%),
+    #0a0f1c;
 }
 
 /* Animation utilities */
