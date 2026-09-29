@@ -208,15 +208,6 @@ export const Header: React.FC = () => {
   const activeIndustryObj =
     INDUSTRY_SECTORS_DATA.find((ind) => ind.id === hoveredIndustry) ?? INDUSTRY_SECTORS_DATA[0];
 
-  const navLinks: NavLink[] = [
-    { label: "Robots", targetId: "robots-catalog" },
-    { label: "Industries", targetId: "industries" },
-    { label: "Services", path: "/services" },
-    { label: "Technologie", path: "/technologie" },
-    { label: "À propos", path: "/a-propos" },
-    { label: "Contact", targetId: "contact" }
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -256,7 +247,7 @@ export const Header: React.FC = () => {
   const goToSection = (id: string) => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
-    const isLocalContact = id === "contact" && (location.pathname.startsWith("/robots/") || location.pathname.startsWith("/secteurs/") || location.pathname.startsWith("/industries/"));
+    const isLocalContact = id === "contact" && (location.pathname.startsWith("/robots/") || location.pathname.startsWith("/secteurs/") || location.pathname.startsWith("/industries/") || location.pathname === "/etude-faisabilite");
     if (location.pathname !== "/" && !isLocalContact) {
       navigate("/");
       setTimeout(() => {
@@ -563,6 +554,7 @@ export const Header: React.FC = () => {
 
             {/* Simple links */}
             {[
+              { label: "Étude de faisabilité", path: "/etude-faisabilite" },
               { label: "Services", path: "/services" },
               { label: "Technologie", path: "/technologie" },
               { label: "À propos", path: "/a-propos" },
@@ -592,7 +584,7 @@ export const Header: React.FC = () => {
           <div className="hidden lg:flex items-center gap-4">
             <button
               id="header-cta-quote"
-              onClick={() => goToSection("contact")}
+              onClick={() => navigate("/etude-faisabilite")}
               className="px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-150 shadow-sm cursor-pointer bg-slate-900 text-white hover:bg-slate-950 hover:shadow-md hover:-translate-y-[1px]"
             >
               Parler à un expert
@@ -766,6 +758,19 @@ export const Header: React.FC = () => {
                 </AnimatePresence>
               </div>
 
+              {/* Lien direct ÉTUDE DE FAISABILITÉ */}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("/etude-faisabilite");
+                }}
+                className="text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
+              >
+                <span>Étude de Faisabilité</span>
+                <IconRenderer name="ArrowRight" size={16} className="text-orange-500" />
+              </button>
+
               {/* Liens simples directs */}
               <button
                 type="button"
@@ -819,10 +824,13 @@ export const Header: React.FC = () => {
             <div className="flex flex-col gap-3 pb-4">
               <button
                 id="mobile-cta-meeting"
-                onClick={() => goToSection("contact")}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("/etude-faisabilite");
+                }}
                 className="w-full py-3.5 min-h-[44px] text-center rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-colors cursor-pointer flex items-center justify-center"
               >
-                Planifier une démo
+                Étude de Faisabilité
               </button>
               <button
                 id="mobile-cta-callback"
