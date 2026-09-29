@@ -15,6 +15,7 @@ export interface ContactFormData {
 export interface ContactFormProps {
   defaultSector?: string;
   defaultModel?: string;
+  defaultDetails?: string;
   sectorOptions?: Array<{ val: string; label: string }>;
   robotOptions?: Array<{ val: string; label: string }>;
   emailPlaceholder?: string;
@@ -34,6 +35,7 @@ const DEFAULT_SECTOR_OPTIONS: Array<{ val: string; label: string }> = [
 export const ContactForm: React.FC<ContactFormProps> = ({
   defaultSector = "",
   defaultModel = "",
+  defaultDetails = "",
   sectorOptions,
   robotOptions,
   emailPlaceholder = "contact@entreprise.com",
@@ -44,7 +46,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   const generatedId = useId();
   const baseId = idPrefix ? `${idPrefix}-${generatedId}` : generatedId;
 
-  const actualSectorOptions = sectorOptions && sectorOptions.length > 0 ? sectorOptions : DEFAULT_SECTOR_OPTIONS;
+  const actualSectorOptions = useMemo(() => {
+    return sectorOptions && sectorOptions.length > 0 ? sectorOptions : DEFAULT_SECTOR_OPTIONS;
+  }, [sectorOptions]);
 
   const defaultRobotOptions = useMemo(() => {
     const models = getAllRobotModels();
@@ -52,20 +56,38 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       val: m.canonicalId,
       label: `${m.name} (${m.segmentLabel})`,
     }));
-    opts.push({ val: "flotte-mixte", label: "Flotte mixte" });
+    opts.push({ val: "flotte-mixte", label: "Flotte mixte (plusieurs modèles)" });
     opts.push({ val: "audit-site", label: "Audit global de site" });
     return opts;
   }, []);
 
-  const actualRobotOptions = robotOptions && robotOptions.length > 0 ? robotOptions : defaultRobotOptions;
+  const actualRobotOptions = useMemo(() => {
+    return robotOptions && robotOptions.length > 0 ? robotOptions : defaultRobotOptions;
+  }, [robotOptions, defaultRobotOptions]);
+
+  const sanitizeSector = (sec: string) => {
+    if (!sec) return "";
+    const exists = actualSectorOptions.some((opt) => opt.val === sec);
+    if (exists) return sec;
+    const defaultExists = DEFAULT_SECTOR_OPTIONS.some((opt) => opt.val === sec);
+    return defaultExists ? sec : "";
+  };
+
+  const sanitizeModel = (mod: string) => {
+    if (!mod) return "";
+    const existsInActual = actualRobotOptions.some((opt) => opt.val === mod);
+    if (existsInActual) return mod;
+    const existsInDefault = defaultRobotOptions.some((opt) => opt.val === mod);
+    return existsInDefault ? mod : "";
+  };
 
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: "",
     email: "",
     company: "",
-    sector: defaultSector,
-    model: defaultModel,
-    details: "",
+    sector: sanitizeSector(defaultSector),
+    model: sanitizeModel(defaultModel),
+    details: defaultDetails,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,10 +96,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      sector: defaultSector,
-      model: defaultModel,
+      sector: sanitizeSector(defaultSector),
+      model: sanitizeModel(defaultModel),
+      details: defaultDetails,
     }));
-  }, [defaultSector, defaultModel]);
+  }, [defaultSector, defaultModel, defaultDetails, actualSectorOptions, actualRobotOptions, defaultRobotOptions]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,9 +120,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       fullName: "",
       email: "",
       company: "",
-      sector: defaultSector,
-      model: defaultModel,
-      details: "",
+      sector: sanitizeSector(defaultSector),
+      model: sanitizeModel(defaultModel),
+      details: defaultDetails,
     });
     setIsSubmitted(false);
   };
@@ -138,7 +161,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
             onSubmit={handleSubmit}
-            className="space-y-4"
+            className="space-y-4 text-left"
           >
             {/* Nom & Prénom + Email */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -332,7 +355,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               </p>
               {selectedRobotLabel && (
                 <p className="text-slate-400 text-xs font-light">
-                  Demande enregistrée pour le modèle <span className="font-semibold text-slate-200">{selectedRobotLabel}</span>.
+                  Demande enregistrée pour la solution <span className="font-semibold text-slate-200">{selectedRobotLabel}</span>.
                 </p>
               )}
             </div>

@@ -20,6 +20,7 @@ import { IndustryPage } from "./pages/IndustryPage";
 import { TechnologyPage } from "./pages/TechnologyPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
+import { FeasibilityStudyPage } from "./pages/FeasibilityStudyPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { usePageMeta } from "./hooks/usePageMeta";
 
@@ -110,6 +111,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/etude-faisabilite" element={<FeasibilityStudyPage />} />
         <Route path="/robots/:seriesId" element={<RobotSeriesPage />} />
         <Route path="/industries/:industryId" element={<IndustryPage />} />
         <Route path="/technologie" element={<TechnologyPage />} />
