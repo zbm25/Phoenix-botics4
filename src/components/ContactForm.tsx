@@ -15,6 +15,7 @@ export interface ContactFormData {
 export interface ContactFormProps {
   defaultSector?: string;
   defaultModel?: string;
+  defaultDetails?: string;
   sectorOptions?: Array<{ val: string; label: string }>;
   robotOptions?: Array<{ val: string; label: string }>;
   emailPlaceholder?: string;
@@ -34,6 +35,7 @@ const DEFAULT_SECTOR_OPTIONS: Array<{ val: string; label: string }> = [
 export const ContactForm: React.FC<ContactFormProps> = ({
   defaultSector = "",
   defaultModel = "",
+  defaultDetails = "",
   sectorOptions,
   robotOptions,
   emailPlaceholder = "contact@entreprise.com",
@@ -65,7 +67,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     company: "",
     sector: defaultSector,
     model: defaultModel,
-    details: "",
+    details: defaultDetails,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,10 +76,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      sector: defaultSector,
-      model: defaultModel,
+      sector: defaultSector || prev.sector,
+      model: defaultModel || prev.model,
+      details: defaultDetails || prev.details,
     }));
-  }, [defaultSector, defaultModel]);
+  }, [defaultSector, defaultModel, defaultDetails]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
