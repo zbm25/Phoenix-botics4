@@ -565,7 +565,7 @@ export const Header: React.FC = () => {
               { label: "Services", path: "/services" },
               { label: "Technologie", path: "/technologie" },
               { label: "À propos", path: "/a-propos" }
-            ].map((link) => (
+            ].map((link: NavLink) => (
               <button
                 key={link.label}
                 onClick={() => {

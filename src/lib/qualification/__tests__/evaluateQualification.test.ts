@@ -87,4 +87,20 @@ describe("evaluateQualification Engine", () => {
     expect(mapped.formattedSummary).toContain("[Préqualification Technique Phoenix-Botics]");
     expect(mapped.formattedSummary).toContain("Secteur: RETAIL");
   });
+
+  it("should support multi-selection for primary needs and accumulate recommended robots", () => {
+    const answers = {
+      site_sub_environment: "monosite_flat",
+      surface_area: "500_2000",
+      cohabitation_type: "staff_only",
+      project_timeline: "immediate",
+      retail_passage_width: "wide_over_120",
+      retail_primary_need: ["guidance_welcome", "floor_washing"]
+    };
+
+    const res = evaluateQualification("retail", answers);
+    expect(res.recommendedRobots).toContain("userve");
+    expect(res.recommendedRobots).toContain("uclean-scrub-50-disc");
+    expect(res.recommendedRobots).toContain("uclean-compact");
+  });
 });
