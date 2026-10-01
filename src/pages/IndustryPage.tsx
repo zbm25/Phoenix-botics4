@@ -15,6 +15,8 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { FleetCarousel, FleetCarouselItem, FleetCarouselTab } from "../components/FleetCarousel";
 import { ContactForm } from "../components/ContactForm";
+import { PrequalificationFlow } from "../components/qualification/PrequalificationFlow";
+import { MappedContactQualification } from "../lib/qualification/mapQualificationToContact";
 import { motion, useInView, useMotionValue, animate } from "motion/react";
 import { 
   getRobotById,
@@ -441,6 +443,9 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
   const modelParam = searchParams.get("model");
   const industryParam = searchParams.get("industry");
 
+  const [prequalificationDetails, setPrequalificationDetails] = useState<string>("");
+  const [prequalificationModel, setPrequalificationModel] = useState<string>("");
+
   const [activeUsageIdx, setActiveUsageIdx] = useState(0);
   const usageCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -481,7 +486,14 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
   };
 
   const selectedSector = normalizeSector(industryParam);
-  const selectedModel = resolveCanonicalModel(modelParam);
+  const selectedModel = prequalificationModel || resolveCanonicalModel(modelParam);
+
+  const handleQualificationComplete = (mapped: MappedContactQualification) => {
+    if (mapped.suggestedModel) {
+      setPrequalificationModel(mapped.suggestedModel);
+    }
+    setPrequalificationDetails(mapped.formattedSummary);
+  };
 
   useEffect(() => {
     const observerOptions = {
@@ -885,6 +897,12 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
         getSecondaryLink={getSecondaryLink}
       />
 
+      {/* ==================== 7.5 MODULE DE PRÉQUALIFICATION TECHNIQUE ==================== */}
+      <PrequalificationFlow
+        sectorKey={config.sectorKey}
+        onCompleteQualification={handleQualificationComplete}
+      />
+
       {/* ==================== 8. CTA FORM ==================== */}
       <section id="contact" className="py-20 bg-white border-t border-gray-100 relative z-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -907,6 +925,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
               <ContactForm
                 defaultSector={selectedSector}
                 defaultModel={selectedModel}
+                defaultDetails={prequalificationDetails}
                 sectorOptions={config.contactSectorOptions}
                 robotOptions={config.contactRobotOptions}
                 emailPlaceholder={config.contactEmailPlaceholder}

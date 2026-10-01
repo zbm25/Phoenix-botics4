@@ -213,8 +213,7 @@ export const Header: React.FC = () => {
     { label: "Industries", targetId: "industries" },
     { label: "Services", path: "/services" },
     { label: "Technologie", path: "/technologie" },
-    { label: "À propos", path: "/a-propos" },
-    { label: "Contact", targetId: "contact" }
+    { label: "À propos", path: "/a-propos" }
   ];
 
   useEffect(() => {
@@ -565,8 +564,7 @@ export const Header: React.FC = () => {
             {[
               { label: "Services", path: "/services" },
               { label: "Technologie", path: "/technologie" },
-              { label: "À propos", path: "/a-propos" },
-              { label: "Contact", targetId: "contact" }
+              { label: "À propos", path: "/a-propos" }
             ].map((link) => (
               <button
                 key={link.label}
@@ -803,17 +801,6 @@ export const Header: React.FC = () => {
                 <IconRenderer name="ArrowRight" size={16} className="text-orange-500" />
               </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  goToSection("contact");
-                }}
-                className="text-left py-3 min-h-[44px] text-lg font-display font-medium text-slate-900 hover:text-orange-500 flex items-center justify-between cursor-pointer border-b border-gray-100"
-              >
-                <span>Contact & Audit</span>
-                <IconRenderer name="ArrowRight" size={16} className="text-orange-500" />
-              </button>
             </div>
 
             <div className="flex flex-col gap-3 pb-4">
