@@ -324,6 +324,7 @@ const healthConfig: IndustrySectorConfig = {
   ],
   robotsSubtitle: "pour la santé.",
   robotList: [
+    getRobotById("userve")!,
     getRobotById("uclean-compact")!,
     getRobotById("uclean-vacuum-40")!,
     getRobotById("uclean-scrub-50-disc")!,
