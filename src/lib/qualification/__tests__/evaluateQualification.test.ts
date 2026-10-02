@@ -118,4 +118,52 @@ describe("evaluateQualification Engine", () => {
     expect(mapped.structuredData.evaluation.recommendedRobots.length).toBeGreaterThanOrEqual(2);
     expect(mapped.suggestedModel).toBe("flotte-mixte");
   });
+
+  it("should correctly handle uLog ROI -> Industry prequalification flow mapping", () => {
+    const answersSingle = {
+      site_sub_environment: "monosite_flat",
+      surface_area: "over_5000",
+      cohabitation_type: "industrial_mix",
+      project_timeline: "immediate",
+      industry_load_type: "light_line_feed",
+      industry_aisle_traffic: "wide_aisles_forklifts"
+    };
+
+    const mappedSingle = mapQualificationToContact("industry", answersSingle);
+    expect(mappedSingle.sector).toBe("industry");
+    expect(mappedSingle.structuredData.evaluation.recommendedRobots).toContain("ulog-deliver-80");
+    expect(mappedSingle.structuredData.evaluation.recommendedRobots).toContain("ulog-deliver-150");
+    expect(mappedSingle.suggestedModel).toBe("flotte-mixte");
+    expect(mappedSingle.formattedSummary).toContain("Secteur: INDUSTRY");
+
+    const answersHeavyScrub = {
+      site_sub_environment: "monosite_flat",
+      surface_area: "over_5000",
+      cohabitation_type: "industrial_mix",
+      project_timeline: "immediate",
+      industry_load_type: "heavy_floor_scrub",
+      industry_aisle_traffic: "wide_aisles_forklifts"
+    };
+
+    const mappedHeavy = mapQualificationToContact("industry", answersHeavyScrub);
+    expect(mappedHeavy.structuredData.evaluation.recommendedRobots).toEqual(["uclean-scrub-75"]);
+    expect(mappedHeavy.suggestedModel).toBe("uclean-scrub-75");
+  });
+
+  it("should correctly handle uServe ROI -> Hospitality prequalification flow mapping", () => {
+    const answersHospitality = {
+      site_sub_environment: "monosite_flat",
+      surface_area: "500_2000",
+      cohabitation_type: "public_and_staff",
+      project_timeline: "immediate",
+      hospitality_flow_type: "table_service_bussing",
+      hospitality_obstacles: "smooth_elevators"
+    };
+
+    const mappedHospitality = mapQualificationToContact("hospitality", answersHospitality);
+    expect(mappedHospitality.sector).toBe("hospitality");
+    expect(mappedHospitality.structuredData.evaluation.recommendedRobots).toEqual(["userve"]);
+    expect(mappedHospitality.suggestedModel).toBe("userve");
+    expect(mappedHospitality.formattedSummary).toContain("Robots préconisés: userve");
+  });
 });
