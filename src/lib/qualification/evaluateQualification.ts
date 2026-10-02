@@ -77,62 +77,83 @@ export function evaluateQualification(
 
   // Determine robot recommendations strictly from allowedRobots
   const allowed = config.allowedRobots;
+  const getSelectedValues = (val: string | string[] | undefined): string[] =>
+    Array.isArray(val) ? val : val ? [val] : [];
 
   if (config.sectorKey === "industry") {
-    const loadAns = answers["industry_load_type"];
-    if (loadAns === "pallets_heavy_racks") {
-      if (allowed.includes("ulog-lift-600")) recommendedRobots.push("ulog-lift-600");
-      if (allowed.includes("ulog-lift-600-base")) recommendedRobots.push("ulog-lift-600-base");
-    } else if (loadAns === "heavy_floor_scrub") {
-      if (allowed.includes("uclean-scrub-75")) recommendedRobots.push("uclean-scrub-75");
-    } else if (loadAns === "bins_kitting_300") {
-      if (allowed.includes("ulog-deliver-300")) recommendedRobots.push("ulog-deliver-300");
-      if (allowed.includes("ulog-lift-300-base")) recommendedRobots.push("ulog-lift-300-base");
-    } else if (loadAns === "light_line_feed") {
-      if (allowed.includes("ulog-deliver-80")) recommendedRobots.push("ulog-deliver-80");
+    const selectedLoads = getSelectedValues(answers["industry_load_type"]);
+    if (selectedLoads.length === 0) {
       if (allowed.includes("ulog-deliver-150")) recommendedRobots.push("ulog-deliver-150");
+      if (allowed.includes("ulog-lift-300-base")) recommendedRobots.push("ulog-lift-300-base");
     } else {
-      if (allowed.includes("ulog-deliver-150")) recommendedRobots.push("ulog-deliver-150");
-      if (allowed.includes("ulog-lift-300-base")) recommendedRobots.push("ulog-lift-300-base");
+      selectedLoads.forEach((load) => {
+        if (load === "pallets_heavy_racks") {
+          if (allowed.includes("ulog-lift-600")) recommendedRobots.push("ulog-lift-600");
+          if (allowed.includes("ulog-lift-600-base")) recommendedRobots.push("ulog-lift-600-base");
+        } else if (load === "heavy_floor_scrub") {
+          if (allowed.includes("uclean-scrub-75")) recommendedRobots.push("uclean-scrub-75");
+        } else if (load === "bins_kitting_300") {
+          if (allowed.includes("ulog-deliver-300")) recommendedRobots.push("ulog-deliver-300");
+          if (allowed.includes("ulog-lift-300-base")) recommendedRobots.push("ulog-lift-300-base");
+        } else if (load === "light_line_feed") {
+          if (allowed.includes("ulog-deliver-80")) recommendedRobots.push("ulog-deliver-80");
+          if (allowed.includes("ulog-deliver-150")) recommendedRobots.push("ulog-deliver-150");
+        }
+      });
     }
   } else if (config.sectorKey === "retail") {
-    const needAns = answers["retail_primary_need"];
-    if (needAns === "guidance_welcome") {
-      if (allowed.includes("userve")) recommendedRobots.push("userve");
-    } else if (needAns === "floor_washing") {
-      if (allowed.includes("uclean-scrub-50-disc")) recommendedRobots.push("uclean-scrub-50-disc");
+    const selectedNeeds = getSelectedValues(answers["retail_primary_need"]);
+    if (selectedNeeds.length === 0) {
       if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
-    } else if (needAns === "carpet_vacuum") {
-      if (allowed.includes("uclean-vacuum-40")) recommendedRobots.push("uclean-vacuum-40");
+      if (allowed.includes("userve")) recommendedRobots.push("userve");
     } else {
-      if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
-      if (allowed.includes("userve")) recommendedRobots.push("userve");
+      selectedNeeds.forEach((need) => {
+        if (need === "guidance_welcome") {
+          if (allowed.includes("userve")) recommendedRobots.push("userve");
+        } else if (need === "floor_washing") {
+          if (allowed.includes("uclean-scrub-50-disc")) recommendedRobots.push("uclean-scrub-50-disc");
+          if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
+        } else if (need === "carpet_vacuum") {
+          if (allowed.includes("uclean-vacuum-40")) recommendedRobots.push("uclean-vacuum-40");
+        } else if (need === "light_replenishment") {
+          if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
+          if (allowed.includes("userve")) recommendedRobots.push("userve");
+        }
+      });
     }
   } else if (config.sectorKey === "hospitality") {
-    const flowAns = answers["hospitality_flow_type"];
-    if (flowAns === "table_service_bussing" || flowAns === "reception_welcome" || flowAns === "room_service") {
+    const selectedFlows = getSelectedValues(answers["hospitality_flow_type"]);
+    if (selectedFlows.length === 0) {
       if (allowed.includes("userve")) recommendedRobots.push("userve");
-    } else if (flowAns === "silent_cleaning") {
-      if (allowed.includes("uclean-vacuum-40")) recommendedRobots.push("uclean-vacuum-40");
       if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
     } else {
-      if (allowed.includes("userve")) recommendedRobots.push("userve");
-      if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
+      selectedFlows.forEach((flow) => {
+        if (flow === "table_service_bussing" || flow === "reception_welcome" || flow === "room_service") {
+          if (allowed.includes("userve")) recommendedRobots.push("userve");
+        } else if (flow === "silent_cleaning") {
+          if (allowed.includes("uclean-vacuum-40")) recommendedRobots.push("uclean-vacuum-40");
+          if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
+        }
+      });
     }
   } else if (config.sectorKey === "health") {
-    const healthAns = answers["health_transport_need"];
-    if (healthAns === "pharmacy_meds") {
+    const selectedHealthNeeds = getSelectedValues(answers["health_transport_need"]);
+    if (selectedHealthNeeds.length === 0) {
       if (allowed.includes("ulog-deliver-150")) recommendedRobots.push("ulog-deliver-150");
-    } else if (healthAns === "linen_meals_waste") {
-      if (allowed.includes("ulog-lift-300-base")) recommendedRobots.push("ulog-lift-300-base");
-    } else if (healthAns === "bio_cleaning") {
       if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
-      if (allowed.includes("uclean-scrub-50-disc")) recommendedRobots.push("uclean-scrub-50-disc");
-    } else if (healthAns === "reception_guidance") {
-      if (allowed.includes("userve")) recommendedRobots.push("userve");
     } else {
-      if (allowed.includes("ulog-deliver-150")) recommendedRobots.push("ulog-deliver-150");
-      if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
+      selectedHealthNeeds.forEach((need) => {
+        if (need === "pharmacy_meds") {
+          if (allowed.includes("ulog-deliver-150")) recommendedRobots.push("ulog-deliver-150");
+        } else if (need === "linen_meals_waste") {
+          if (allowed.includes("ulog-lift-300-base")) recommendedRobots.push("ulog-lift-300-base");
+        } else if (need === "bio_cleaning") {
+          if (allowed.includes("uclean-compact")) recommendedRobots.push("uclean-compact");
+          if (allowed.includes("uclean-scrub-50-disc")) recommendedRobots.push("uclean-scrub-50-disc");
+        } else if (need === "reception_guidance") {
+          if (allowed.includes("userve")) recommendedRobots.push("userve");
+        }
+      });
     }
   }
 

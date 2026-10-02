@@ -20,8 +20,8 @@ export const industryQualificationConfig: SectorQualificationConfig = {
     {
       id: "industry_load_type",
       title: "Type de charge ou mission industrielle",
-      subtitle: "Que souhaitez-vous déplacer ou entretenir dans votre usine / entrepôt ?",
-      type: "single",
+      subtitle: "Que souhaitez-vous déplacer ou entretenir dans votre usine / entrepôt ? (Sélection multiple possible)",
+      type: "multiple",
       options: [
         { id: "pallets_heavy_racks", label: "Palettes / Racks lourds jusqu'à 600 kg", flagFavorable: "Gamme uLog Lift 600 adaptée au levage lourd" },
         { id: "bins_kitting_300", label: "Bacs / Rolls / Kitting de 80 à 300 kg", flagFavorable: "Gamme uLog Deliver / Lift 300 adaptée aux bacs" },

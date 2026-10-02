@@ -28,8 +28,8 @@ export const retailQualificationConfig: SectorQualificationConfig = {
     {
       id: "retail_primary_need",
       title: "Besoin prioritaire sur le point de vente",
-      subtitle: "Quelle est la mission principale recherchée ?",
-      type: "single",
+      subtitle: "Quelle est la mission principale recherchée ? (Sélection multiple possible)",
+      type: "multiple",
       options: [
         { id: "guidance_welcome", label: "Accueil, information et guidage dynamique des clients", flagFavorable: "Orienté interaction client & animation commercial" },
         { id: "floor_washing", label: "Lavage et entretien des sols de vente", flagFavorable: "Orienté propreté continue des surfaces de vente" },

@@ -445,6 +445,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
 
   const [prequalificationDetails, setPrequalificationDetails] = useState<string>("");
   const [prequalificationModel, setPrequalificationModel] = useState<string>("");
+  const [recommendedRobotIds, setRecommendedRobotIds] = useState<string[]>([]);
 
   const [activeUsageIdx, setActiveUsageIdx] = useState(0);
   const usageCardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -489,10 +490,23 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
   const selectedModel = prequalificationModel || resolveCanonicalModel(modelParam);
 
   const handleQualificationComplete = (mapped: MappedContactQualification) => {
-    if (mapped.suggestedModel) {
+    const recommended = mapped.structuredData.evaluation.recommendedRobots || [];
+    setRecommendedRobotIds(recommended);
+
+    if (recommended.length > 0) {
+      setPrequalificationModel(recommended[0]);
+    } else if (mapped.suggestedModel) {
       setPrequalificationModel(mapped.suggestedModel);
     }
+
     setPrequalificationDetails(mapped.formattedSummary);
+
+    setTimeout(() => {
+      const fleetEl = document.getElementById("robots-secteur");
+      if (fleetEl) {
+        fleetEl.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
   };
 
   useEffect(() => {
@@ -534,7 +548,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
         ...config.robotList.map((r) => ({ id: r.id, label: r.name })),
       ];
 
-  const carouselItems: FleetCarouselItem[] = config.robotList.map((robot) => {
+  const rawCarouselItems: FleetCarouselItem[] = config.robotList.map((robot) => {
     const rawId = robot.canonicalId || robot.id;
     const resolvedRobot = getRobotById(rawId) || robot;
     const canonicalModelId = resolvedRobot.canonicalId || resolvedRobot.id;
@@ -551,6 +565,10 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
       ? `/robots/${seriesId}?model=${encodeURIComponent(canonicalModelId)}#model-${encodeURIComponent(canonicalModelId)}`
       : `/robots/ulog-series`;
 
+    const isRecommended = recommendedRobotIds.some(
+      (rec) => rec === robot.id || rec === canonicalModelId || rec === rawId
+    );
+
     return {
       id: robot.id,
       canonicalId: canonicalModelId,
@@ -561,7 +579,16 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
       image: resolvedRobot.image || robot.image,
       link: fallbackLink,
       category,
+      badge: isRecommended ? "Recommandé pour votre sélection" : undefined,
     };
+  });
+
+  const carouselItems: FleetCarouselItem[] = [...rawCarouselItems].sort((a, b) => {
+    const aRec = Boolean(a.badge);
+    const bRec = Boolean(b.badge);
+    if (aRec && !bRec) return -1;
+    if (!aRec && bRec) return 1;
+    return 0;
   });
 
   const handlePrimaryAction = (item: FleetCarouselItem) => {
@@ -877,7 +904,13 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
         </section>
       </div>
 
-      {/* ==================== 7. SECTION "COBOTS RECOMMANDÉS" ==================== */}
+      {/* ==================== 7. MODULE DE PRÉQUALIFICATION TECHNIQUE ==================== */}
+      <PrequalificationFlow
+        sectorKey={config.sectorKey}
+        onCompleteQualification={handleQualificationComplete}
+      />
+
+      {/* ==================== 7.5 SECTION "COBOTS RECOMMANDÉS" ==================== */}
       <FleetCarousel
         sectionId="robots-secteur"
         eyebrow="- La flotte idéale -"
@@ -895,12 +928,6 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
         secondaryCtaLabel="Voir les spécifications"
         onPrimaryAction={handlePrimaryAction}
         getSecondaryLink={getSecondaryLink}
-      />
-
-      {/* ==================== 7.5 MODULE DE PRÉQUALIFICATION TECHNIQUE ==================== */}
-      <PrequalificationFlow
-        sectorKey={config.sectorKey}
-        onCompleteQualification={handleQualificationComplete}
       />
 
       {/* ==================== 8. CTA FORM ==================== */}

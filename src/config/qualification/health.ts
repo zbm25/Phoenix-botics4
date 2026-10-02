@@ -17,8 +17,8 @@ export const healthQualificationConfig: SectorQualificationConfig = {
     {
       id: "health_transport_need",
       title: "Nature des flux intralogistiques ou de propreté",
-      subtitle: "Quel type de matériel ou zone devez-vous traiter ?",
-      type: "single",
+      subtitle: "Quel type de matériel ou zone devez-vous traiter ? (Sélection multiple possible)",
+      type: "multiple",
       options: [
         { id: "pharmacy_meds", label: "Livraison sécurisée de médicaments / Pharmacie / Échantillons", flagFavorable: "Gamme uLog Deliver 150 avec conteneur sécurisé" },
         { id: "linen_meals_waste", label: "Transport de chariots de linge, repas ou déchets", flagFavorable: "Gamme uLog LIFT pour manutention de chariots lourds" },

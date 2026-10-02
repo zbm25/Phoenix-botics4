@@ -14,6 +14,7 @@ export interface FleetCarouselItem {
   category?: string;
   canonicalId?: string;
   seriesId?: string;
+  badge?: string;
 }
 
 export interface FleetCarouselTab {
@@ -228,7 +229,12 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
                         className="snap-center shrink-0 w-[82vw] max-w-[340px] sm:max-w-none sm:w-[360px] lg:w-[390px] xl:w-[420px] bg-white rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 lg:p-8 shadow-2xl flex flex-col group transition-all duration-300 hover:-translate-y-2 text-center"
                       >
                         {/* Zone d'image grise avec zoom au survol */}
-                        <div className="w-full h-[200px] sm:h-[260px] bg-[#f9f9f9] rounded-[24px] flex items-center justify-center overflow-hidden mb-4 sm:mb-6 p-4 sm:p-6 group-hover:bg-[#f3f3f3] transition-colors border border-gray-100">
+                        <div className="relative w-full h-[200px] sm:h-[260px] bg-[#f9f9f9] rounded-[24px] flex items-center justify-center overflow-hidden mb-4 sm:mb-6 p-4 sm:p-6 group-hover:bg-[#f3f3f3] transition-colors border border-gray-100">
+                          {item.badge && (
+                            <div className="absolute top-3 left-3 z-10 bg-orange-500/90 backdrop-blur-md text-white text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
+                              {item.badge}
+                            </div>
+                          )}
                           <img
                             src={optimizeCloudinaryUrl(item.image, 800)}
                             alt={item.name}

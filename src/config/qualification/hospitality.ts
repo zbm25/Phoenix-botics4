@@ -15,8 +15,8 @@ export const hospitalityQualificationConfig: SectorQualificationConfig = {
     {
       id: "hospitality_flow_type",
       title: "Mission prioritaire dans votre établissement",
-      subtitle: "Quel est le flux principal à traiter ?",
-      type: "single",
+      subtitle: "Quel est le flux principal à traiter ? (Sélection multiple possible)",
+      type: "multiple",
       options: [
         { id: "table_service_bussing", label: "Aide au service en salle & Débarrassage vers la plonge", flagFavorable: "Gamme uServe dédiée au portage de plateau & débarrassage" },
         { id: "room_service", label: "Livraison Room-Service aux chambres", flagFavorable: "Gamme uServe pour livraison autonome interfaçable ascenseur" },
