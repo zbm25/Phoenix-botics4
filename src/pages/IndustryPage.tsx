@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useLocation } from "react-router-dom";
 import { 
   Shield, 
   Zap, 
@@ -165,7 +165,9 @@ const hospitalityConfig: IndustrySectorConfig = {
     { val: "userve", label: "uServe (Service en salle & Accueil)" },
     { val: "uclean-compact", label: "uClean Compact (Entretien restreint)" },
     { val: "uclean-vacuum-40", label: "uClean Vacuum 40 (Aspiration HEPA)" },
-    { val: "uclean-scrub-50-disc", label: "uClean Scrub 50 Disc (Lavage sols lisses)" }
+    { val: "uclean-scrub-50-disc", label: "uClean Scrub 50 Disc (Lavage sols lisses)" },
+    { val: "flotte-mixte", label: "Flotte mixte" },
+    { val: "audit-site", label: "Audit global de site" }
   ]
 };
 
@@ -251,7 +253,9 @@ const retailConfig: IndustrySectorConfig = {
     { val: "uclean-compact", label: "uClean Compact (Entretien restreint)" },
     { val: "uclean-vacuum-40", label: "uClean Vacuum 40 (Aspiration HEPA)" },
     { val: "uclean-scrub-50-disc", label: "uClean Scrub 50 Disc (Lavage à disques)" },
-    { val: "uclean-scrub-50-roller", label: "uClean Scrub 50 Roller (Brossage rouleau)" }
+    { val: "uclean-scrub-50-roller", label: "uClean Scrub 50 Roller (Brossage rouleau)" },
+    { val: "flotte-mixte", label: "Flotte mixte" },
+    { val: "audit-site", label: "Audit global de site" }
   ]
 };
 
@@ -338,7 +342,9 @@ const healthConfig: IndustrySectorConfig = {
     { val: "uclean-vacuum-40", label: "uClean Vacuum 40 (Aspiration HEPA)" },
     { val: "uclean-scrub-50-disc", label: "uClean Scrub 50 Disc (Lavage sols lisses)" },
     { val: "ulog-deliver-150", label: "uLog Deliver 150 (Distribution sécurisée)" },
-    { val: "ulog-lift-300-base", label: "uLog Lift 300 Base (Levage & manutention agile)" }
+    { val: "ulog-lift-300-base", label: "uLog Lift 300 Base (Levage & manutention agile)" },
+    { val: "flotte-mixte", label: "Flotte mixte" },
+    { val: "audit-site", label: "Audit global de site" }
   ]
 };
 
@@ -433,12 +439,15 @@ const industryConfig: IndustrySectorConfig = {
     { val: "ulog-lift-300-xl", label: "uLog Lift 300 XL (Levage avec écran 300kg)" },
     { val: "ulog-lift-600-base", label: "uLog Lift 600 Base (Levage lourd 600kg)" },
     { val: "ulog-lift-600", label: "uLog Lift 600 (Levage haute capacité 600kg)" },
-    { val: "uclean-scrub-75", label: "uClean Scrub 75 (Lavage industriel 75L)" }
+    { val: "uclean-scrub-75", label: "uClean Scrub 75 (Lavage industriel 75L)" },
+    { val: "flotte-mixte", label: "Flotte mixte" },
+    { val: "audit-site", label: "Audit global de site" }
   ]
 };
 
 // --- REUSABLE 8-SECTION INDUSTRY VIEW TEMPLATE ---
 const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const modelParam = searchParams.get("model");
   const industryParam = searchParams.get("industry");
@@ -493,10 +502,10 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
     const recommended = mapped.structuredData.evaluation.recommendedRobots || [];
     setRecommendedRobotIds(recommended);
 
-    if (recommended.length > 0) {
-      setPrequalificationModel(recommended[0]);
-    } else if (mapped.suggestedModel) {
+    if (mapped.suggestedModel) {
       setPrequalificationModel(mapped.suggestedModel);
+    } else if (recommended.length > 0) {
+      setPrequalificationModel(recommended[0]);
     }
 
     setPrequalificationDetails(mapped.formattedSummary);
@@ -508,6 +517,26 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
       }
     }, 100);
   };
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace("#", "");
+      const scrollToTarget = () => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+          return true;
+        }
+        return false;
+      };
+      const timer1 = setTimeout(scrollToTarget, 150);
+      const timer2 = setTimeout(scrollToTarget, 450);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
+  }, [location.hash, location.pathname]);
 
   useEffect(() => {
     const observerOptions = {

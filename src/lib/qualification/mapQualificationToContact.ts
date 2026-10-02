@@ -16,7 +16,12 @@ export function mapQualificationToContact(
   answers: UserAnswerMap
 ): MappedContactQualification {
   const evaluation = evaluateQualification(sectorKey, answers);
-  const primarySuggestedModel = evaluation.recommendedRobots[0] || "";
+  let primarySuggestedModel = "";
+  if (evaluation.recommendedRobots.length >= 2) {
+    primarySuggestedModel = "flotte-mixte";
+  } else if (evaluation.recommendedRobots.length === 1) {
+    primarySuggestedModel = evaluation.recommendedRobots[0];
+  }
 
   const structuredData: StructuredQualificationData = {
     sector: sectorKey,

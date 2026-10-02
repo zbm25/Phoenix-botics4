@@ -103,4 +103,19 @@ describe("evaluateQualification Engine", () => {
     expect(res.recommendedRobots).toContain("uclean-scrub-50-disc");
     expect(res.recommendedRobots).toContain("uclean-compact");
   });
+
+  it("should return suggestedModel as 'flotte-mixte' in mapQualificationToContact when 2 or more robots are recommended", () => {
+    const answers = {
+      site_sub_environment: "monosite_flat",
+      surface_area: "500_2000",
+      cohabitation_type: "staff_only",
+      project_timeline: "immediate",
+      retail_passage_width: "wide_over_120",
+      retail_primary_need: ["guidance_welcome", "floor_washing"]
+    };
+
+    const mapped = mapQualificationToContact("retail", answers);
+    expect(mapped.structuredData.evaluation.recommendedRobots.length).toBeGreaterThanOrEqual(2);
+    expect(mapped.suggestedModel).toBe("flotte-mixte");
+  });
 });

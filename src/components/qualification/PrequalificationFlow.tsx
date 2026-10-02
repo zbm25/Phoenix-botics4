@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getSectorConfig } from "../../lib/qualification/evaluateQualification";
 import { mapQualificationToContact, MappedContactQualification } from "../../lib/qualification/mapQualificationToContact";
 import { UserAnswerMap, QualificationEvaluation } from "./qualificationTypes";
@@ -14,6 +15,7 @@ export const PrequalificationFlow: React.FC<PrequalificationFlowProps> = ({
   sectorKey,
   onCompleteQualification,
 }) => {
+  const [searchParams] = useSearchParams();
   const config = getSectorConfig(sectorKey);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [answers, setAnswers] = useState<UserAnswerMap>({});
@@ -22,10 +24,30 @@ export const PrequalificationFlow: React.FC<PrequalificationFlowProps> = ({
 
   useEffect(() => {
     setCurrentStepIndex(0);
-    setAnswers({});
+    const surfaceParam = searchParams.get("surface");
+    let initialAnswers: UserAnswerMap = {};
+
+    if (surfaceParam) {
+      const numSurface = parseFloat(surfaceParam);
+      if (!isNaN(numSurface) && numSurface > 0) {
+        let surfaceVal = "500_2000";
+        if (numSurface < 500) {
+          surfaceVal = "under_500";
+        } else if (numSurface <= 2000) {
+          surfaceVal = "500_2000";
+        } else if (numSurface <= 5000) {
+          surfaceVal = "2000_5000";
+        } else {
+          surfaceVal = "over_5000";
+        }
+        initialAnswers = { surface_area: surfaceVal };
+      }
+    }
+
+    setAnswers(initialAnswers);
     setIsCompleted(false);
     setEvaluationResult(null);
-  }, [sectorKey]);
+  }, [sectorKey, searchParams]);
 
   const currentQuestion = config.questions[currentStepIndex];
   const isFirstStep = currentStepIndex === 0;
