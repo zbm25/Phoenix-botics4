@@ -76,9 +76,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      sector: defaultSector || prev.sector,
-      model: defaultModel || prev.model,
-      details: defaultDetails || prev.details,
+      sector: defaultSector ? defaultSector : prev.sector,
+      model: defaultModel ? defaultModel : prev.model,
+      details: defaultDetails ? defaultDetails : prev.details,
     }));
   }, [defaultSector, defaultModel, defaultDetails]);
 

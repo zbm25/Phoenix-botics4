@@ -324,6 +324,7 @@ const healthConfig: IndustrySectorConfig = {
   ],
   robotsSubtitle: "pour la santé.",
   robotList: [
+    getRobotById("userve")!,
     getRobotById("uclean-compact")!,
     getRobotById("uclean-vacuum-40")!,
     getRobotById("uclean-scrub-50-disc")!,
@@ -338,6 +339,7 @@ const healthConfig: IndustrySectorConfig = {
     { val: "clinique", label: "Clinique Privée" }
   ],
   contactRobotOptions: [
+    { val: "userve", label: "uServe (Accueil & Guidage)" },
     { val: "uclean-compact", label: "uClean Compact (Entretien restreint)" },
     { val: "uclean-vacuum-40", label: "uClean Vacuum 40 (Aspiration HEPA)" },
     { val: "uclean-scrub-50-disc", label: "uClean Scrub 50 Disc (Lavage sols lisses)" },
@@ -510,12 +512,16 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
 
     setPrequalificationDetails(mapped.formattedSummary);
 
+    // Smoothly scroll to the top of #prequalification taking the sticky header offset into account
     setTimeout(() => {
-      const fleetEl = document.getElementById("robots-secteur");
-      if (fleetEl) {
-        fleetEl.scrollIntoView({ behavior: "smooth" });
+      const prequalEl = document.getElementById("prequalification");
+      if (prequalEl) {
+        const headerOffset = 100;
+        const elementPosition = prequalEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
-    }, 100);
+    }, 50);
   };
 
   useEffect(() => {
@@ -524,7 +530,10 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
       const scrollToTarget = () => {
         const el = document.getElementById(targetId);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          const headerOffset = 100;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           return true;
         }
         return false;
@@ -595,7 +604,12 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
       : `/robots/ulog-series`;
 
     const isRecommended = recommendedRobotIds.some(
-      (rec) => rec === robot.id || rec === canonicalModelId || rec === rawId
+      (rec) =>
+        rec === robot.id ||
+        rec === canonicalModelId ||
+        rec === rawId ||
+        (robot.canonicalId && rec.toLowerCase() === robot.canonicalId.toLowerCase()) ||
+        (robot.id && rec.toLowerCase().endsWith(robot.id.toLowerCase()))
     );
 
     return {

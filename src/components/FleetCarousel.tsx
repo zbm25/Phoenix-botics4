@@ -63,7 +63,7 @@ export const FleetCarousel: React.FC<FleetCarouselProps> = ({
       left: 0,
       behavior: "smooth",
     });
-  }, [activeTab]);
+  }, [activeTab, items]);
 
   const filteredItems = useMemo(() => {
     if (!tabs || tabs.length === 0 || activeTab === "all") {
