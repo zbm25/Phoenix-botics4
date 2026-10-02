@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, Link, useLocation, useSearchParams } from "react-router-dom";
+import { useParams, Link, useLocation, useSearchParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, useInView, useMotionValue, animate } from "motion/react";
-import { Users, Clock, TrendingUp, CheckCircle2, ShieldCheck, Download, ArrowRight, FileText, Cpu, Truck, Globe } from "lucide-react";
+import { Users, Clock, TrendingUp, CheckCircle2, ShieldCheck, Download, ArrowRight, FileText, Cpu, Truck, Globe, ChevronDown } from "lucide-react";
 import * as Icons from "lucide-react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -87,6 +87,7 @@ const KPISBYSERIES: Record<string, Array<{ value: string; label: string; sub: st
 export const RobotSeriesPage: React.FC = () => {
   const { seriesId } = useParams<{ seriesId: string }>();
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
@@ -108,6 +109,18 @@ export const RobotSeriesPage: React.FC = () => {
   const [surfaceRoi, setSurfaceRoi] = useState<number>(
     seriesId === "uclean-series" ? 2000 : seriesId === "ulog-series" ? 80 : 6
   );
+
+  const getDefaultSectorForSeries = (sId: string | undefined): string => {
+    if (sId === "ulog-series") return "industry";
+    if (sId === "userve-series") return "hospitality";
+    return "retail";
+  };
+
+  const [roiSector, setRoiSector] = useState<string>(() => getDefaultSectorForSeries(seriesId));
+
+  useEffect(() => {
+    setRoiSector(getDefaultSectorForSeries(seriesId));
+  }, [seriesId]);
 
   // Sticky Banner Visibility State
   const [showStickyBanner, setShowStickyBanner] = useState(false);
@@ -1217,14 +1230,42 @@ export const RobotSeriesPage: React.FC = () => {
                 Ces estimations sont fournies à titre indicatif. Une étude de site Phoenix-Botics permet de prendre en compte vos flux, horaires, distances, équipements existants et objectifs de performance.
               </p>
 
-              <button
-                type="button"
-                onClick={() => handleScrollToId("contact")}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 px-7 rounded-full text-sm transition-colors shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer"
-              >
-                Affiner mon estimation avec un expert
-                <ArrowRight size={16} />
-              </button>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+                {/* Sélecteur de secteur stylisé et sobre */}
+                <div className="relative shrink-0">
+                  <select
+                    value={roiSector}
+                    onChange={(e) => setRoiSector(e.target.value)}
+                    aria-label="Secteur d'activité pour préqualification"
+                    className="w-full sm:w-auto bg-[#12192B] border border-slate-700 text-white text-xs font-medium rounded-full px-4 py-3.5 pr-10 focus:border-orange-500 focus:outline-none appearance-none cursor-pointer transition-colors"
+                  >
+                    <option value="retail">Retail & Commerce</option>
+                    <option value="hospitality">Hôtellerie & Restauration</option>
+                    <option value="health">Santé & Médical</option>
+                    <option value="industry">Industrie & Logistique</option>
+                  </select>
+                  <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                    <ChevronDown size={14} aria-hidden="true" />
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    let targetUrl = `/industries/${roiSector}`;
+                    if (isUclean) {
+                      targetUrl += `?surface=${surfaceRoi}#prequalification`;
+                    } else {
+                      targetUrl += `#prequalification`;
+                    }
+                    navigate(targetUrl);
+                  }}
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 px-7 rounded-full text-sm transition-colors shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Vérifier la faisabilité sur mon site</span>
+                  <ArrowRight size={16} />
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
