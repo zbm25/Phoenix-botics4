@@ -89,7 +89,20 @@ export const PrequalificationFlow: React.FC<PrequalificationFlowProps> = ({
   const handleContactClick = () => {
     const contactEl = document.getElementById("contact");
     if (contactEl) {
-      contactEl.scrollIntoView({ behavior: "smooth" });
+      const headerOffset = 80;
+      const elementPosition = contactEl.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  };
+
+  const handleExploreFleetClick = () => {
+    const fleetEl = document.getElementById("robots-secteur");
+    if (fleetEl) {
+      const headerOffset = 80;
+      const elementPosition = fleetEl.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
 
@@ -131,6 +144,7 @@ export const PrequalificationFlow: React.FC<PrequalificationFlowProps> = ({
               <QualificationResult
                 evaluation={evaluationResult}
                 onContactClick={handleContactClick}
+                onExploreFleetClick={handleExploreFleetClick}
                 onReset={handleReset}
               />
             )
