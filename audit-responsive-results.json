@@ -1,0 +1,772 @@
+[
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/robots/uclean-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/robots/ulog-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/robots/userve-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/industries/retail",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/industries/hospitality",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/industries/health",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/industries/industry",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/technologie",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/a-propos",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-375",
+    "width": 375,
+    "route": "/services",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 375,
+      "winWidth": 375,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/robots/uclean-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/robots/ulog-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/robots/userve-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/industries/retail",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/industries/hospitality",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/industries/health",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/industries/industry",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/technologie",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/a-propos",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "mobile-390",
+    "width": 390,
+    "route": "/services",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 390,
+      "winWidth": 390,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/robots/uclean-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/robots/ulog-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/robots/userve-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/industries/retail",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/industries/hospitality",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/industries/health",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/industries/industry",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/technologie",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/a-propos",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "tablet-768",
+    "width": 768,
+    "route": "/services",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 768,
+      "winWidth": 768,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/robots/uclean-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/robots/ulog-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/robots/userve-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/industries/retail",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/industries/hospitality",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/industries/health",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/industries/industry",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/technologie",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/a-propos",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1280",
+    "width": 1280,
+    "route": "/services",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1280,
+      "winWidth": 1280,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/robots/uclean-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/robots/ulog-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/robots/userve-series",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/industries/retail",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/industries/hospitality",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/industries/health",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/industries/industry",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/technologie",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/a-propos",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  },
+  {
+    "viewport": "desktop-1440",
+    "width": 1440,
+    "route": "/services",
+    "overflow": {
+      "hasOverflow": false,
+      "docWidth": 1440,
+      "winWidth": 1440,
+      "overflowElements": []
+    },
+    "consoleErrorsCount": 0,
+    "consoleErrors": [],
+    "imageFailures": []
+  }
+]
