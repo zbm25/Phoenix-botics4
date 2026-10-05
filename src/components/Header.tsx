@@ -39,7 +39,7 @@ interface DropdownGamme {
 const ROBOT_GAMMES: DropdownGamme[] = [
   {
     id: "uclean-series",
-    title: "Série uClean",
+    title: "Gamme uClean",
     subtitle: "Nettoyage & Hygiène autonome",
     description: "Gamme d'autolaveuses et aspirateurs autonomes pour tous types de sols et très grandes surfaces.",
     iconName: "Layers",
@@ -88,7 +88,7 @@ const ROBOT_GAMMES: DropdownGamme[] = [
   },
   {
     id: "userve-series",
-    title: "Série uServe",
+    title: "Gamme uServe",
     subtitle: "Accueil & Service en salle",
     description: "Robots d'accueil, d'orientation dynamique et d'assistance interactive en point de vente et restauration.",
     iconName: "User",
@@ -105,7 +105,7 @@ const ROBOT_GAMMES: DropdownGamme[] = [
   },
   {
     id: "ulog-series",
-    title: "Série uLog",
+    title: "Gamme uLog",
     subtitle: "Intralogistique & Manutention",
     description: "Plateformes mobiles AMR pour le transport sécurisé de bacs et le levage de charges de 80 kg à 600 kg.",
     iconName: "Truck",
@@ -468,8 +468,8 @@ export const Header: React.FC = () => {
                     {/* Column 1: Gammes (3 Series) */}
                     <div className="col-span-3 flex flex-col gap-1.5 pr-3 border-r border-slate-100">
                       <div className="flex items-center justify-between px-2 mb-1">
-                        <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
-                          Gammes United Robots
+                        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                          Gammes United Robotics
                         </span>
                       </div>
                       {ROBOT_GAMMES.map((gamme) => {
@@ -485,32 +485,21 @@ export const Header: React.FC = () => {
                               navigate(`/robots/${gamme.id}`);
                               setActiveDropdown(null);
                             }}
-                            className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all text-left w-full cursor-pointer group/item border ${
+                            className={`flex flex-col p-3 rounded-2xl transition-all text-left w-full cursor-pointer group/item border ${
                               isGammeActive
-                                ? "bg-orange-50/80 border-orange-200/80 text-slate-900 shadow-sm"
+                                ? "bg-slate-100/80 border-slate-200 text-slate-900"
                                 : "bg-transparent border-transparent hover:bg-slate-50 text-slate-700"
                             }`}
                           >
                             <div
-                              className={`p-2 rounded-xl transition-all shrink-0 ${
-                                isGammeActive
-                                  ? "bg-orange-500 text-white shadow-md shadow-orange-500/20"
-                                  : "bg-slate-100 text-slate-500 group-hover/item:bg-orange-100 group-hover/item:text-orange-600"
+                              className={`font-bold text-sm transition-colors ${
+                                isGammeActive ? "text-slate-900" : "text-slate-800 group-hover/item:text-slate-900"
                               }`}
                             >
-                              <IconRenderer name={gamme.iconName} size={18} />
+                              {gamme.title}
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <div
-                                className={`font-bold text-xs transition-colors ${
-                                  isGammeActive ? "text-orange-600" : "text-slate-900 group-hover/item:text-orange-600"
-                                }`}
-                              >
-                                {gamme.title}
-                              </div>
-                              <div className="text-[11px] text-slate-500 leading-tight mt-0.5 line-clamp-1">
-                                {gamme.subtitle}
-                              </div>
+                            <div className="text-xs text-slate-500 leading-snug mt-1">
+                              {gamme.subtitle}
                             </div>
                           </button>
                         );
@@ -520,10 +509,10 @@ export const Header: React.FC = () => {
                     {/* Column 2: Models & Sub-families */}
                     <div className="col-span-4 flex flex-col gap-1 pr-3 border-r border-slate-100">
                       <div className="flex items-center justify-between px-2 mb-1">
-                        <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
-                          {activeGammeObj.title} — Modèles
+                        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                          {activeGammeObj.title}
                         </span>
-                        <span className="text-[10px] font-mono text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full font-bold">
+                        <span className="text-xs text-slate-500 font-medium">
                           {activeGammeObj.models.length} modèles
                         </span>
                       </div>
@@ -533,7 +522,7 @@ export const Header: React.FC = () => {
                           // Render subfamilies (uLog)
                           activeGammeObj.subfamilies.map((subfamily) => (
                             <div key={subfamily.title} className="mb-2">
-                              <div className="text-[10px] font-mono font-bold text-slate-900 uppercase tracking-wider bg-slate-100/80 px-2.5 py-1 rounded-lg mb-1.5 border border-slate-200/60">
+                              <div className="text-xs font-semibold text-slate-800 px-2 py-1 mb-1 border-b border-slate-100">
                                 {subfamily.title}
                               </div>
                               <div className="flex flex-col gap-1">
@@ -651,7 +640,7 @@ export const Header: React.FC = () => {
                               <h4 className="text-slate-900 font-bold text-xs leading-snug">
                                 {activeModel.name}
                               </h4>
-                              <p className="text-[10px] text-orange-600 font-mono font-semibold uppercase tracking-wider mt-0.5">
+                              <p className="text-[11px] text-slate-500 font-medium mt-0.5">
                                 {activeGammeObj.title}
                               </p>
                               <p className="text-[11px] text-slate-600 mt-1.5 leading-snug line-clamp-3">
@@ -677,21 +666,13 @@ export const Header: React.FC = () => {
 
                     {/* Column 4: Selection Tool Side Panel Card (Dark Technical Contrast) */}
                     <div className="col-span-3 bg-[#0B1121] text-white p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between shadow-xl relative overflow-hidden group">
-                      {/* Subtle architectural background accent */}
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl pointer-events-none" />
-
                       <div>
-                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-[10px] font-mono font-bold uppercase tracking-wider mb-3">
-                          <Cpu size={12} className="text-orange-400" />
-                          <span>Faisabilité 2 min</span>
-                        </div>
-
-                        <h3 className="text-white font-bold text-sm leading-snug">
-                          Quel robot pour votre établissement ?
+                        <h3 className="text-white font-bold text-sm leading-snug mt-1">
+                          Étude de faisabilité
                         </h3>
 
-                        <p className="text-slate-300 text-xs mt-2 leading-relaxed">
-                          Évaluez la faisabilité de votre site et obtenez une préconisation sur-mesure.
+                        <p className="text-slate-300 text-xs mt-2.5 leading-relaxed">
+                          Évaluez la compatibilité de votre site et obtenez une recommandation technique sur-mesure.
                         </p>
                       </div>
 
@@ -699,9 +680,9 @@ export const Header: React.FC = () => {
                         <button
                           type="button"
                           onClick={handleLaunchPrequalification}
-                          className="w-full py-2.5 px-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md shadow-orange-500/20 transition-all cursor-pointer group-hover:scale-[1.02]"
+                          className="w-full py-2.5 px-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer group-hover:scale-[1.02]"
                         >
-                          <span>Lancer la préqualification</span>
+                          <span>Évaluer mon projet</span>
                           <ArrowRight size={14} />
                         </button>
                       </div>
@@ -753,8 +734,8 @@ export const Header: React.FC = () => {
                     className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[720px] max-w-[calc(100vw-2rem)] bg-white/98 backdrop-blur-2xl border border-slate-200/80 rounded-3xl shadow-2xl shadow-slate-900/15 p-6 z-50 grid grid-cols-12 gap-5 before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
                   >
                     <div className="col-span-7 flex flex-col gap-1.5 pr-3 border-r border-slate-100">
-                      <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider px-2 mb-1">
-                        Secteurs applicatifs
+                      <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 mb-1">
+                        Secteurs d'activité
                       </span>
 
                       {INDUSTRY_SECTORS_DATA.map((ind) => {
@@ -769,23 +750,25 @@ export const Header: React.FC = () => {
                             }}
                             className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all text-left w-full cursor-pointer group/item border ${
                               isIndActive
-                                ? "bg-orange-50/80 border-orange-200/80 text-slate-900 shadow-sm"
+                                ? "bg-slate-100/80 border-slate-200 text-slate-900"
                                 : "bg-transparent border-transparent hover:bg-slate-50 text-slate-700"
                             }`}
                           >
-                            <div
-                              className={`p-2 rounded-xl transition-all shrink-0 ${
-                                isIndActive
-                                  ? "bg-orange-500 text-white shadow-md shadow-orange-500/20"
-                                  : "bg-slate-100 text-slate-500 group-hover/item:bg-orange-100 group-hover/item:text-orange-600"
-                              }`}
-                            >
-                              <IconRenderer name={ind.iconName} size={18} />
+                            <div className="shrink-0 pt-0.5">
+                              <IconRenderer
+                                name={ind.iconName}
+                                size={18}
+                                className={`transition-colors ${
+                                  isIndActive
+                                    ? "text-slate-900"
+                                    : "text-slate-500 group-hover/item:text-slate-900"
+                                }`}
+                              />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div
                                 className={`font-bold text-xs transition-colors ${
-                                  isIndActive ? "text-orange-600" : "text-slate-900 group-hover/item:text-orange-600"
+                                  isIndActive ? "text-slate-900" : "text-slate-900 group-hover/item:text-orange-600"
                                 }`}
                               >
                                 {ind.title}
@@ -811,14 +794,12 @@ export const Header: React.FC = () => {
                             className="flex flex-col gap-2.5"
                           >
                             <div className="flex items-center gap-2">
-                              <div className="p-2 rounded-xl bg-orange-500 text-white shadow-sm">
-                                <IconRenderer name={activeIndustryObj.iconName} size={16} />
-                              </div>
+                              <IconRenderer name={activeIndustryObj.iconName} size={18} className="text-slate-700 shrink-0" />
                               <div>
                                 <h4 className="text-slate-900 font-bold text-xs leading-tight">
                                   {activeIndustryObj.title}
                                 </h4>
-                                <p className="text-[10px] text-slate-500 leading-tight mt-0.5">
+                                <p className="text-[11px] text-slate-500 leading-tight mt-0.5">
                                   {activeIndustryObj.subtitle}
                                 </p>
                               </div>
@@ -829,14 +810,14 @@ export const Header: React.FC = () => {
                             </p>
 
                             <div className="mt-2 pt-2 border-t border-slate-200/80">
-                              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
+                              <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1.5">
                                 Flotte recommandée :
                               </span>
                               <div className="flex flex-wrap gap-1.5">
                                 {activeIndustryObj.supportedRobots.map((robot) => (
                                   <span
                                     key={robot}
-                                    className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200/80 text-orange-600 shadow-2xs"
+                                    className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 shadow-2xs"
                                   >
                                     {robot}
                                   </span>
@@ -958,12 +939,7 @@ export const Header: React.FC = () => {
                   onClick={() => setMobileRobotsOpen(!mobileRobotsOpen)}
                   className="w-full text-left py-3 min-h-[44px] text-base font-bold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer"
                 >
-                  <span className="flex items-center gap-2">
-                    <span>Robots & Gammes</span>
-                    <span className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full bg-orange-50 text-orange-600 border border-orange-200/60">
-                      3 séries
-                    </span>
-                  </span>
+                  <span>Robots & Gammes</span>
                   <ChevronDown
                     className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${
                       mobileRobotsOpen ? "rotate-180 text-orange-500" : ""
@@ -1047,12 +1023,7 @@ export const Header: React.FC = () => {
                   onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
                   className="w-full text-left py-3 min-h-[44px] text-base font-bold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer"
                 >
-                  <span className="flex items-center gap-2">
-                    <span>Industries & Secteurs</span>
-                    <span className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                      4 secteurs
-                    </span>
-                  </span>
+                  <span>Industries & Secteurs</span>
                   <ChevronDown
                     className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${
                       mobileIndustriesOpen ? "rotate-180 text-orange-500" : ""
@@ -1077,12 +1048,10 @@ export const Header: React.FC = () => {
                             setIsMobileMenuOpen(false);
                             navigate(`/industries/${ind.id}`);
                           }}
-                          className="w-full text-left p-2.5 rounded-xl bg-slate-50 hover:bg-orange-50/60 border border-slate-200/80 hover:border-orange-200 transition-all group flex items-center justify-between cursor-pointer"
+                          className="w-full text-left p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-all group flex items-center justify-between cursor-pointer"
                         >
                           <div className="flex items-center gap-2.5">
-                            <div className="p-1.5 rounded-lg bg-white border border-slate-200/80 text-orange-600">
-                              <IconRenderer name={ind.iconName} size={16} />
-                            </div>
+                            <IconRenderer name={ind.iconName} size={18} className="text-slate-500 shrink-0" />
                             <div>
                               <div className="text-xs font-bold text-slate-900 group-hover:text-orange-600">
                                 {ind.title}
@@ -1133,7 +1102,7 @@ export const Header: React.FC = () => {
                 }}
                 className="text-left py-3 min-h-[44px] text-base font-semibold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer border-b border-slate-100"
               >
-                <span>À propos & Alliance</span>
+                <span>À propos</span>
                 <ChevronRight size={16} className="text-slate-400" />
               </button>
 
@@ -1146,8 +1115,7 @@ export const Header: React.FC = () => {
                 onClick={handleLaunchPrequalification}
                 className="w-full py-3 min-h-[44px] text-center rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-orange-500/20 transition-all cursor-pointer flex items-center justify-center gap-2"
               >
-                <Cpu size={15} />
-                <span>Lancer la préqualification</span>
+                <span>Évaluer mon projet</span>
               </button>
               <button
                 type="button"
