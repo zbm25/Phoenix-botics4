@@ -27,13 +27,22 @@ export interface UserAnswerMap {
   [questionId: string]: string | string[];
 }
 
+export interface RecommendedRobotDetail {
+  id: string;
+  name: string;
+  role: string;
+  justification: string;
+}
+
 export interface QualificationEvaluation {
   status: QualificationStatus;
   statusTitle: string;
+  primaryNeedLabel?: string;
   favorablePoints: string[];
   constraints: string[];
   itemsToConfirm: string[];
   recommendedRobots: string[];
+  recommendedRobotDetails?: RecommendedRobotDetail[];
   recommendedFamilyLabel?: string;
   nextStepRecommendation: string;
   disclaimer: string;

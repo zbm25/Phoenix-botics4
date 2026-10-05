@@ -33,21 +33,18 @@ export function mapQualificationToContact(
   const lines: string[] = [];
   lines.push(`[Préqualification Technique Phoenix-Botics]`);
   lines.push(`Secteur: ${sectorKey.toUpperCase()}`);
+  if (evaluation.primaryNeedLabel) {
+    lines.push(`Besoin principal: ${evaluation.primaryNeedLabel}`);
+  }
   lines.push(`Diagnostic: ${evaluation.statusTitle.toUpperCase()} (${evaluation.status})`);
 
   if (evaluation.recommendedRobots.length > 0) {
     lines.push(`Robots préconisés: ${evaluation.recommendedRobots.join(", ")}`);
   }
 
-  if (evaluation.favorablePoints.length > 0) {
-    lines.push(`Points forts: ${evaluation.favorablePoints.join(" ; ")}`);
+  if (evaluation.itemsToConfirm.length > 0) {
+    lines.push(`Points à confirmer sur site: ${evaluation.itemsToConfirm.join(" ; ")}`);
   }
-
-  if (evaluation.constraints.length > 0) {
-    lines.push(`Points d'attention: ${evaluation.constraints.join(" ; ")}`);
-  }
-
-  lines.push(`Prochaine étape: ${evaluation.nextStepRecommendation}`);
 
   return {
     sector: sectorKey,

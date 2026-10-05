@@ -158,7 +158,117 @@ export function evaluateQualification(
   }
 
   // Ensure all recommendedRobots are strictly in allowedRobots list
-  const filteredRecommended = recommendedRobots.filter((r) => allowed.includes(r));
+  const uniqueRecommended = Array.from(new Set(recommendedRobots.filter((r) => allowed.includes(r))));
+
+  // Extract primary need label
+  let primaryNeedLabel = "";
+  if (config.sectorKey === "industry") {
+    const selected = getSelectedValues(answers["industry_load_type"]);
+    const q = config.questions.find((question) => question.id === "industry_load_type");
+    if (q && selected.length > 0) {
+      const labels = selected.map((s) => q.options.find((o) => o.id === s)?.label).filter(Boolean);
+      primaryNeedLabel = labels.join(", ");
+    }
+  } else if (config.sectorKey === "retail") {
+    const selected = getSelectedValues(answers["retail_primary_need"]);
+    const q = config.questions.find((question) => question.id === "retail_primary_need");
+    if (q && selected.length > 0) {
+      const labels = selected.map((s) => q.options.find((o) => o.id === s)?.label).filter(Boolean);
+      primaryNeedLabel = labels.join(", ");
+    }
+  } else if (config.sectorKey === "hospitality") {
+    const selected = getSelectedValues(answers["hospitality_flow_type"]);
+    const q = config.questions.find((question) => question.id === "hospitality_flow_type");
+    if (q && selected.length > 0) {
+      const labels = selected.map((s) => q.options.find((o) => o.id === s)?.label).filter(Boolean);
+      primaryNeedLabel = labels.join(", ");
+    }
+  } else if (config.sectorKey === "health") {
+    const selected = getSelectedValues(answers["health_transport_need"]);
+    const q = config.questions.find((question) => question.id === "health_transport_need");
+    if (q && selected.length > 0) {
+      const labels = selected.map((s) => q.options.find((o) => o.id === s)?.label).filter(Boolean);
+      primaryNeedLabel = labels.join(", ");
+    }
+  }
+
+  // Generate dynamic robot details
+  const robotMetadataMap: Record<string, { name: string; role: string; justification: string }> = {
+    "userve": {
+      name: "uServe",
+      role: "Accueil & Service interactif",
+      justification: "Sélectionné pour l'accueil, l'orientation des usagers et le service fluide en salle."
+    },
+    "uclean-compact": {
+      name: "uClean Compact",
+      role: "Entretien 4-en-1 agile",
+      justification: "Sélectionné pour son agilité dans les espaces restreints et les passages sous 1 mètre."
+    },
+    "uclean-vacuum-40": {
+      name: "uClean Vacuum 40",
+      role: "Aspiration HEPA H13",
+      justification: "Sélectionné pour son aspiration silencieuse en continu et sa filtration de qualité médicale."
+    },
+    "uclean-scrub-50-disc": {
+      name: "uClean Scrub 50 Disc",
+      role: "Lavage & Séchage sols lisses",
+      justification: "Sélectionné pour le lavage haute performance et le séchage immédiat des allées."
+    },
+    "uclean-scrub-50-roller": {
+      name: "uClean Scrub 50 Roller",
+      role: "Brossage sols texturés",
+      justification: "Sélectionné pour le nettoyage en profondeur des joints et surfaces antidérapantes."
+    },
+    "uclean-scrub-75": {
+      name: "uClean Scrub 75",
+      role: "Lavage industriel Heavy Duty",
+      justification: "Sélectionné pour le lavage rapide et autonome des très grandes surfaces d'usine."
+    },
+    "ulog-deliver-80": {
+      name: "uLog Deliver 80",
+      role: "Livraison agile 80 kg",
+      justification: "Sélectionné pour l'approvisionnement rapide de pièces légères et bacs sur ligne."
+    },
+    "ulog-deliver-150": {
+      name: "uLog Deliver 150",
+      role: "Distribution sécurisée 150 kg",
+      justification: "Sélectionné pour le transport autonome et traçable de colis, linge ou médicaments."
+    },
+    "ulog-deliver-300": {
+      name: "uLog Deliver 300",
+      role: "Convoyage kitting 300 kg",
+      justification: "Sélectionné pour le transfert de bacs industriels et charges moyennes."
+    },
+    "ulog-lift-300-base": {
+      name: "uLog Lift 300 Base",
+      role: "Levage autonome 300 kg",
+      justification: "Sélectionné pour se glisser sous les chariots et racks afin d'automatiser leur manutention."
+    },
+    "ulog-lift-600-base": {
+      name: "uLog Lift 600 Base",
+      role: "Manutention lourde 600 kg",
+      justification: "Sélectionné pour le déplacement puissant de palettes et charges lourdes."
+    },
+    "ulog-lift-600": {
+      name: "uLog Lift 600",
+      role: "Levage palettes 600 kg",
+      justification: "Sélectionné pour le transfert sécurisé de palettes industrielles avec écran de guidage."
+    }
+  };
+
+  const recommendedRobotDetails = uniqueRecommended.map((id) => {
+    const meta = robotMetadataMap[id] || {
+      name: id,
+      role: "Solution cobotique spécialisée",
+      justification: "Recommandé pour répondre aux critères techniques sélectionnés."
+    };
+    return {
+      id,
+      name: meta.name,
+      role: meta.role,
+      justification: meta.justification
+    };
+  });
 
   // Default items to confirm
   itemsToConfirm.push("Visite technique de confirmation sur site");
@@ -184,10 +294,12 @@ export function evaluateQualification(
   return {
     status,
     statusTitle,
+    primaryNeedLabel,
     favorablePoints: Array.from(new Set(favorablePoints)),
     constraints: Array.from(new Set(constraints)),
     itemsToConfirm: Array.from(new Set(itemsToConfirm)),
-    recommendedRobots: Array.from(new Set(filteredRecommended)),
+    recommendedRobots: uniqueRecommended,
+    recommendedRobotDetails,
     nextStepRecommendation,
     disclaimer
   };
