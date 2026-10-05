@@ -215,6 +215,13 @@ interface DropdownIndustry {
   supportedRobots: string[];
 }
 
+const SECTOR_TAGS = [
+  { id: "industry", label: "Industrie" },
+  { id: "retail", label: "Retail" },
+  { id: "health", label: "Santé" },
+  { id: "hospitality", label: "Hôtellerie" }
+];
+
 const INDUSTRY_SECTORS_DATA: DropdownIndustry[] = [
   {
     id: "retail",
@@ -266,6 +273,7 @@ export const Header: React.FC = () => {
   const [hoveredGamme, setHoveredGamme] = useState<string>("uclean-series");
   const [hoveredIndustry, setHoveredIndustry] = useState<string>("retail");
   const [hoveredModelId, setHoveredModelId] = useState<string>("uclean-compact");
+  const [selectedSector, setSelectedSector] = useState<string>("industry");
 
   // Ref for mouseleave timeout delay to avoid unintentional dropdown closing
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -373,10 +381,11 @@ export const Header: React.FC = () => {
     }
   };
 
-  const handleLaunchPrequalification = () => {
+  const handleLaunchPrequalification = (sector?: string) => {
+    const targetSector = sector || selectedSector || "industry";
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
-    navigate("/industries/retail#prequalification");
+    navigate(`/industries/${targetSector}#prequalification`);
     setTimeout(() => {
       const element = document.getElementById("prequalification");
       if (element) {
@@ -469,7 +478,7 @@ export const Header: React.FC = () => {
                     <div className="col-span-3 flex flex-col gap-1.5 pr-3 border-r border-slate-100">
                       <div className="flex items-center justify-between px-2 mb-1">
                         <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                          Gammes United Robotics
+                          Gammes de robots
                         </span>
                       </div>
                       {ROBOT_GAMMES.map((gamme) => {
@@ -671,15 +680,41 @@ export const Header: React.FC = () => {
                           Étude de faisabilité
                         </h3>
 
-                        <p className="text-slate-300 text-xs mt-2.5 leading-relaxed">
+                        <p className="text-slate-300 text-xs mt-2 leading-relaxed">
                           Évaluez la compatibilité de votre site et obtenez une recommandation technique sur-mesure.
                         </p>
+
+                        {/* Sector selection tags */}
+                        <div className="mt-3.5">
+                          <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1.5">
+                            Votre secteur :
+                          </span>
+                          <div className="grid grid-cols-2 gap-1.5">
+                            {SECTOR_TAGS.map((sec) => {
+                              const isSelected = selectedSector === sec.id;
+                              return (
+                                <button
+                                  key={sec.id}
+                                  type="button"
+                                  onClick={() => setSelectedSector(sec.id)}
+                                  className={`px-2 py-1.5 rounded-lg text-[11px] font-medium text-center transition-all cursor-pointer border ${
+                                    isSelected
+                                      ? "bg-orange-500/20 border-orange-500 text-orange-400 font-bold"
+                                      : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:text-white"
+                                  }`}
+                                >
+                                  {sec.label}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="mt-5 pt-4 border-t border-white/10">
+                      <div className="mt-4 pt-3 border-t border-white/10">
                         <button
                           type="button"
-                          onClick={handleLaunchPrequalification}
+                          onClick={() => handleLaunchPrequalification(selectedSector)}
                           className="w-full py-2.5 px-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer group-hover:scale-[1.02]"
                         >
                           <span>Évaluer mon projet</span>
