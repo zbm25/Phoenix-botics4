@@ -87,11 +87,140 @@ L'objectif central du site web est de démontrer la valeur ajoutée d'un **inté
 - **CTA principaux :** *"Lancer mon prédiagnostic"*, *"Voir les recommandations"*, *"Demander une étude de faisabilité"* (`#contact`), *"Explorer la flotte"*.
 - **Interactions :** Questionnaire dynamique étape par étape, re-classement automatique du carrousel de flotte avec badge *"Recommandé pour votre sélection"*, transmission automatique du diagnostic vers le champ texte du formulaire de contact.
 
+### 2.4. Page Technologie (`/technologie`)
+- **Composant source :** `TechnologyPage` dans `src/pages/TechnologyPage.tsx`
+- **Ordre exact des sections :**
+  1. `Header` & `Hero` Sombre (*"L'ingénierie autonome sans modification d'infrastructure."*)
+  2. Les 4 Piliers Technologiques (LiDAR 3D SLAM, Vision 3D & Sécurité ISO 3691-4, Connectivité IoT Ascenseurs/Portes, Fleet RCS & API)
+  3. Interfaçage Systèmes d'Information (WMS / ERP / API REST)
+  4. Foire aux Questions Techniques (Accordéon FAQ)
+  5. Section CTA Final
+  6. `Footer`
+
+### 2.5. Page À Propos (`/a-propos`)
+- **Composant source :** `AboutPage` dans `src/pages/AboutPage.tsx`
+- **Ordre exact des sections :**
+  1. `Header` & `Hero` (*"L'excellence robotique européenne, dédiée au marché français."*)
+  2. Présentation de l'Alliance URG (Constructeur R&D) + Phoenix-Botics (Intégrateur terrain)
+  3. Présence Nationale & Maillage Logistique en France
+  4. Chiffres clés de déploiement et métriques de fiabilité (99,4% de disponibilité)
+  5. Formulaire de contact direct ingénierie
+  6. `Footer`
+
+### 2.6. Page Services (`/services`)
+- **Composant source :** `ServicesPage` dans `src/pages/ServicesPage.tsx`
+- **Ordre exact des sections :**
+  1. `Header` & `Hero` (*"Vos robots, intégrés et suivis de bout en bout."*)
+  2. Approche d'accompagnement humain & ingénierie
+  3. Offre modulaire (1. Audit & Dépôt, 2. POC & Location, 3. MCO & Supervision 24/7)
+  4. Accordéon FAQ Services
+  5. Formulaire de contact
+  6. `Footer`
+
+### 2.7. Page 404 (`*`)
+- **Composant source :** `NotFoundPage` dans `src/pages/NotFoundPage.tsx`
+- **Contenu :** Message épuré *"Oups ! Cette destination est introuvable."*, CTA *"Retour à l'accueil"* et *"Page précédente"*.
+
 ---
 
-## 3. CONSOLIDATION TECHNIQUE V3 (FACTUELLE & PURE VALIDATION)
+## 3. AUDIT COPYWRITING & ÉDITORIAL
 
-### 3.1. Slugs réels des routes robots
+### 3.1. Analyse générale de la proposition de valeur
+- **Ton global :** Professionnel, technique et rassurant. La posture d'intégrateur industriel est bien perceptible.
+- **Points forts :** L'accent mis sur la non-modification des infrastructures existantes ("sans travaux", "SLAM LiDAR sans balise") est un excellent argument de conversion B2B.
+- **Axes d'amélioration :** Plusieurs H1 et H2 souffrent d'une trop grande abstraction ou d'une longueur excessive qui dilue l'impact immédiat au premier coup d'œil.
+
+### 3.2. Formulations trop abstraites, génériques ou inutilement longues
+
+1. **Confirmé dans le code** | **Home Hero (H1)**
+   - *Fichier :* `src/components/Hero.tsx` (ligne 18)
+   - *Texte actuel :* *"Libérer le potentiel humain par la robotique."*
+   - *Gravité :* Importante
+   - *Impact :* Accroche très institutionnelle. Manque de mention directe du rôle d'intégrateur de robots autonomes.
+   - *Recommandation :* Préciser l'action métier immédiate (ex: *"Intégrateur de robots mobiles autonomes & cobots logistiques en France"*).
+
+2. **Confirmé dans le code** | **Page Retail (H1)**
+   - *Fichier :* `src/pages/IndustryPage.tsx` (ligne 147)
+   - *Texte actuel :* *"Le futur du Retail, par la robotique."*
+   - *Gravité :* Importante
+   - *Impact :* Le terme "futur" reste abstrait au lieu de faire référence à la propreté des surfaces de vente, au réassort ou au confort du personnel.
+   - *Recommandation :* Reformuler vers un bénéfice opérationnel (ex: *"Automatisation de la propreté et de la logistique en point de vente"*).
+
+3. **Confirmé dans le code** | **Page Hôtellerie (H1)**
+   - *Fichier :* `src/pages/IndustryPage.tsx` (ligne 235)
+   - *Texte actuel :* *"L'excellence du service, par la robotique."*
+   - *Gravité :* Finition
+   - *Impact :* Formulation poétique très abstraite, peu axée sur la productivité en salle ou la réduction de la pénibilité en room-service.
+   - *Recommandation :* Ancrer sur la valeur d'usage (ex: *"Robots d'accueil et de service pour l'hôtellerie-restauration"*).
+
+---
+
+## 4. AUDIT RESPONSIVE GLOBAL (375px, 390px, 768px, 1280px, 1440px)
+
+### 4.1. Résumé des tests d'affichage et de débordement
+L'audit visuel et dynamique exécuté via Chromium headless sur l'ensemble des 12 routes et 5 viewports confirme **l'absence totale de débordement horizontal (`overflow-x`) sur toutes les pages**. Le layout général reste strictement contenu dans la largeur de l'écran.
+
+### 4.2. Constats détaillés par Viewport & Composants
+
+1. **Confirmé dans le code & Observé lors d'un test visuel** | **Header & Mega Menu B2B**
+   - *Composant :* `src/components/Header.tsx`
+   - *Viewports :* Mobile (375px, 390px) & Tablette (768px) vs Desktop (1280px, 1440px)
+   - *Statut :* **Conforme & Très haute finition**.
+   - *Observation :* Le menu tiroir mobile bascule proprement en accordéon. Sur Desktop (>= 1024px), le Mega Menu B2B centré (largeurs 1020px et 720px) s'affiche avec la carte de sélection technique sombre `#0B1121`, le pré-affichage dynamique du robot survolé et les tags de secteur.
+
+2. **Confirmé dans le code** | **Section Cas d'usage sur Pages Industries (Sticky Stacking)**
+   - *Composant :* `src/pages/IndustryPage.tsx` (lignes 650-750)
+   - *Viewports :* Mobile (375px, 390px) et Tablette (768px)
+   - *Gravité :* Finition
+   - *Impact :* UX Mobile
+   - *Observation :* L'effet d'empilement sticky des cartes de cas d'usage (`sticky top-28`) est désactivé sur mobile grâce aux classes responsive pour éviter que les cartes ne masquent une partie trop importante du viewport vertical. Les cartes se déroulent de façon fluide sous forme de flux vertical standard.
+
+---
+
+## 5. FOCUS PARTICULIER SUR LA HOME PAGE (`/`)
+
+### 5.1. Ordre actuel des sections
+1. `Hero` (Accroche + CTAs)
+2. `LogoSliderSection` (Logos partenaires)
+3. `IndustriesSection` (Choix par secteur)
+4. `RobotsCatalogSection` (Catalogue des gammes uClean, uServe, uLog)
+5. `RobotInActionSection` (Vidéos & Fonctionnalités)
+6. `ServicesKargoSection` (Offre d'accompagnement)
+7. `ProcessSection` (Méthodologie en 4 étapes)
+8. `FinalContactSection` (Formulaire B2B)
+
+---
+
+## 6. ASSETS, LOGOS, MÉDIAS ET COHÉRENCE VISUELLE
+
+### 6.1. État des lieux des médias & Chargement
+- **Vidéos MP4 intégrées :** `src/assets/videos/Uclean.mp4`, `fixed-Ur.mp4`, `Ulog.mp4`.
+  - *Observation :* Les fichiers vidéo sont servis localement. Le chargement est fluide.
+- **Images produits :** `phoenix_robot_hero_1781790796295.jpg`, `image_18_1784117573928.jpg`.
+  - *Observation :* Les images de robots présentent un détourage et une intégration sur fond sombre/neutre parfaitement en ligne avec l'univers Swiss Graphic / Industriel.
+
+---
+
+## 7. SYNTHÈSE FINALE & PRIORITÉS D'AMÉLIORATION
+
+### 7.1. Priorités classées par impact
+
+#### A. Priorité 1 : CRITIQUE (Impact Direct Conversion & SEO)
+1. **SEO Pages Industries :** Personnaliser les balises `<title>` et `<meta description>` des 4 pages d'industries (`retail`, `hospitality`, `health`, `industry`) qui réutilisent actuellement un titre et une description génériques.
+2. **H1 des Pages Gammes Robots :** Enrichir les balises H1 sur `/robots/uclean-series`, `/robots/userve-series` et `/robots/ulog-series` avec des termes métiers complets.
+3. **Anomalie `chosenModel = "mixte"` :** Uniformiser la ligne 647 de `IndustryPage.tsx` vers `"flotte-mixte"`.
+
+#### B. Priorité 2 : IMPORTANT (Impact Expérience Utilisateur & Copywriting)
+1. **Copywriting des Titres Hero :** Rendre les titres H1 des pages secteurs plus concrets et axés sur les résultats métiers.
+
+#### C. Priorité 3 : CONFORT / FINITION (Impact Polish Visuel & Ergonomie)
+1. **Pacing des descriptions dans le questionnaire :** Optimiser l'espacement vertical des cartes de questions sur très petits écrans (< 375px).
+
+---
+
+## 8. CONSOLIDATION TECHNIQUE V3 (FACTUELLE & PURE VALIDATION)
+
+### 8.1. Slugs réels des routes robots
 Les routes exactes et leurs slugs canoniques déclarés dans `src/App.tsx` et `src/data/robotSeries.ts` :
 
 | Route déclarée dans `App.tsx` | Slug réel attendu dans `ROBOT_SERIES_DATA` | Exemple d'URL complète valide |
@@ -102,18 +231,24 @@ Les routes exactes et leurs slugs canoniques déclarés dans `src/App.tsx` et `s
 
 *Remarque :* L'utilisation de slugs tronqués sans `-series` (ex: `/robots/uclean`) ne correspond à aucune clé dans `ROBOT_SERIES_DATA` et renvoie une fiche non trouvée. Seuls les slugs ci-dessus sont canoniques.
 
-### 3.2. Tableau de vérité "Multi-robots" (`flotte-mixte`)
+### 8.2. Analyse factuelle de la valeur "Multi-robots" (`flotte-mixte` vs legacy `mixte`)
 
-| Fichier concerné | Valeur stockée dans le code | Valeur affichée à l'écran | Valeur transmise au formulaire | Valeur finale soumise |
+Une inspection stricte du code révèle qu'il subsiste une **incohérence legacy** entre deux valeurs dans le code actuel :
+
+| Fichier concerné | Ligne de code | Valeur stockée / gérée | Libellé affiché | Impact & Incohérence constatée |
 | :--- | :--- | :--- | :--- | :--- |
-| `IndustryPage.tsx` | `"flotte-mixte"` | `"Flotte mixte"` | `"flotte-mixte"` | `"flotte-mixte"` |
-| `ContactForm.tsx` | `"flotte-mixte"` | `"Flotte mixte"` | `"flotte-mixte"` | `"flotte-mixte"` |
-| `mapQualificationToContact.ts` | `"flotte-mixte"` | N/A (lib interne) | `"flotte-mixte"` | `"flotte-mixte"` |
-| `evaluateQualification.ts` | `recommendedRobots: string[]` | N/A (moteur de calcul) | N/A | N/A |
+| `IndustryPage.tsx` | Lignes 169, 257, 348, 445 | `val: "flotte-mixte"` | `"Flotte mixte"` | Standard du formulaire par secteur. |
+| `IndustryPage.tsx` | Ligne 644 | `rawId === "flotte-mixte"` | N/A | Détecte la sélection "flotte-mixte". |
+| `IndustryPage.tsx` | **Ligne 647 (Fallback)** | **`chosenModel = "mixte"`** | N/A | **ANOMALIE LEGACY :** En cas de fallback indéterminé dans `handlePrimaryAction`, assigne `"mixte"`, ce qui génère `?model=mixte` dans l'URL ! |
+| `ContactForm.tsx` | Ligne 57 | `val: "flotte-mixte"` | `"Flotte mixte"` | Ne contient PAS l'option `"mixte"`. Si `?model=mixte` est transmis, le `<select>` bascule sur l'option par défaut. |
+| `mapQualificationToContact.ts` | Ligne 21 | `primarySuggestedModel = "flotte-mixte"` | N/A | Génère strictement `"flotte-mixte"` pour la préqualification multi-robots. |
+| `evaluateQualification.ts` | Lignes 1-120 | `recommendedRobots: string[]` | N/A | Génère le tableau des IDs de robots (ex: `["uclean-compact", "userve"]`). |
 
-*Conclusion :* Il existe **une seule et unique valeur canonique** dans toute l'application : **`"flotte-mixte"`**. Aucune valeur équivalente simplifiée (comme `"mixte"`) n'existe ni n'est tolérée.
+#### Synthèse de l'incohérence :
+- **État actuel du code :** `"flotte-mixte"` est la valeur standard utilisée à 95% (dans `ContactForm.tsx`, `mapQualificationToContact.ts`, les options de formulaires et les tests unitaires). Cependant, une relique legacy subsiste à la ligne 647 de `IndustryPage.tsx` (`chosenModel = "mixte"`).
+- **État cible requis :** Uniformiser la ligne 647 de `IndustryPage.tsx` vers `chosenModel = "flotte-mixte"` pour éliminer toute fuite de paramètre `?model=mixte` dans l'URL.
 
-### 3.3. SEO page par page (Export factuel)
+### 8.3. SEO page par page (Export factuel)
 
 | Route | H1 Exact | Title Exact | Meta Description Exacte | Fichier / Hook Source |
 | :--- | :--- | :--- | :--- | :--- |
@@ -130,7 +265,7 @@ Les routes exactes et leurs slugs canoniques déclarés dans `src/App.tsx` et `s
 | `/services` | `Vos robots, intégrés et suivis de bout en bout.` | `Services & Déploiement Robotique \| Audit, Test Terrain & Support` | `De l'audit d'implantation sur site à la supervision 24/7 : découvrez l'accompagnement clé en main Phoenix-Botics pour rentabiliser votre investissement cobotique.` | `src/pages/ServicesPage.tsx` / `usePageMeta` |
 | `/404-non-trouve` | `Oups ! Cette destination est introuvable.` | `Page non trouvée - 404 \| Phoenix-Botics` | `La page que vous recherchez n'existe pas ou a été déplacée. Retournez à l'accueil de Phoenix-Botics.` | `src/pages/NotFoundPage.tsx` / `usePageMeta` |
 
-### 3.4. Extraits de code des H1 stratégiques
+### 8.4. Extraits de code des H1 stratégiques
 
 1. **Home (`/`)**
    - *Fichier :* `src/components/Hero.tsx` (ligne 18)
@@ -163,7 +298,7 @@ Les routes exactes et leurs slugs canoniques déclarés dans `src/App.tsx` et `s
      tagline: "Fluidifiez vos flux logistiques sans réorganiser vos sites",
      ```
 
-### 3.5. Matrice d'état de vérification des parcours métier
+### 8.5. Matrice d'état de vérification des parcours métier
 
 | Flux métier testé | Confirmé dans le code | Testé visuellement | Testé automatisé | Non testé |
 | :--- | :--- | :--- | :--- | :--- |
