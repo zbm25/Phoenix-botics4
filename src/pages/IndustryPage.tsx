@@ -491,6 +491,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
   // Safe canonical model resolver
   const resolveCanonicalModel = (modelKey: string | null): string => {
     if (!modelKey) return "";
+    if (modelKey === "flotte-mixte" || modelKey === "audit-site") return modelKey;
     const robot = getRobotById(modelKey);
     if (!robot) return "";
     const isInSector = config.robotList.some((r) => r.canonicalId === robot.canonicalId || r.id === robot.id);
@@ -644,7 +645,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
     } else if (rawId === "flotte-mixte" || rawId === "audit-site") {
       chosenModel = rawId;
     } else {
-      chosenModel = "mixte";
+      chosenModel = "flotte-mixte";
     }
 
     const nextParams = new URLSearchParams(searchParams);
