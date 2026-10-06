@@ -18,6 +18,7 @@ import { ContactForm } from "../components/ContactForm";
 import { PrequalificationFlow } from "../components/qualification/PrequalificationFlow";
 import { MappedContactQualification } from "../lib/qualification/mapQualificationToContact";
 import { motion, useInView, useMotionValue, animate } from "motion/react";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { 
   getRobotById,
   optimizeCloudinaryUrl,
@@ -62,6 +63,8 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({ value }) => {
 
 interface IndustrySectorConfig {
   sectorKey: string;
+  metaTitle: string;
+  metaDescription: string;
   heroHeading: React.ReactNode;
   heroDescription: string;
   heroImage: string;
@@ -87,10 +90,11 @@ interface IndustrySectorConfig {
 
 const hospitalityConfig: IndustrySectorConfig = {
   sectorKey: "hospitality",
+  metaTitle: "Robots de Service pour Hôtellerie-Restauration | Phoenix-Botics",
+  metaDescription: "Robots de service, room-service et nettoyage pour hôtels et restaurants. Réduisez la pénibilité, fluidifiez le service et recentrez vos équipes sur l’accueil.",
   heroHeading: (
     <>
-      L'excellence du service, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Service en salle, room-service et propreté automatisés <span className="text-orange-500">pour l’hôtellerie-restauration.</span>
     </>
   ),
   heroDescription: "Rationalisez votre logistique, du débarrassage en salle au room-service. Libérez vos équipes pour offrir une expérience client mémorable.",
@@ -173,10 +177,11 @@ const hospitalityConfig: IndustrySectorConfig = {
 
 const retailConfig: IndustrySectorConfig = {
   sectorKey: "retail",
+  metaTitle: "Robotique Retail & Grande Distribution | Phoenix-Botics",
+  metaDescription: "Cobots de nettoyage, robots d’accueil et guidage client pour le retail et la grande distribution. Automatisez l’entretien des allées et libérez vos équipes de vente.",
   heroHeading: (
     <>
-      Le futur du Retail, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Nettoyage autonome et guidage client <span className="text-orange-500">pour le retail et la grande distribution.</span>
     </>
   ),
   heroDescription: "Optimisez l'expérience client en rayon et automatisez l'entretien des surfaces de vente pour maximiser vos performances commerciales.",
@@ -261,10 +266,11 @@ const retailConfig: IndustrySectorConfig = {
 
 const healthConfig: IndustrySectorConfig = {
   sectorKey: "health",
+  metaTitle: "Robotique Hospitalière & Bionettoyage | Phoenix-Botics",
+  metaDescription: "Intralogistique hospitalière, bionettoyage et transport autonome pour hôpitaux, cliniques et EHPAD. Sécurisez les flux et soulagez les équipes soignantes.",
   heroHeading: (
     <>
-      L'excellence des soins, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Intralogistique hospitalière, bionettoyage et transport autonome <span className="text-orange-500">pour la santé.</span>
     </>
   ),
   heroDescription: "Sécurisez l'intralogistique hospitalière, soulagez le personnel soignant et garantissez des standards d'hygiène irréprochables.",
@@ -352,10 +358,11 @@ const healthConfig: IndustrySectorConfig = {
 
 const industryConfig: IndustrySectorConfig = {
   sectorKey: "industry",
+  metaTitle: "AMR Intralogistique & Manutention | Phoenix-Botics",
+  metaDescription: "Robots mobiles autonomes pour manutention, transport de charges et nettoyage industriel. Fluidifiez les flux d’usine et d’entrepôt sans travaux lourds.",
   heroHeading: (
     <>
-      La performance industrielle, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Manutention autonome, transport de charges et nettoyage industriel <span className="text-orange-500">par AMR.</span>
     </>
   ),
   heroDescription: "Fluidifiez vos lignes de production, automatisez la manutention de charges lourdes et maintenez vos entrepôts au sommet de l'efficacité.",
@@ -449,6 +456,7 @@ const industryConfig: IndustrySectorConfig = {
 
 // --- REUSABLE 8-SECTION INDUSTRY VIEW TEMPLATE ---
 const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
+  usePageMeta(config.metaTitle, config.metaDescription);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const modelParam = searchParams.get("model");

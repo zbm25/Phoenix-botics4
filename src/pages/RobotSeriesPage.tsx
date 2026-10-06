@@ -612,14 +612,7 @@ export const RobotSeriesPage: React.FC = () => {
               GAMME PROFESSIONNELLE B2B
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-white font-display leading-[1.1] mb-6">
-              {seriesId === "uclean-series" ? (
-                <>
-                  Automatisez le nettoyage de vos{" "}
-                  <span className="text-orange-500">espaces professionnels.</span>
-                </>
-              ) : (
-                seriesData.heroTitle
-              )}
+              {seriesData.heroTitle}
             </h1>
             <p className="text-base sm:text-lg text-gray-300 mb-10 max-w-xl leading-relaxed">
               {seriesId === "uclean-series"

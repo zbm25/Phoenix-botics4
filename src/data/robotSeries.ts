@@ -69,7 +69,7 @@ export const ROBOT_SERIES_DATA: Record<string, RobotSeriesPageData> = {
   "uclean-series": {
     id: "uclean-series",
     title: "Série uClean",
-    heroTitle: "Automatisez le nettoyage de vos espaces professionnels",
+    heroTitle: "uClean : autolaveuses et robots de nettoyage autonomes pour sites professionnels",
     heroSubtitle: "L'excellence de la propreté automatisée en continu.",
     heroDescription: "Découvrez notre gamme d'autolaveuses et d'aspirateurs autonomes de pointe. Conçus pour opérer en toute sécurité aux côtés de vos collaborateurs et du grand public, ils garantissent une hygiène impeccable de vos locaux tout en valorisant le travail de vos équipes d'entretien.",
     heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782745753/Scrub75_cyuy2d.png",
@@ -308,7 +308,7 @@ export const ROBOT_SERIES_DATA: Record<string, RobotSeriesPageData> = {
   "ulog-series": {
     id: "ulog-series",
     title: "Série uLog",
-    heroTitle: "Fluidifiez vos flux logistiques sans réorganiser vos sites",
+    heroTitle: "uLog : robots autonomes pour intralogistique, transport et manutention industrielle",
     heroSubtitle: "L'intralogistique autonome, du colis léger à la palette lourde.",
     heroDescription: "Connectez vos différents services, entrepôts et lignes de production en toute simplicité. Nos robots mobiles autonomes (AMR) de livraison et de levage uLog automatisent les flux internes de charges de 80 kg à 600 kg sans modification d'infrastructure.",
     heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png",
@@ -612,7 +612,7 @@ export const ROBOT_SERIES_DATA: Record<string, RobotSeriesPageData> = {
   "userve-series": {
     id: "userve-series",
     title: "Série uServe",
-    heroTitle: "Améliorez l’accueil et l’expérience client grâce à la robotique",
+    heroTitle: "uServe : robots d’accueil, de guidage et de service pour l’hôtellerie, la restauration et le retail",
     heroSubtitle: "L'interaction humaine augmentée par l'intelligence de service.",
     heroDescription: "Idéal pour les halls d'accueil, musées, cliniques et grands magasins. Le robot uServe assure un accueil haut de gamme 24h/24, guide avec élégance vos visiteurs et prend en charge l'enregistrement ou les requêtes d'information récurrentes.",
     heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png",
