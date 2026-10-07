@@ -11,6 +11,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { getRobotById, optimizeCloudinaryUrl } from "../../data/robotSeries";
+import { ProofBlock } from "../ProofBlock";
 
 interface QualificationResultProps {
   evaluation: QualificationEvaluation;
@@ -193,6 +194,20 @@ export const QualificationResult: React.FC<QualificationResultProps> = ({
                     <p className="text-xs text-slate-600 leading-relaxed font-light">
                       {detail.justification}
                     </p>
+
+                    {/* Verifiable Proof Component */}
+                    <ProofBlock
+                      compact
+                      assertion={
+                        robotData?.specs?.[0]
+                          ? `${robotData.specs[0].label} : ${robotData.specs[0].value}`
+                          : "Navigation autonome certifiée CE ISO 3691-4"
+                      }
+                      type="constructor_spec"
+                      source="Fiche Technique Constructeur (United Robotics Group)"
+                      scope="Site d'exploitation"
+                      date="2025"
+                    />
                   </div>
                 </div>
               );
@@ -233,7 +248,7 @@ export const QualificationResult: React.FC<QualificationResultProps> = ({
         </div>
 
         <p className="text-[11px] text-slate-400 font-light leading-relaxed italic border-t border-white/10 pt-3">
-          {evaluation.disclaimer}
+          Estimation indicative calculée sur la base de vos paramètres. Une étude de site permet de valider les trajectoires, l’infrastructure et le ROI réel.
         </p>
       </div>
 
