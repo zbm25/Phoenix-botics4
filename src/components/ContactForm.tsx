@@ -39,7 +39,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   sectorOptions,
   robotOptions,
   emailPlaceholder = "contact@entreprise.com",
-  ctaLabel = "Demander une étude d'implantation",
+  ctaLabel = "Recevoir ma recommandation",
   onSuccess,
   idPrefix,
 }) => {
@@ -269,27 +269,27 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               </div>
             </div>
 
-            {/* Détails du projet */}
+            {/* Contraintes ou objectif principal */}
             <div className="space-y-1.5">
               <label
                 htmlFor={detailsInputId}
                 className="block text-[10px] font-bold text-gray-300 tracking-widest uppercase font-mono"
               >
-                Détails du projet
+                Contraintes ou objectif principal (facultatif)
               </label>
               <textarea
                 id={detailsInputId}
                 name="details"
                 rows={3}
-                placeholder="Décrivez vos défis opérationnels ou flux à automatiser..."
+                placeholder="3 500 m² à laver de nuit, franchissement d'ascenseur, circulation avec public..."
                 value={formData.details}
                 onChange={(e) => setFormData({ ...formData, details: e.target.value })}
                 className="w-full bg-[#12192B] border border-slate-700 text-white rounded-lg px-3 py-2.5 text-sm focus:border-orange-500 focus:outline-none transition-colors resize-none placeholder:text-slate-500"
               />
             </div>
 
-            {/* Submit button */}
-            <div className="pt-2">
+            {/* Submit button & Reassurance */}
+            <div className="pt-2 space-y-2.5">
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -307,6 +307,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   </>
                 )}
               </button>
+              <p className="text-[11px] text-slate-400 font-light text-center leading-relaxed">
+                Vos données restent confidentielles. Un spécialiste Phoenix Botics analyse votre implantation sous 48h ouvrées. Sans engagement.
+              </p>
             </div>
           </motion.form>
         ) : (

@@ -36,6 +36,7 @@ export const FinalContactSection: React.FC = () => {
 
   const resolveCanonicalModel = (param: string | null): string => {
     if (!param) return "";
+    if (param === "flotte-mixte" || param === "audit-site") return param;
     const found = getRobotById(param);
     return found ? found.canonicalId : "";
   };
@@ -128,7 +129,7 @@ export const FinalContactSection: React.FC = () => {
               defaultSector={defaultSector}
               defaultModel={defaultModel}
               idPrefix="final-contact"
-              ctaLabel="Demander une étude de site"
+              ctaLabel="Recevoir ma recommandation"
               emailPlaceholder="j.dupont@entreprise.com"
             />
           </div>

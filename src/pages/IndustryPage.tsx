@@ -15,6 +15,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { FleetCarousel, FleetCarouselItem, FleetCarouselTab } from "../components/FleetCarousel";
 import { ContactForm } from "../components/ContactForm";
+import { ProcessSection } from "../components/ProcessSection";
 import { PrequalificationFlow } from "../components/qualification/PrequalificationFlow";
 import { MappedContactQualification } from "../lib/qualification/mapQualificationToContact";
 import { motion, useInView, useMotionValue, animate } from "motion/react";
@@ -64,6 +65,7 @@ interface IndustrySectorConfig {
   sectorKey: string;
   heroHeading: React.ReactNode;
   heroDescription: string;
+  heroCtaLabel: string;
   heroImage: string;
   defisTitleLine1: string;
   defisTitleLine2: string;
@@ -89,11 +91,12 @@ const hospitalityConfig: IndustrySectorConfig = {
   sectorKey: "hospitality",
   heroHeading: (
     <>
-      L'excellence du service, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Moins d'allers-retours. <br />
+      Plus de temps <span className="text-orange-500">pour vos clients.</span>
     </>
   ),
-  heroDescription: "Rationalisez votre logistique, du débarrassage en salle au room-service. Libérez vos équipes pour offrir une expérience client mémorable.",
+  heroDescription: "Automatisez le transport de vaisselle, le room-service et l'entretien des sols pour recentrer vos équipes sur l'accueil et la qualité de service.",
+  heroCtaLabel: "Évaluer mon établissement",
   heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1784567142/ChatGPT_Image_20_juil._2026_19_03_52_azmgk0.png",
   defisTitleLine1: "Les défis de la restauration",
   defisTitleLine2: "et de l'hôtellerie.",
@@ -104,10 +107,10 @@ const hospitalityConfig: IndustrySectorConfig = {
     { title: "Exigences d'hygiène strictes", desc: "Le maintien d'une propreté constante exige une main-d'œuvre et un temps considérables." }
   ],
   kpis: [
-    { stat: "+30", suffix: "%", label: "Temps en salle", desc: "Temps récupéré pour le conseil client." },
-    { stat: "-40", suffix: "%", label: "TMS & Fatigue", desc: "Baisse des contraintes liées au port de charges." },
-    { stat: "24", suffix: "h/24", label: "Disponibilité", desc: "Couverture continue du room-service." },
-    { stat: "98", suffix: "%", label: "Acceptation client", desc: "Taux de satisfaction face à l'innovation." }
+    { stat: "TEMPS CLIENT", suffix: "", label: "Disponibilité accrue", desc: "Équipes libérées des transports de vaisselle pour se consacrer aux clients." },
+    { stat: "PÉNIBILITÉ", suffix: "", label: "Ergonomie de travail", desc: "Suppression du port de charges lourdes entre la salle et la plonge." },
+    { stat: "24/7", suffix: "", label: "Service continu", desc: "Livraisons room-service et entretien assurés jour et nuit sans rupture." },
+    { stat: "QUALITÉ", suffix: "", label: "Régularité de service", desc: "Flux fluides et sols toujours impeccables en présence du public." }
   ],
   beneficesTitleLine1: "Sublimez votre séjour",
   beneficesTitleLine2: "et votre service en salle.",
@@ -175,11 +178,12 @@ const retailConfig: IndustrySectorConfig = {
   sectorKey: "retail",
   heroHeading: (
     <>
-      Le futur du Retail, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Des équipes disponibles pour vendre. <br />
+      Des sols entretenus <span className="text-orange-500">en continu.</span>
     </>
   ),
-  heroDescription: "Optimisez l'expérience client en rayon et automatisez l'entretien des surfaces de vente pour maximiser vos performances commerciales.",
+  heroDescription: "Automatisez l'entretien des allées et l'orientation client sans perturber les flux d'achat ni saturer vos vendeurs.",
+  heroCtaLabel: "Évaluer mon point de vente",
   heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1786706254/ChatGPT_Image_14_ao%C3%BBt_2026_13_14_25_hbto5m.png",
   defisTitleLine1: "Les défis du retail",
   defisTitleLine2: "et de la grande distribution.",
@@ -190,10 +194,10 @@ const retailConfig: IndustrySectorConfig = {
     { title: "Gestion des flux aux heures de pointe", desc: "Les pics d'affluence engorgent les allées et saturent les équipes de vente." }
   ],
   kpis: [
-    { stat: "+35", suffix: "%", label: "Satisfaction client", desc: "Mesurée en enquête post-visite en magasin." },
-    { stat: "-25", suffix: "%", label: "Attente perçue", desc: "Réduction de l'attente lors des heures de pointe." },
-    { stat: "12", suffix: "h", label: "Autonomie continue", desc: "Couverture d'une journée complète d'ouverture." },
-    { stat: "x2.5", suffix: "", label: "Retour sur investissement", desc: "ROI moyen mesuré sur 18 mois d'exploitation." }
+    { stat: "CONSEIL", suffix: "", label: "Vendeurs 100% disponibles", desc: "Moins de temps perdu sur le nettoyage, plus de présence en rayon." },
+    { stat: "ALLÉES", suffix: "", label: "Entretien en continu", desc: "Aspiration et lavage discrets pendant les heures d'ouverture." },
+    { stat: "ACCUEIL", suffix: "", label: "Guidage interactif", desc: "Orientation fluide des clients vers les promotions et rayons." },
+    { stat: "FLUX", suffix: "", label: "Boutiques & Hyper", desc: "Adaptation dynamique aux pics d'affluence en toute sécurité." }
   ],
   beneficesTitleLine1: "Rehaussez l'expérience d'achat",
   beneficesTitleLine2: "dans tous vos points de vente.",
@@ -263,11 +267,12 @@ const healthConfig: IndustrySectorConfig = {
   sectorKey: "health",
   heroHeading: (
     <>
-      L'excellence des soins, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Confiez les trajets aux robots. <br />
+      Rendez du temps <span className="text-orange-500">aux soignants.</span>
     </>
   ),
-  heroDescription: "Sécurisez l'intralogistique hospitalière, soulagez le personnel soignant et garantissez des standards d'hygiène irréprochables.",
+  heroDescription: "Automatisez le transport interne et l'entretien des circulations, tout en conservant les soins et la relation patient au cœur du métier.",
+  heroCtaLabel: "Étudier mes flux hospitaliers",
   heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1786449000/ChatGPT_Image_11_ao%C3%BBt_2026_13_48_55_bhfnwm.png",
   defisTitleLine1: "Les défis du secteur médical",
   defisTitleLine2: "et hospitalier.",
@@ -278,10 +283,10 @@ const healthConfig: IndustrySectorConfig = {
     { title: "Troubles musculosquelettiques", desc: "La manipulation répétée de chariots lourds génère fatigue et arrêts de travail." }
   ],
   kpis: [
-    { stat: "-50", suffix: "%", label: "TMS & Pénibilité", desc: "Réduction drastique des contraintes physiques." },
-    { stat: "99.9", suffix: "%", label: "Conformité Hygiène", desc: "Traçabilité intégrale du nettoyage et désinfection." },
-    { stat: "24", suffix: "h/24", label: "Disponibilité continue", desc: "Acheminement logistique garanti jour et nuit." },
-    { stat: "+40", suffix: "%", label: "Temps soignant", desc: "Temps réattribué aux soins et aux patients." }
+    { stat: "SOIN", suffix: "", label: "Temps soignant préservé", desc: "Transfert des transports de linge, repas et pharmacie aux robots." },
+    { stat: "HYGIÈNE", suffix: "", label: "Bio-nettoyage certifié", desc: "Maintien rigoureux et traçable de la propreté des couloirs." },
+    { stat: "DISPO 24/7", suffix: "", label: "Acheminement garanti", desc: "Navettes autonomes inter-services opérationnelles jour et nuit." },
+    { stat: "SÉCURITÉ", suffix: "", label: "Accès sécurisé", desc: "Coffres et compartiments verrouillés par badge RFID / Code." }
   ],
   beneficesTitleLine1: "Optimisez l'intralogistique",
   beneficesTitleLine2: "et le bien-être à l'hôpital.",
@@ -354,11 +359,12 @@ const industryConfig: IndustrySectorConfig = {
   sectorKey: "industry",
   heroHeading: (
     <>
-      La performance industrielle, <br />
-      par la <span className="text-orange-500">robotique.</span>
+      Automatisez vos flux internes <br />
+      sans reconstruire <span className="text-orange-500">votre site.</span>
     </>
   ),
-  heroDescription: "Fluidifiez vos lignes de production, automatisez la manutention de charges lourdes et maintenez vos entrepôts au sommet de l'efficacité.",
+  heroDescription: "Approvisionnez vos lignes de production et déplacez vos palettes et bacs grâce à des AMR autonomes sans marquage au sol.",
+  heroCtaLabel: "Cartographier mon flux",
   heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1786019271/ChatGPT_Image_6_ao%C3%BBt_2026_14_27_13_myx8mn.png",
   defisTitleLine1: "Les défis de l'industrie",
   defisTitleLine2: "et de l'intralogistique.",
@@ -369,10 +375,10 @@ const industryConfig: IndustrySectorConfig = {
     { title: "Besoin de flexibilité sans travaux", desc: "Modifier les lignes de production sans réaménager physiquement les entrepôts." }
   ],
   kpis: [
-    { stat: "+45", suffix: "%", label: "Productivité intralogistique", desc: "Gain de cadence sur l'approvisionnement des lignes." },
-    { stat: "-60", suffix: "%", label: "Accidents du travail", desc: "Réduction des risques liés au carristage manuel." },
-    { stat: "100", suffix: "%", label: "Autonomie AMR", desc: "Navigation naturelle sans marquage au sol." },
-    { stat: "24", suffix: "h/7j", label: "Opérationnel", desc: "Fonctionnement en continu 3x8 sans interruption." }
+    { stat: "LIGNES", suffix: "", label: "Approvisionnement continu", desc: "Livraison zéro rupture de composants sur les chaînes de montage." },
+    { stat: "AMR", suffix: "", label: "Navigation naturelle SLAM", desc: "Déploiement agile sans modification d'infrastructure ni filoguidage." },
+    { stat: "CHARGES", suffix: "", label: "Manutention jusqu'à 600kg", desc: "Déplacement autonome de bacs, kitting et palettes lourdes." },
+    { stat: "EXPLOITATION", suffix: "", label: "Régularité 3x8", desc: "Rotation continue avec recharge d'opportunité automatique." }
   ],
   beneficesTitleLine1: "Automatisez vos flux",
   beneficesTitleLine2: "de bout en bout dans l'entrepôt.",
@@ -523,6 +529,17 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
     }, 50);
+  };
+
+  const handleHeroCtaClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const prequalEl = document.getElementById("prequalification");
+    if (prequalEl) {
+      const headerOffset = 100;
+      const elementPosition = prequalEl.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
@@ -706,10 +723,11 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
             </p>
             
             <a 
-              href="#contact"
-              className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full transition-colors text-sm shadow-lg gap-2"
+              href="#prequalification"
+              onClick={handleHeroCtaClick}
+              className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full transition-colors text-sm shadow-lg gap-2 cursor-pointer"
             >
-              Parler à un expert
+              {config.heroCtaLabel}
             </a>
           </div>
         </div>
@@ -737,21 +755,41 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
         </section>
       </div>
 
-      {/* ==================== 3. SECTION "CHIFFRES CLÉS" ==================== */}
+      {/* ==================== 3. SECTION "CARTES D'IMPACT OPÉRATIONNEL" ==================== */}
       <div className="bg-white border-t border-gray-100 relative z-20">
         <section id="chiffres" className="py-24 max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-          <div className="bg-white border border-orange-500 rounded-[20px] shadow-lg py-12 px-6 relative overflow-hidden">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
-              {config.kpis.map((item, idx) => (
-                <motion.div key={idx} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }} className="flex flex-col items-center pt-8 sm:pt-0 px-4 first:pt-0">
-                  <div className="text-5xl font-bold text-gray-900 font-display tracking-tight mb-3 flex items-baseline justify-center">
-                    <AnimatedNumber value={item.stat} /><span className="text-3xl ml-1">{item.suffix}</span>
-                  </div>
-                  <div className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-2">{item.label}</div>
-                  <p className="text-sm text-gray-500 max-w-[180px] font-light leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
+          <div className="mb-12 text-center max-w-3xl mx-auto">
+            <span className="text-xs font-mono font-bold text-orange-600 uppercase tracking-widest block mb-2">
+              - IMPACTS SUR VOTRE EXPLOITATION -
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-display text-slate-900">
+              Des bénéfices mesurables au quotidien
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {config.kpis.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="bg-slate-50 border border-slate-200/90 hover:border-orange-300 hover:bg-white rounded-2xl p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <span className="inline-block px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-orange-50 text-orange-700 border border-orange-200">
+                    {item.stat}
+                  </span>
+                  <h3 className="text-lg font-bold font-display text-slate-900 leading-snug">
+                    {item.label}
+                  </h3>
+                  <p className="text-xs text-slate-600 font-light leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
       </div>
@@ -974,6 +1012,9 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
         getSecondaryLink={getSecondaryLink}
       />
 
+      {/* ==================== 7.8 SECTION "MÉTHODE DE DÉPLOIEMENT" ==================== */}
+      <ProcessSection />
+
       {/* ==================== 8. CTA FORM ==================== */}
       <section id="contact" className="py-20 bg-white border-t border-gray-100 relative z-20">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -1000,7 +1041,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
                 sectorOptions={config.contactSectorOptions}
                 robotOptions={config.contactRobotOptions}
                 emailPlaceholder={config.contactEmailPlaceholder}
-                ctaLabel="Demander une étude de site"
+                ctaLabel="Recevoir ma recommandation"
                 idPrefix={`industry-${config.sectorKey}`}
               />
             </div>
