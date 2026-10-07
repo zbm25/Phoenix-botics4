@@ -1,4 +1,4 @@
-# Audit Complet de Conversion & Parcours Client — Phoenix-Botics
+# Audit Complet de Conversion & Parcours Client — Phoenix-Botics (Version Consolidée)
 
 **Auteur :** Jules — Ingénieur Système & UX B2B
 **Dépôt :** Phoenix-botics4
@@ -124,27 +124,32 @@ Chaque robot recommandé dans le diagnostic affichera désormais :
 
 ---
 
-## 5. Matrice Exhaustive des CTA (Call-To-Action)
+## 5. Matrice Renforcée des CTA (Call-To-Action)
 
-### 5.1 CTA de la Page Home (`src/App.tsx`, `Hero.tsx`, `Header.tsx`, `ServicesKargoSection.tsx`)
+### 5.1 CTA de la Page Home & Navigation Header
 
-| Page / Emplacement | Libellé Actuel | Composant Source | Destination Actuelle | Paramètres Transmis | Problème Détecté | Destination / Comportement Recommandé |
+| Page Source | Libellé Exact | Fichier Source Exact | Route / Ancre Actuelle | Paramètres Transmis | Comportement Réellement Observé | Cible et Comportement Recommandés |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Home / Hero** | `Découvrir notre catalogue →` | `Hero.tsx` | `#robots-catalog` | Aucun | Défilement simple sur la page Home. | **Maintenir** `#robots-catalog` ou rediriger vers le filtre de secteur. |
-| **Home / Hero** | `Planifier une démo` | `Hero.tsx` | `#contact` | Aucun | Shunte le questionnaire de préqualification. | **Remplacer par :** `Évaluer mon projet` $\rightarrow$ `#prequalification` (ou sélection du secteur si inconnu). |
-| **Home / Header** | `Parler à un expert` | `Header.tsx` | `#contact` | Aucun | Ancre directe vers le formulaire bas de page. | **Maintenir** `#contact` pour la prise de contact directe B2B. |
-| **Home / Header MegaMenu** | `Évaluer mon projet` | `Header.tsx` | `/industries/${sector}#prequalification` | Sector sélectionné dans la carte | Fonctionnel mais pas toujours visible sur mobile. | **Maintenir** `/industries/${sector}#prequalification`. |
-| **Home / Bloc Services** | `Découvrir nos services` | `ServicesKargoSection.tsx` | `/services` | Aucun | Ne participe pas à la préqualification. | **Scinder en 2 CTA :**<br>1. `Choisir mon secteur` $\rightarrow$ `#secteurs`<br>2. `Étudier la faisabilité` $\rightarrow$ Lancer le diagnostic (secteur étape 1 si inconnu). |
+| **Home / Hero** | `Découvrir notre catalogue →` | `src/components/Hero.tsx` | `#robots-catalog` | Aucun | Défilement fluide vers la section catalogue de la Home. | **Maintenir** `#robots-catalog` ou rediriger vers le sélecteur de secteur. |
+| **Home / Hero** | `Planifier une démo` | `src/components/Hero.tsx` | `#contact` | Aucun | Défilement fluide direct vers le formulaire `#contact` en bas de page. | **Remplacer par :** `Évaluer mon projet` $\rightarrow$ `#prequalification` (ou sélection du secteur si inconnu). |
+| **Header (Global)** | `Parler à un expert` | `src/components/Header.tsx` | `#contact` | Aucun | Défilement fluide vers `#contact` sur Home ou page courante. | **Maintenir** `#contact` pour la prise de contact directe B2B. |
+| **Header / MegaMenu** | `Évaluer mon projet` | `src/components/Header.tsx` | `/industries/${selectedSector}#prequalification` | `selectedSector` (ex. `"industry"`) | Navigue vers la page secteur et scrolle vers le diagnostic. | **Maintenir** `/industries/${sector}#prequalification`. |
+| **Home / Services** | `Découvrir nos services` | `src/components/ServicesKargoSection.tsx` | `/services` | Aucun | Redirection vers la page Services générique. | **Scinder en 2 CTA :**<br>1. `Choisir mon secteur` $\rightarrow$ `#secteurs`<br>2. `Étudier la faisabilité` $\rightarrow$ Lancer le diagnostic (secteur étape 1 si inconnu). |
+| **Home / Bloc Intégration** | `Choisir mon secteur` | `src/components/IndustriesSection.tsx` | `/industries/${sector.id}` | `sector.id` | Navigation vers la page sectorielle correspondante. | **Maintenir** et ouvrir la préqualification. |
+| **Home / Bloc Intégration** | `Étudier la faisabilité` | `src/components/IndustriesSection.tsx` | `/industries/${sector.id}#prequalification` | `sector.id` | Navigue vers la page secteur et ouvre le questionnaire. | **Maintenir** avec secteur comme étape 1 si non défini. |
 
-### 5.2 CTA des Pages Robots & Séries (`RobotSeriesPage.tsx`)
+### 5.2 CTA des Pages Robots, Séries & Modèles
 
-| Page / Emplacement | Libellé Actuel | Composant Source | Destination Actuelle | Paramètres Transmis | Problème Détecté | Destination / Comportement Recommandé |
+| Page Source | Libellé Exact | Fichier Source Exact | Route / Ancre Actuelle | Paramètres Transmis | Comportement Réellement Observé | Cible et Comportement Recommandés |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Page Série / Top Badge** | `GAMME PROFESSIONNELLE B2B` | `RobotSeriesPage.tsx` | N/A (Texte statique) | Aucun | Label générique sans valeur de conversion. | **Supprimer** le label statique. |
-| **Page Série / Hero Principal** | `Parler à un expert` | `RobotSeriesPage.tsx` | `#contact` | Aucun | Ne pousse pas le simulateur ni le diagnostic. | **Remplacer par :**<br>• CTA Principal : `Estimer le ROI de cette gamme` $\rightarrow$ `#simulateur-roi`<br>• CTA Secondaire : `Comparer les modèles` $\rightarrow$ `#modeles`. |
-| **Page Modèle Sélectionné** | `Demander une étude de site` | `RobotSeriesPage.tsx` | `#contact` | `modelInterest: canonicalId` | Envoie au formulaire sans devancer la faisabilité. | **Remplacer par :**<br>• CTA Principal : `Estimer le ROI de ce modèle` $\rightarrow$ `#simulateur-roi` (prédéfinissant le modèle)<br>• CTA Secondaire : `Voir ses cas d'usage` $\rightarrow$ `#applications`. |
-| **Simulateur ROI / Résultat** | `Vérifier la faisabilité sur mon site` | `RobotSeriesPage.tsx` | `/industries/${roiSector}#prequalification` | `surface` (si uClean) | Perte possible du modèle précis dans l'URL. | **Conserver et enrichir :** Transmettre `model`, `series`, `sector` et `surface` dans l'URL et le state React. |
-| **Sticky Banner Bas de Page** | `Parler à un expert` | `RobotSeriesPage.tsx` | `#contact` | Aucun | Lien direct contact. | **Maintenir** `#contact` avec transmission du modèle consulté. |
+| **Page Série / Top Badge** | `GAMME PROFESSIONNELLE B2B` | `src/pages/RobotSeriesPage.tsx` | N/A (Badge texte static) | Aucun | Simple élément visuel statique non cliquable. | **Supprimer** le label statique. |
+| **Page Série / Hero** | `Parler à un expert` | `src/pages/RobotSeriesPage.tsx` | `#contact` | Aucun | Scrolle vers le formulaire de contact bas de page. | **Remplacer par :**<br>• CTA Principal : `Estimer le ROI de cette gamme` $\rightarrow$ `#simulateur-roi`<br>• CTA Secondaire : `Comparer les modèles` $\rightarrow$ `#modeles`. |
+| **Page Série / Hero** | `Voir les modèles (X)` | `src/pages/RobotSeriesPage.tsx` | `#modeles` | Aucun | Scrolle vers le catalogue technique de la gamme. | **Maintenir** `#modeles`. |
+| **Carte Modèle / Action 1** | `Demander une étude de site` | `src/pages/RobotSeriesPage.tsx` | `#contact` | `modelInterest: canonicalId` | Remplit le champ modèle du formulaire et scrolle vers `#contact`. | **Remplacer par :**<br>• CTA Principal : `Estimer le ROI de ce modèle` $\rightarrow$ `#simulateur-roi`<br>• CTA Secondaire : `Voir ses cas d'usage` $\rightarrow$ `#applications`. |
+| **Carte Modèle / Action 2** | `Télécharger la brochure technique` | `src/pages/RobotSeriesPage.tsx` | Modal PDF | Aucun | Ouvre une pop-up de capture d'email pour la fiche technique PDF. | **Maintenir** (modal très performante). |
+| **Simulateur ROI / Action** | `Vérifier la faisabilité sur mon site` | `src/pages/RobotSeriesPage.tsx` | `/industries/${roiSector}#prequalification` | `surface` (si uClean) | Ouvre la page secteur cible au niveau du questionnaire. | **Conserver et enrichir :** Transmettre `model`, `series`, `sector`, `surface` dans l'URL/state. |
+| **Page Secteur / Flotte** | `Demander une étude de site` | `src/components/FleetCarousel.tsx` | `#contact` | `model: canonicalId`, `industry` | Pre-remplit le formulaire de contact avec le modèle et scrolle vers `#contact`. | **Rediriger vers :** `#prequalification` si le diagnostic n'a pas été réalisé. |
+| **Sticky Banner Bas de Page** | `Parler à un expert` | `src/pages/RobotSeriesPage.tsx` | `#contact` | Aucun | Scrolle vers `#contact`. | **Maintenir** `#contact` avec transmission du modèle consulté. |
 
 ---
 
@@ -177,12 +182,6 @@ Chaque robot recommandé dans le diagnostic affichera désormais :
 6. **Étude de faisabilité / Préqualification**
 7. **Contact final** (`FinalContactSection`)
 
-#### Dépendances techniques lors de la réorganisation :
-- **Ancres HTML :** `#robots-catalog`, `#process`, `#contact`, `#industries`.
-- **Observer de navigation :** Maintien du comportement du Header lors du scroll.
-- **Animations Framer Motion :** Ajustement des déclencheurs `whileInView` et des seuils de visibilité.
-- **Chargement dynamique :** Lazy-loading des composants de cartes lourdes et des vidéos.
-
 ---
 
 ## 7. Refonte du Design de la Flotte de Robots
@@ -211,13 +210,13 @@ En l'absence d'actifs 3D WebGL (fichiers `.gltf` / `.glb`), il est vivement déc
 
 ---
 
-## 8. Benchmark Concurrentiel B2B
+## 8. Benchmark Concurrentiel Opérationnel
 
-| Acteur / Concurrent | Parcours de Conversion | Point Fort | Point Faible | Enseignement pour Phoenix-Botics |
-| :--- | :--- | :--- | :--- | :--- |
-| **United Robotics Group (URG)** | Catalogue institutionnel B2B | Fiches techniques très détaillées et téléchargeables. | Absence de simulateur ROI direct et tunnel de qualification complexe. | Proposer le téléchargement de brochure conditionné par email léger tout en offrant le simulateur ROI. |
-| **SoftBank Robotics** | Site orienté cas d'usage métiers | Mise en avant immédiate des secteurs (Retail, Restauration). | Navigation fragmentée entre produits. | Conserver l'entrée sectorielle comme amorce principale du diagnostic. |
-| **Geek+ / Locus Robotics** | Tunnel Intralogistique B2B | Simulateur de flotte et demande d'étude de site en 3 clics. | Très orienté entrepôt pur, peu adapté au Retail/Santé. | Allier la précision de l'audit intralogistique à la simplicité d'un questionnaire sectoriel universel. |
+| Concurrent | Entrée Principale | Logique de CTA | Étude de site / Simulateur / Specs / Démo | À Reprendre pour Phoenix-Botics | À Éviter |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **United Robotics Group (URG)** | Catalogue institutionnel par famille de produit. | CTA génériques *"Contact Us"* / *"Request Info"*. | **Specs :** Fiches PDF très complètes.<br>**Simulateur / Diagnostic :** Absent.<br>**Démo :** Formulaire statique. | • Richesse des fiches PDF téléchargeables.<br>• Clarté de la nomenclature constructeur. | • Absence d'outil d'auto-diagnostic.<br>• Parcours froid sans personnalisation sectorielle. |
+| **SoftBank Robotics** | Approche par verticale métier (Hospitality, Retail, Facility). | CTA orientés démo *"Book a Demo"* / *"Talk to Sales"*. | **Étude site :** Non automatisée.<br>**Specs :** Disponibles.<br>**Simulateur :** Non. | • Entrée sectorielle immédiate avec cas d'usage métiers en vidéo.<br>• Réassurance marques/clients. | • CTA "Demander une démo" omniprésent qui bloque la conversion autonome du prospect. |
+| **Geek+ / Locus Robotics** | Approche orientée ROI & Automatisation d'entrepôt. | CTA direct *"Calculate your ROI"* / *"Get a Site Assessment"*. | **Étude site :** Questionnaire en ligne.<br>**Simulateur :** Calculateur ROI interactif.<br>**Specs :** Oui. | • Calculateur ROI à étapes interconnecté à la demande d'étude de site.<br>• Clarté du processus d'intégration. | • Tunnel de qualification très long et centré uniquement sur la manutention lourde. |
 
 ---
 
@@ -247,25 +246,29 @@ En l'absence d'actifs 3D WebGL (fichiers `.gltf` / `.glb`), il est vivement déc
 
 ---
 
-## 11. Plan d'Action Priorisé pour la Phase d'Implémentation
+## 11. Plan d'Action d'Implémentation Priorisé & Exécutable
 
-### Phase 1 : Quick Wins & Copywriting (Effort Faible / Impact Fort)
-- [ ] Mettre à jour le copywriting Hero et Cartes d'Impact Retail dans `src/pages/IndustryPage.tsx`.
-- [ ] Remplacer le titre *« Des bénéfices mesurables au quotidien »* par *« Ce que l’automatisation change au quotidien »*.
-- [ ] Supprimer le label statique *« Gamme professionnelle B2B »* sur `RobotSeriesPage.tsx`.
+### Chantier 1 : Quick Wins Copywriting & Wording (Effort : 0.5 jour)
+- [ ] **Retail Hero & Impact :** Remplacer le titre et la description du Hero Retail dans `src/pages/IndustryPage.tsx`.
+- [ ] **Retail Section Title :** Remplacer *« Des bénéfices mesurables au quotidien »* par *« Ce que l’automatisation change au quotidien »*.
+- [ ] **Retail Impact Cards :** Reformuler les 4 cartes d'impact Retail (Conseil, Orientation, Disponibilité produit, Entretien) pour exclure toute référence aux vendeurs faisant le ménage.
+- [ ] **Pages Séries :** Supprimer le badge statique non cliquable *« GAMME PROFESSIONNELLE B2B »* sur `RobotSeriesPage.tsx`.
 
-### Phase 2 : Correctifs de Routing & Matrice CTA (Effort Moyen / Impact Fort)
-- [ ] Corriger les CTA du Hero et du bloc Services de la Home (`Hero.tsx`, `ServicesKargoSection.tsx`).
-- [ ] Mettre en place la hiérarchie CTA sur les pages Séries/Modèles (`Estimer le ROI`, `Voir les cas d'usage`).
-- [ ] Sécuriser la persistance des paramètres (`sector`, `model`, `surface`) dans l'URL et le Formulaire de Contact.
+### Chantier 2 : Correctifs CTA, Routing & State Persistence (Effort : 1 jour)
+- [ ] **Home Hero :** Modifier le CTA secondaire de `Hero.tsx` (*« Planifier une démo »* $\rightarrow$ *« Évaluer mon projet »* pointant vers `#prequalification`).
+- [ ] **Home Services :** Mettre à jour `ServicesKargoSection.tsx` avec les deux CTA cibles (*« Choisir mon secteur »* $\rightarrow$ `#secteurs`, *« Étudier la faisabilité »* $\rightarrow$ Lancer le diagnostic).
+- [ ] **Pages Séries & Modèles :** Mettre à jour la hiérarchie CTA sur `RobotSeriesPage.tsx` (*« Estimer le ROI de cette gamme »* / *« Estimer le ROI de ce modèle »* $\rightarrow$ `#simulateur-roi`).
+- [ ] **Persistence d'État :** Aligner la transmission des paramètres URL (`sector`, `model`, `surface`) du simulateur ROI vers le questionnaire de préqualification et le formulaire de contact final.
 
-### Phase 3 : Refonte des Composants & Cartes (Effort Moyen)
-- [ ] Refondre `ProofBlock.tsx` et la structure de présentation des cartes de robots recommandés (`QualificationResult.tsx`).
-- [ ] Créer le composant mutualisé `<DeploymentProcessSection />` en 4 phases compactes (half-screen desktop, frise mobile).
+### Chantier 3 : Refonte des Composants & Cartes de Recommandation (Effort : 1.5 jours)
+- [ ] **Bloc Robot Recommandé :** Refondre `ProofBlock.tsx` et `QualificationResult.tsx` pour remplacer les métadonnées administratives (source, périmètre) par des atouts utiles (usage, justification, 3 atouts max, repères techniques, points à valider).
+- [ ] **Composant Process Mutualisé :** Créer `<DeploymentProcessSection />` compact en 4 phases (*Diagnostic*, *Configuration & ROI*, *Validation terrain*, *Déploiement & Suivi*) et l'intégrer sur les pages Secteurs, Robots et Home.
+- [ ] **Flotte Immersive :** Évoluer le composant `RobotsCatalogSection.tsx` / `FleetCarousel.tsx` vers le design immersif multi-onglets (*Nettoyer*, *Servir*, *Transporter*) avec scroll-snap mobile.
 
-### Phase 4 : Refonte Structurelle Home & Flotte Immersive (Effort Élevé)
-- [ ] Réordonner les sections de la Home selon la séquence cible validée.
-- [ ] Faire évoluer le composant de présentation de la flotte vers une interface immersive multi-onglets avec visuels haute définition.
+### Chantier 4 : Réorganisation de la Home & Validations Métier (Effort : 1 jour)
+- [ ] **Re-sequencing Home :** Réordonner les sections dans `src/App.tsx` (1. Hero, 2. Choix Secteur, 3. Flotte, 4. Cas d'usage, 5. Process 4 phases, 6. Étude faisabilité, 7. Contact).
+- [ ] **Ajustements de scroll :** Valider le comportement fluide des ancres avec l'offset dynamique du Header.
+- [ ] **Arbitrages Produit & Validation Data :** Valider la cohérence des plages de ROI avec l'équipe commerciale et confirmer la liste des fiches PDF disponibles.
 
 ---
 
@@ -282,4 +285,4 @@ Les captures d'écran de référence de l'état actuel ont été générées via
 
 ---
 
-*Fin du rapport d'audit. Aucun fichier de code n'a été modifié durant cette phase conformément à la consigne AUDIT ONLY.*
+*Fin du rapport d'audit consolidé. Aucun fichier de code n'a été modifié durant cette phase conformément à la consigne AUDIT ONLY.*
