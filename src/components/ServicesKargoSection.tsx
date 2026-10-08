@@ -80,12 +80,30 @@ export const ServicesKargoSection: React.FC = () => {
             </h2>
           </div>
           
-          <button 
-            onClick={handleScrollToContact}
-            className="px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer shrink-0"
-          >
-            Nous contacter
-          </button>
+          <div className="flex items-center gap-3 shrink-0 flex-wrap">
+            <button
+              onClick={() => {
+                const sec = document.getElementById("industries");
+                if (sec) sec.scrollIntoView({ behavior: "smooth" });
+                else navigate("/industries/retail");
+              }}
+              className="px-6 py-3.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-medium text-sm rounded-full transition-all duration-300 shadow-xs cursor-pointer"
+            >
+              Choisir mon secteur
+            </button>
+            <button
+              onClick={() => {
+                navigate("/industries/retail#prequalification");
+                setTimeout(() => {
+                  const prequal = document.getElementById("prequalification");
+                  if (prequal) prequal.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+              className="px-7 py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm rounded-full transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
+            >
+              Étudier la faisabilité
+            </button>
+          </div>
         </div>
  
         {/* Asymmetrical 12-Column Grid */}

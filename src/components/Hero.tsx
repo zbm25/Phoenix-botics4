@@ -116,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ onDiscoverClick, onDemoClick }) => {
               onClick={onDemoClick}
               className="w-full sm:w-auto bg-white/10 border border-white/20 text-white hover:bg-white/20 font-semibold text-sm md:text-base px-6 py-3 rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm min-h-[44px]"
             >
-              Planifier une démo
+              Évaluer mon projet
             </button>
           </motion.div>
         </motion.div>
