@@ -63,7 +63,7 @@ function HomePage() {
           <section className="phoenix-section-alt text-white pb-6">
             <Hero
               onDiscoverClick={() => handleScrollToSegment("robots-catalog")}
-              onDemoClick={() => handleScrollToSegment("contact")}
+              onDemoClick={() => handleScrollToSegment("industries")}
             />
           </section>
           <div className="h-16 bg-gradient-to-b from-[#0a0f1c] to-[#f5f5f7] -mt-1" />

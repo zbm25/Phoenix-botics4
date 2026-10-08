@@ -165,49 +165,77 @@ export const QualificationResult: React.FC<QualificationResultProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {evaluation.recommendedRobotDetails.map((detail) => {
               const robotData = getRobotById(detail.id);
+              const specs = robotData?.specs || [];
+              const seriesId = robotData?.seriesId || "uclean-series";
+              const canonicalId = robotData?.canonicalId || detail.id;
+
               return (
                 <div
                   key={detail.id}
-                  className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:border-orange-300 transition-all flex flex-col justify-between"
+                  className="p-5 rounded-2xl bg-slate-50/90 border border-slate-200/80 hover:border-orange-300 hover:bg-white transition-all flex flex-col justify-between shadow-2xs"
                 >
                   <div className="space-y-3">
                     {/* Visual & Titles */}
-                    <div className="flex items-center gap-3">
-                      <div className="w-14 h-14 rounded-lg bg-white p-1.5 border border-slate-200/80 shrink-0 flex items-center justify-center overflow-hidden">
+                    <div className="flex items-center gap-3 pb-3 border-b border-slate-200/60">
+                      <div className="w-14 h-14 rounded-xl bg-white p-1 border border-slate-200 shrink-0 flex items-center justify-center overflow-hidden shadow-2xs">
                         {robotData?.image ? (
                           <img
                             src={optimizeCloudinaryUrl(robotData.image, 200)}
                             alt={detail.name}
-                            className="w-full h-full object-contain mix-blend-multiply"
+                            className="w-full h-full object-contain"
                           />
                         ) : (
                           <Building2 size={24} className="text-slate-400" />
                         )}
                       </div>
                       <div>
-                        <h5 className="text-sm font-bold text-slate-900">{detail.name}</h5>
-                        <p className="text-[10px] font-mono uppercase font-semibold text-orange-600">{detail.role}</p>
+                        <h5 className="text-sm font-bold text-slate-900 font-display">{detail.name}</h5>
+                        <span className="inline-block text-[10px] font-mono font-bold text-orange-600 uppercase tracking-wider">
+                          {detail.role}
+                        </span>
                       </div>
                     </div>
 
-                    {/* Concise Dynamic Justification */}
-                    <p className="text-xs text-slate-600 leading-relaxed font-light">
-                      {detail.justification}
-                    </p>
+                    {/* Usage & Why Recommended */}
+                    <div>
+                      <span className="text-[10px] font-mono uppercase font-bold text-slate-400 block mb-1">
+                        Usage retenu & justification :
+                      </span>
+                      <p className="text-xs text-slate-700 leading-relaxed font-normal">
+                        {detail.justification}
+                      </p>
+                    </div>
 
-                    {/* Verifiable Proof Component */}
-                    <ProofBlock
-                      compact
-                      assertion={
-                        robotData?.specs?.[0]
-                          ? `${robotData.specs[0].label} : ${robotData.specs[0].value}`
-                          : "Navigation autonome certifiée CE ISO 3691-4"
-                      }
-                      type="constructor_spec"
-                      source="Fiche Technique Constructeur (United Robotics Group)"
-                      scope="Site d'exploitation"
-                      date="2025"
-                    />
+                    {/* Dynamic Key Technical Specs */}
+                    {specs.length > 0 && (
+                      <div className="pt-2 border-t border-slate-100">
+                        <span className="text-[10px] font-mono uppercase font-bold text-slate-400 block mb-1.5">
+                          Repères techniques :
+                        </span>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {specs.slice(0, 2).map((s, idx) => (
+                            <div key={idx} className="bg-white px-2.5 py-1.5 rounded-lg border border-slate-200 text-[11px]">
+                              <span className="text-slate-400 text-[9px] uppercase block font-mono">{s.label}</span>
+                              <span className="font-bold text-slate-800">{s.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Secondary Link to Full Specs */}
+                  <div className="pt-3 mt-3 border-t border-slate-200/60 flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      Navigation SLAM certifiée
+                    </span>
+                    <a
+                      href={`/robots/${seriesId}?model=${encodeURIComponent(canonicalId)}#model-${encodeURIComponent(canonicalId)}`}
+                      className="text-xs font-bold text-orange-600 hover:text-orange-700 inline-flex items-center gap-0.5 transition-colors"
+                    >
+                      <span>Fiche complète</span>
+                      <ChevronRight size={13} />
+                    </a>
                   </div>
                 </div>
               );

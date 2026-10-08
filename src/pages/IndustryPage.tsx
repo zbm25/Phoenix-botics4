@@ -178,11 +178,11 @@ const retailConfig: IndustrySectorConfig = {
   sectorKey: "retail",
   heroHeading: (
     <>
-      Des équipes disponibles pour vendre. <br />
-      Des sols entretenus <span className="text-orange-500">en continu.</span>
+      Moins de temps à orienter. <br />
+      Plus de temps <span className="text-orange-500">pour conseiller et vendre.</span>
     </>
   ),
-  heroDescription: "Automatisez l'entretien des allées et l'orientation client sans perturber les flux d'achat ni saturer vos vendeurs.",
+  heroDescription: "uServe guide les clients vers les bons produits pendant que uClean entretient les allées, sans perturber les flux d’achat.",
   heroCtaLabel: "Évaluer mon point de vente",
   heroImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1786706254/ChatGPT_Image_14_ao%C3%BBt_2026_13_14_25_hbto5m.png",
   defisTitleLine1: "Les défis du retail",
@@ -194,10 +194,10 @@ const retailConfig: IndustrySectorConfig = {
     { title: "Gestion des flux aux heures de pointe", desc: "Les pics d'affluence engorgent les allées et saturent les équipes de vente." }
   ],
   kpis: [
-    { stat: "CONSEIL", suffix: "", label: "Vendeurs 100% disponibles", desc: "Moins de temps perdu sur le nettoyage, plus de présence en rayon." },
-    { stat: "ALLÉES", suffix: "", label: "Entretien en continu", desc: "Aspiration et lavage discrets pendant les heures d'ouverture." },
-    { stat: "ACCUEIL", suffix: "", label: "Guidage interactif", desc: "Orientation fluide des clients vers les promotions et rayons." },
-    { stat: "FLUX", suffix: "", label: "Boutiques & Hyper", desc: "Adaptation dynamique aux pics d'affluence en toute sécurité." }
+    { stat: "CONSEIL", suffix: "", label: "Plus de temps pour accompagner l’achat", desc: "Équipes libérées des demandes répétitives d'orientation, 100% concentrées sur la vente." },
+    { stat: "ORIENTATION", suffix: "", label: "Les clients trouvent plus vite", desc: "Guidage autonome et interactif uServe directement vers les rayons et promotions." },
+    { stat: "DISPONIBILITÉ", suffix: "", label: "Priorité au rayon et au réassort", desc: "Moins de distractions opérationnelles pour un réassort plus fluide et des rayons impeccables." },
+    { stat: "ENTRETIEN", suffix: "", label: "Des allées entretenues pendant l’ouverture", desc: "Lavage et aspiration discrets par uClean sans gêne pour le parcours d'achat." }
   ],
   beneficesTitleLine1: "Rehaussez l'expérience d'achat",
   beneficesTitleLine2: "dans tous vos points de vente.",
@@ -763,7 +763,7 @@ const SectorView: React.FC<{ config: IndustrySectorConfig }> = ({ config }) => {
               - IMPACTS SUR VOTRE EXPLOITATION -
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-slate-900">
-              Des bénéfices mesurables au quotidien
+              Ce que l’automatisation change au quotidien
             </h2>
           </div>
 

@@ -608,10 +608,7 @@ export const RobotSeriesPage: React.FC = () => {
           </div>
 
           <div className="relative z-10 h-full flex flex-col justify-center items-start text-left px-6 sm:px-12 lg:px-24 w-full lg:w-3/5">
-            <span className="text-orange-500 font-mono text-sm tracking-widest uppercase font-semibold mb-4 block">
-              GAMME PROFESSIONNELLE B2B
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-white font-display leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-white font-display leading-[1.1] mb-6 pt-6">
               {seriesId === "uclean-series" ? (
                 <>
                   Automatisez le nettoyage de vos{" "}
@@ -628,16 +625,16 @@ export const RobotSeriesPage: React.FC = () => {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <button
-                onClick={() => handleScrollToId("contact")}
+                onClick={() => handleScrollToId("simulateur-roi")}
                 className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full transition-colors text-sm shadow-lg flex items-center gap-2 cursor-pointer"
               >
-                Parler à un expert
+                Estimer le ROI de cette gamme
               </button>
               <button
                 onClick={() => handleScrollToId("modeles")}
                 className="text-white border border-white/30 hover:bg-white/10 font-bold py-4 px-8 rounded-full transition-colors text-sm backdrop-blur-sm cursor-pointer"
               >
-                Voir les modèles ({seriesData.models.length})
+                Comparer les modèles ({seriesData.models.length})
               </button>
             </div>
           </div>
@@ -1075,20 +1072,30 @@ export const RobotSeriesPage: React.FC = () => {
                         >
                           <button
                             type="button"
-                            onClick={() => handleSelectModelForContact(model.canonicalId || model.id)}
+                            onClick={() => {
+                              setFormData((prev) => ({ ...prev, modelInterest: model.canonicalId || model.id }));
+                              handleScrollToId("simulateur-roi");
+                            }}
                             className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full text-xs transition-colors shadow-md cursor-pointer flex items-center gap-1.5"
                           >
-                            <span>Demander une étude de site</span>
+                            <span>Estimer le ROI de ce modèle</span>
                             <ArrowRight size={14} aria-hidden="true" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleScrollToId("applications")}
+                            className="bg-white border border-gray-300 hover:bg-gray-50 text-[#0a0f1c] font-semibold py-3 px-5 rounded-full text-xs transition-colors flex items-center gap-2 shadow-sm cursor-pointer"
+                          >
+                            <span>Voir ses cas d'usage</span>
                           </button>
                           <button
                             type="button"
                             onClick={() => setIsModalOpen(true)}
                             aria-label={`Télécharger la brochure technique pour ${model.name}`}
-                            className="bg-white border border-gray-300 hover:bg-gray-50 text-[#0a0f1c] font-semibold py-3 px-5 rounded-full text-xs transition-colors flex items-center gap-2 shadow-sm cursor-pointer"
+                            className="text-slate-500 hover:text-slate-900 font-medium text-xs underline flex items-center gap-1 cursor-pointer ml-auto"
                           >
-                            <Download size={14} aria-hidden="true" />
-                            <span>Télécharger la brochure technique</span>
+                            <Download size={13} aria-hidden="true" />
+                            <span>Brochure PDF</span>
                           </button>
                         </motion.div>
 
@@ -1103,7 +1110,7 @@ export const RobotSeriesPage: React.FC = () => {
       </section>
 
       {/* ==================== SECTION SIMULATEUR ROI OPTIMISÉ ==================== */}
-      <section className="py-24 bg-white border-t border-gray-100 overflow-hidden">
+      <section id="simulateur-roi" className="py-24 bg-white border-t border-gray-100 overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
 
           {/* En-tête */}
@@ -1272,7 +1279,7 @@ export const RobotSeriesPage: React.FC = () => {
       </section>
 
       {/* ==================== 6. APPLICATIONS (PREUVE D'USAGE) ==================== */}
-      <section className="py-24 bg-white border-t border-gray-100 overflow-hidden">
+      <section id="applications" className="py-24 bg-white border-t border-gray-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           
           <motion.div
