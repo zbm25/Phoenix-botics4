@@ -69,41 +69,14 @@ export const ServicesKargoSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Header Layout */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 text-left">
-          <div>
-            <span className="text-orange-500 font-mono font-bold tracking-widest uppercase text-xs px-3 py-1 bg-orange-500/5 border border-orange-500/10 rounded-full">
-              Nos Services
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900 mt-4 leading-tight">
-              Une offre modulaire,
-              <span className="block text-slate-400 font-normal mt-1">pensée pour s'adapter</span>
-            </h2>
-          </div>
-          
-          <div className="flex items-center gap-3 shrink-0 flex-wrap">
-            <button
-              onClick={() => {
-                const sec = document.getElementById("industries");
-                if (sec) sec.scrollIntoView({ behavior: "smooth" });
-                else navigate("/industries/retail");
-              }}
-              className="px-6 py-3.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 font-medium text-sm rounded-full transition-all duration-300 shadow-xs cursor-pointer"
-            >
-              Choisir mon secteur
-            </button>
-            <button
-              onClick={() => {
-                navigate("/industries/retail#prequalification");
-                setTimeout(() => {
-                  const prequal = document.getElementById("prequalification");
-                  if (prequal) prequal.scrollIntoView({ behavior: "smooth" });
-                }, 100);
-              }}
-              className="px-7 py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm rounded-full transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
-            >
-              Étudier la faisabilité
-            </button>
-          </div>
+        <div className="mb-12 text-left">
+          <span className="text-orange-500 font-mono font-bold tracking-widest uppercase text-xs px-3 py-1 bg-orange-500/5 border border-orange-500/10 rounded-full">
+            Nos Services
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900 mt-4 leading-tight">
+            Une offre modulaire,
+            <span className="block text-slate-400 font-normal mt-1">pensée pour s'adapter</span>
+          </h2>
         </div>
  
         {/* Asymmetrical 12-Column Grid */}

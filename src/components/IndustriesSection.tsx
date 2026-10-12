@@ -82,10 +82,18 @@ const INDUSTRY_ICONS: Record<string, React.ReactNode> = {
   industry: <Warehouse className="w-5 h-5" />
 };
 
+const PREDIAGNOSTIC_SECTORS = [
+  { id: "retail", label: "Retail" },
+  { id: "hospitality", label: "Hôtellerie" },
+  { id: "health", label: "Santé" },
+  { id: "industry", label: "Industrie" },
+];
+
 export const IndustriesSection: React.FC = () => {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [selectedPrediagnosticSector, setSelectedPrediagnosticSector] = useState<string>("retail");
   
   // Custom manual state to pause autoplay permanently
   const [autoplayPaused, setAutoplayPaused] = useState(false);
@@ -436,38 +444,58 @@ export const IndustriesSection: React.FC = () => {
 
         {/* Dynamic call-to-action banner */}
         <motion.div 
+          id="prediagnostic"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 bg-white rounded-2xl border border-slate-100 p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs relative overflow-hidden"
+          className="mt-16 bg-white rounded-2xl border border-slate-200/80 p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-sm relative overflow-hidden text-left"
         >
           {/* Subtle line decoration on top */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-orange-500 via-rose-500 to-indigo-500" />
+          <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-orange-500 via-rose-500 to-indigo-500" />
           
-          <div className="text-left relative z-10">
-            <h4 className="text-base font-bold text-slate-900 mb-1">
+          <div className="relative z-10 max-w-2xl">
+            <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
               Vous faites face à d'autres problématiques de pénibilité ou de recrutement ?
             </h4>
-            <p className="text-xs sm:text-sm text-slate-500 font-light">
+            <p className="text-xs sm:text-sm text-slate-500 font-light leading-relaxed">
               Nos ingénieurs d’application réalisent un prédiagnostic de vos flux et de vos contraintes d’exploitation sous 48 heures.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              const element = document.getElementById("contact");
-              if (element) {
-                const headerOffset = 90;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-              }
-            }}
-            className="shrink-0 relative z-10 px-5 py-2.5 bg-slate-900 hover:bg-orange-600 text-white text-xs font-semibold rounded-lg transition-colors duration-300 text-center cursor-pointer shadow-sm hover:shadow-md"
-          >
-            Obtenir un prédiagnostic
-          </button>
+
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 relative z-10 w-full lg:w-auto shrink-0">
+            {/* Integrated sector selector pills */}
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100/80 rounded-xl border border-slate-200/60">
+              {PREDIAGNOSTIC_SECTORS.map((sec) => {
+                const isSelected = selectedPrediagnosticSector === sec.id;
+                return (
+                  <button
+                    key={sec.id}
+                    type="button"
+                    onClick={() => setSelectedPrediagnosticSector(sec.id)}
+                    className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-orange-500 text-white shadow-xs"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
+                    }`}
+                  >
+                    {sec.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                navigate(`/industries/${selectedPrediagnosticSector}#prequalification`);
+              }}
+              className="shrink-0 px-5 py-3 bg-slate-900 hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 text-center cursor-pointer shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+            >
+              <span>Obtenir un prédiagnostic</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </motion.div>
 
       </div>
