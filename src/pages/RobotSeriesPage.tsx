@@ -1073,6 +1073,7 @@ export const RobotSeriesPage: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => {
+                              setSelectedModelIdx(idx);
                               setFormData((prev) => ({ ...prev, modelInterest: model.canonicalId || model.id }));
                               handleScrollToId("simulateur-roi");
                             }}
@@ -1083,10 +1084,20 @@ export const RobotSeriesPage: React.FC = () => {
                           </button>
                           <button
                             type="button"
-                            onClick={() => handleScrollToId("applications")}
+                            onClick={() => {
+                              const canonicalId = model.canonicalId || model.id;
+                              const defaultSector = getDefaultSectorForSeries(seriesId);
+                              setFormData((prev) => ({
+                                ...prev,
+                                modelInterest: canonicalId,
+                                sector: prev.sector || defaultSector
+                              }));
+                              navigate(`?model=${canonicalId}#contact`, { replace: true });
+                              handleScrollToId("contact");
+                            }}
                             className="bg-white border border-gray-300 hover:bg-gray-50 text-[#0a0f1c] font-semibold py-3 px-5 rounded-full text-xs transition-colors flex items-center gap-2 shadow-sm cursor-pointer"
                           >
-                            <span>Voir ses cas d'usage</span>
+                            <span>Demander un devis</span>
                           </button>
                           <button
                             type="button"

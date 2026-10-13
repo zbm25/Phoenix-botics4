@@ -33,7 +33,7 @@ function HomePage() {
   const handleScrollToSegment = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 80;
+      const headerOffset = 95;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -63,7 +63,7 @@ function HomePage() {
           <section className="phoenix-section-alt text-white pb-6">
             <Hero
               onDiscoverClick={() => handleScrollToSegment("robots-catalog")}
-              onDemoClick={() => handleScrollToSegment("industries")}
+              onDemoClick={() => handleScrollToSegment("prediagnostic")}
             />
           </section>
           <div className="h-16 bg-gradient-to-b from-[#0a0f1c] to-[#f5f5f7] -mt-1" />
