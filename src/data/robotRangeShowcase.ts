@@ -1,86 +1,133 @@
+export interface ProofItem {
+  label: string;
+  value?: string;
+}
+
+export interface SecondaryRobotConfig {
+  image: string;
+  desktopOnly: boolean;
+  scale: number;
+  opacity: number;
+  position: string;
+}
+
 export interface RobotRangeShowcase {
   id: "uclean" | "ulog" | "userve" | string;
-  name: string;
-  intent: string;              // "Nettoyer" | "Transporter" | "Servir & orienter"
-  tagline: string;             // Accroche métier courte et percutante
-  description: string;         // Présentation synthétique de la valeur ajoutée
-  benefits: [string, string, string]; // Exactement 3 atouts concrets
-  href: string;                // Redirection page gamme : "/robots/uclean-series", etc.
-  qualificationHref: string;   // Redirection préqualification avec paramètre (?series=...)
-  imageAlt: string;
-  desktop: {
-    primaryImage: string;      // URL Cloudinary du robot principal
-    secondaryImage?: string;   // URL Cloudinary du robot secondaire (arrière-plan)
+  intent: string;
+  rangeName: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  proofs: ProofItem[];
+  primaryCta: {
+    label: string;
+    href: string;
   };
-  mobile: {
-    primaryImage: string;      // URL Cloudinary cadrée verticalement
+  secondaryCta: {
+    label: string;
+    href: string;
+  };
+  primaryRobot: {
+    image: string;
+    alt: string;
+  };
+  secondaryRobot?: SecondaryRobotConfig;
+  backgroundScene: {
+    desktopImage: string;
+    mobileImage: string;
   };
 }
 
 export const ROBOT_RANGE_SHOWCASES: RobotRangeShowcase[] = [
   {
     id: "uclean",
-    name: "Série uClean",
-    intent: "Nettoyer",
-    tagline: "Propreté & hygiène autonome continue",
-    description: "Autolaveuses et aspirateurs cobotiques haute performance pour automatiser l'entretien de vos sols sans perturber vos activités.",
-    benefits: [
-      "Jusqu'à 3 000 m²/h de rendement avec filtration médicale HEPA H13",
-      "Économie d'eau et de détergent optimisée jusqu'à 50%",
-      "Station uHarbor 100% autonome : vidange, remplissage et recharge"
+    intent: "NETTOYER",
+    rangeName: "uClean",
+    eyebrow: "NETTOYAGE AUTONOME",
+    title: "Des sols entretenus, même pendant votre activité.",
+    description: "uClean automatise les passages répétitifs sans interrompre les flux de vos équipes et visiteurs.",
+    proofs: [
+      { label: "Jusqu'à 3 000 m²/h de rendement", value: "3 000 m²/h" },
+      { label: "Économie d'eau et de détergent optimisée jusqu'à 50%", value: "-50%" },
     ],
-    href: "/robots/uclean-series",
-    qualificationHref: "/industries/retail?series=uclean#prequalification",
-    imageAlt: "Gamme de robots d'entretien et autolaveuses autonomes uClean",
-    desktop: {
-      primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782745753/Scrub75_cyuy2d.png",
-      secondaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782745472/Compact_wyrf5v.png"
+    primaryCta: {
+      label: "Estimer le ROI de uClean",
+      href: "/robots/uclean-series#simulateur-roi",
     },
-    mobile: {
-      primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782745753/Scrub75_cyuy2d.png"
-    }
+    secondaryCta: {
+      label: "Découvrir la gamme uClean",
+      href: "/robots/uclean-series",
+    },
+    primaryRobot: {
+      image: "https://res.cloudinary.com/df1x718yw/image/upload/v1782745753/Scrub75_cyuy2d.png",
+      alt: "Robot autolaveuse autonome uClean Scrub 75",
+    },
+    backgroundScene: {
+      desktopImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1786538828/ChatGPT_Image_12_ao%C3%BBt_2026_14_33_42_tnmnoc.png",
+      mobileImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1786538828/ChatGPT_Image_12_ao%C3%BBt_2026_14_33_42_tnmnoc.png",
+    },
   },
   {
     id: "ulog",
-    name: "Série uLog",
-    intent: "Transporter",
-    tagline: "Intralogistique & manutention AMR flexible",
-    description: "Robots mobiles autonomes de livraison et de levage pour fluidifier vos flux internes de 80 kg à 600 kg sans modification d'infrastructure.",
-    benefits: [
-      "Capacité de transport et levage lourd jusqu'à 600 kg (palettes, racks, cartons)",
-      "Navigation LiDAR 3D réactive sans marquage ni bande magnétique au sol",
-      "Interfaçage natif avec ascenseurs, portes automatiques et WMS/ERP"
+    intent: "TRANSPORTER",
+    rangeName: "uLog",
+    eyebrow: "INTRALOGISTIQUE AUTONOME",
+    title: "Vos flux avancent sans interrompre vos opérations.",
+    description: "uLog automatise les transports répétitifs entre vos zones de stockage, de préparation et de production.",
+    proofs: [
+      { label: "Charge utile jusqu'à 600 kg (AMR Lift & Base)", value: "600 kg" },
+      { label: "Navigation LiDAR SLAM sans marquage au sol", value: "SLAM 3D" },
     ],
-    href: "/robots/ulog-series",
-    qualificationHref: "/industries/industrie?series=ulog#prequalification",
-    imageAlt: "Gamme de robots mobiles autonomes d'intralogistique uLog",
-    desktop: {
-      primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png",
-      secondaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747971/uLogDELIVER80_URGlogo_01_face_ktme3v.png"
+    primaryCta: {
+      label: "Estimer le ROI de uLog",
+      href: "/robots/ulog-series#simulateur-roi",
     },
-    mobile: {
-      primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png"
-    }
+    secondaryCta: {
+      label: "Découvrir la gamme uLog",
+      href: "/robots/ulog-series",
+    },
+    primaryRobot: {
+      image: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png",
+      alt: "Robot mobile autonome intralogistique uLog Lift 600",
+    },
+    secondaryRobot: {
+      image: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747971/uLogDELIVER80_URGlogo_01_face_ktme3v.png",
+      desktopOnly: true,
+      scale: 0.75,
+      opacity: 0.8,
+      position: "right-12 bottom-8",
+    },
+    backgroundScene: {
+      desktopImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1785933751/Gemini_Generated_Image_ehix26ehix26ehix_vcxjhs.png",
+      mobileImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1785933751/Gemini_Generated_Image_ehix26ehix26ehix_vcxjhs.png",
+    },
   },
   {
     id: "userve",
-    name: "Série uServe",
-    intent: "Servir & orienter",
-    tagline: "Accueil, guidance & expérience client augmentée",
-    description: "Assistant d'accueil interactif et mobile pour informer, enregistrer et escorter physiquement vos visiteurs 24h/24.",
-    benefits: [
-      "Écran tactile 15.6'' Full HD et interaction vocale multilingue (+20 langues)",
-      "Escorte physique des visiteurs avec évitement d'obstacles en temps réel",
-      "Check-in autonome et orientation dynamique des flux de visiteurs"
+    intent: "SERVIR & ORIENTER",
+    rangeName: "uServe",
+    eyebrow: "SERVICE & ORIENTATION",
+    title: "Un service plus fluide, sans détourner vos équipes.",
+    description: "uServe prend en charge l'orientation et les transports de service pour laisser vos équipes se concentrer sur l'accueil.",
+    proofs: [
+      { label: "4 plateaux de service pour 40 kg de charge", value: "40 kg" },
+      { label: "Écran interactif 15,6'' HD & interaction multilingue", value: "15,6\" HD" },
     ],
-    href: "/robots/userve-series",
-    qualificationHref: "/industries/hotel-restauration?series=userve#prequalification",
-    imageAlt: "Robot d'accueil et d'orientation interactif uServe",
-    desktop: {
-      primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png"
+    primaryCta: {
+      label: "Estimer le ROI de uServe",
+      href: "/robots/userve-series#simulateur-roi",
     },
-    mobile: {
-      primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png"
-    }
-  }
+    secondaryCta: {
+      label: "Découvrir la gamme uServe",
+      href: "/robots/userve-series",
+    },
+    primaryRobot: {
+      image: "https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png",
+      alt: "Robot d'accueil, guidage et service interactif uServe",
+    },
+    backgroundScene: {
+      desktopImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1784567142/ChatGPT_Image_20_juil._2026_19_03_52_azmgk0.png",
+      mobileImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1784567142/ChatGPT_Image_20_juil._2026_19_03_52_azmgk0.png",
+    },
+  },
 ];
