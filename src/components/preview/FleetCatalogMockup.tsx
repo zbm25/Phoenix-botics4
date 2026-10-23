@@ -1,200 +1,132 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight, Layers, Truck, User, Sparkles, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
-import { optimizeCloudinaryUrl } from "../../data/robotSeries";
+import { CheckCircle2, ArrowRight, ChevronRight, Layers, Cpu, Users } from "lucide-react";
+import { ROBOT_RANGE_SHOWCASES, RobotRangeShowcase } from "../../data/robotRangeShowcase";
 
-interface FleetCardSpec {
-  id: string;
-  name: string;
-  category: string;
-  href: string;
-  roiHref: string;
-  tagline: string;
-  keyMetric: string;
-  metricLabel: string;
-  primaryImage: string;
-  secondaryImage?: string;
-  icon: React.ElementType;
-  badgeText: string;
-  highlights: string[];
-}
-
-const FLEET_CARDS: FleetCardSpec[] = [
-  {
-    id: "uclean",
-    name: "Série uClean",
-    category: "NETTOYAGE & HYGIÈNE AUTONOME",
-    href: "/robots/uclean-series",
-    roiHref: "/robots/uclean-series#simulateur-roi",
-    tagline: "Lavage, aspiration et bionettoyage intensif pour tous types de sols.",
-    keyMetric: "3 000 m²/h",
-    metricLabel: "Rendement maximal",
-    primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782745753/Scrub75_cyuy2d.png",
-    secondaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782745472/Compact_wyrf5v.png",
-    icon: Layers,
-    badgeText: "Gamme Autolaveuses & Aspirateurs",
-    highlights: [
-      "Filtration HEPA H13 médicale",
-      "Séchage instantané anti-glisse",
-      "Économie d'eau jusqu'à 50%"
-    ]
-  },
-  {
-    id: "ulog",
-    name: "Série uLog",
-    category: "INTRALOGISTIQUE & MANUTENTION AMR",
-    href: "/robots/ulog-series",
-    roiHref: "/robots/ulog-series#simulateur-roi",
-    tagline: "Transfert sécurisé de bacs et levage de palettes sans filoguidage.",
-    keyMetric: "80 à 600 kg",
-    metricLabel: "Capacité de charge",
-    primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png",
-    secondaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782747959/uLogDELIVER150_URGlogo_01_face_Box_Admin_tprnbn.png",
-    icon: Truck,
-    badgeText: "Gamme Deliver & Lift AMR",
-    highlights: [
-      "Navigation SLAM 3D dynamique",
-      "Interfaçage WMS / ERP & ascenseurs",
-      "Recharge rapide 1h30 Li-FePO4"
-    ]
-  },
-  {
-    id: "userve",
-    name: "Série uServe",
-    category: "ACCUEIL & SERVICE INTERACTIF",
-    href: "/robots/userve-series",
-    roiHref: "/robots/userve-series#simulateur-roi",
-    tagline: "Accueil haut de gamme, orientation dynamique et assistance en salle.",
-    keyMetric: "15.6'' Full HD",
-    metricLabel: "Écran interactif",
-    primaryImage: "https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png",
-    icon: User,
-    badgeText: "Robot d'Accueil & Escorte",
-    highlights: [
-      "Interaction vocale multilingue (+20 langues)",
-      "Escorte physique des visiteurs",
-      "4 plateaux de service amovibles"
-    ]
-  }
-];
+// Dynamic icon mapping per showcase ID
+const ICON_MAP: Record<string, React.ReactNode> = {
+  uclean: <Layers size={13} className="text-orange-400" aria-hidden="true" />,
+  ulog: <Cpu size={13} className="text-orange-400" aria-hidden="true" />,
+  userve: <Users size={13} className="text-orange-400" aria-hidden="true" />,
+};
 
 export const FleetCatalogMockup: React.FC = () => {
   return (
-    <section className="py-20 sm:py-24 bg-white border-t border-slate-200 relative overflow-hidden font-sans">
-      {/* Container principal */}
+    <section className="py-16 sm:py-24 bg-white text-slate-900 overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* En-tête de section B2B sobre */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-          <span className="text-orange-600 font-mono text-xs md:text-sm tracking-[0.2em] uppercase font-bold mb-3 block">
-            — GAMMES DE ROBOTS PROFESSIONNELS —
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#0A0F1C] leading-[1.15]">
+        {/* En-tête de section centré */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-xs font-semibold uppercase tracking-wider mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+            <span>GAMMES DE ROBOTS PROFESSIONNELS</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display tracking-tight text-slate-900 leading-[1.15]">
             Une flotte autonome conçue pour{" "}
-            <span className="text-orange-500 underline decoration-orange-500/30 underline-offset-8">
+            <span className="relative whitespace-nowrap text-orange-500">
               l'excellence opérationnelle.
+              <svg
+                className="absolute -bottom-2 left-0 w-full h-2 text-orange-400/40 -z-10"
+                viewBox="0 0 100 20"
+                preserveAspectRatio="none"
+              >
+                <path d="M0 15 Q 50 0, 100 15" stroke="currentColor" strokeWidth="4" fill="none" />
+              </svg>
             </span>
           </h2>
+
           <p className="mt-4 text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
             Trois gammes complémentaires certifiées pour cohabiter en toute sécurité avec vos équipes et sublimer vos environnements professionnels.
           </p>
         </div>
 
-        {/* Grille des 3 Cartes de Gammes Monumentales */}
+        {/* Grille des 3 Cartes Monumentales */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {FLEET_CARDS.map((card) => {
-            const Icon = card.icon;
-            return (
-              <div
-                key={card.id}
-                className="group relative bg-[#F8FAFC] border border-slate-200/90 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:bg-white hover:border-slate-300 hover:shadow-2xl hover:shadow-slate-900/10 hover:-translate-y-1"
-              >
-                {/* 1. Entête de la Carte */}
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-slate-900 text-white">
-                      <Icon size={12} className="text-orange-400" />
-                      {card.category}
-                    </span>
-                    <span className="text-xs font-semibold text-slate-500 bg-white px-2.5 py-1 rounded-lg border border-slate-200">
-                      {card.badgeText}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#0A0F1C] tracking-tight group-hover:text-orange-600 transition-colors">
-                    {card.name}
-                  </h3>
-
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed min-h-[40px]">
-                    {card.tagline}
-                  </p>
+          {ROBOT_RANGE_SHOWCASES.map((range: RobotRangeShowcase) => (
+            <article
+              key={range.id}
+              className="group relative bg-slate-50/70 hover:bg-white rounded-3xl border border-slate-200/80 hover:border-slate-300 p-6 sm:p-8 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 shadow-sm hover:shadow-xl hover:shadow-slate-900/5"
+            >
+              <div>
+                {/* Badges d'intention et catégorie */}
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B1121] text-white text-[10px] font-bold tracking-wider uppercase shadow-xs">
+                    {ICON_MAP[range.id]}
+                    <span>{range.badgeLabel}</span>
+                  </span>
+                  <span className="px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-600 text-[11px] font-medium">
+                    {range.badgeCategory}
+                  </span>
                 </div>
 
-                {/* 2. Zone Visuelle Studio Monumentale sans fond sombre écrasant */}
-                <div className="relative my-6 py-6 px-4 bg-white rounded-2xl border border-slate-200/70 overflow-hidden flex items-center justify-center min-h-[260px] sm:min-h-[290px] group-hover:border-orange-200/80 transition-colors shadow-inner">
-                  {/* Subtle background glow */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 to-orange-500/[0.03] pointer-events-none" />
+                {/* Titre & Description de la gamme */}
+                <h3 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 tracking-tight group-hover:text-orange-600 transition-colors duration-200">
+                  {range.title}
+                </h3>
+                <p className="mt-2 text-sm text-slate-600 font-normal leading-relaxed min-h-[40px]">
+                  {range.description}
+                </p>
 
-                  {/* Robot Principal Dominant */}
-                  <div className="relative z-10 flex items-center justify-center w-full h-full">
-                    {card.secondaryImage && (
-                      <img
-                        src={optimizeCloudinaryUrl(card.secondaryImage, 240)}
-                        alt={`${card.name} modèle secondaire`}
-                        className="absolute left-2 bottom-2 h-36 sm:h-40 object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-300 pointer-events-none"
-                      />
-                    )}
-                    <img
-                      src={optimizeCloudinaryUrl(card.primaryImage, 450)}
-                      alt={`Robot principal ${card.name}`}
-                      className="h-52 sm:h-60 object-contain drop-shadow-xl group-hover:scale-[1.03] transition-transform duration-300 pointer-events-none"
-                    />
-                  </div>
+                {/* Zone Visuel Produit Aéré avec Ombre d'Occlusion */}
+                <div className="relative my-6 rounded-2xl bg-gradient-to-b from-white to-slate-100/80 border border-slate-200/60 p-4 sm:p-6 flex items-center justify-center min-h-[260px] overflow-hidden group-hover:border-slate-300 transition-colors">
 
-                  {/* Badge Métrique Fort en Overlay Sobres */}
-                  <div className="absolute bottom-3 right-3 bg-[#0A0F1C]/90 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl border border-slate-800 shadow-md">
-                    <span className="block text-[10px] text-slate-400 uppercase tracking-wider font-medium">
-                      {card.metricLabel}
+                  {/* Visuel principal avec cadrage propre */}
+                  <img
+                    src={range.image}
+                    alt={range.imageAlt}
+                    loading="lazy"
+                    className="max-h-[220px] w-auto object-contain select-none transform group-hover:scale-105 transition-transform duration-300 relative z-10"
+                  />
+
+                  {/* Ombre d'occlusion douce sous le robot */}
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/25 rounded-full blur-md z-0 pointer-events-none" />
+
+                  {/* Tag métrique clé flottant */}
+                  <div className="absolute bottom-3 right-3 z-20 bg-[#0B1121]/90 backdrop-blur-md text-white px-3 py-1.5 rounded-xl border border-white/10 text-right shadow-lg">
+                    <span className="block text-[9px] uppercase tracking-wider text-slate-400 font-semibold">
+                      {range.metricLabel}
                     </span>
-                    <span className="block text-sm font-extrabold text-orange-400">
-                      {card.keyMetric}
+                    <span className="block text-xs font-bold text-orange-400">
+                      {range.metricValue}
                     </span>
                   </div>
                 </div>
 
-                {/* 3. Points Forts Synthétiques */}
-                <div className="mb-6 space-y-2">
-                  {card.highlights.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle2 size={14} className="text-orange-500 shrink-0" />
-                      <span>{item}</span>
-                    </div>
+                {/* Liste des points forts */}
+                <ul className="space-y-2.5 mb-8">
+                  {range.highlights.map((highlight, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 font-medium">
+                      <CheckCircle2 size={16} className="text-orange-500 shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>{highlight.text}</span>
+                    </li>
                   ))}
-                </div>
-
-                {/* 4. Action CTAs Doublés Conformes */}
-                <div className="pt-5 border-t border-slate-200/80 flex flex-col sm:flex-row items-center gap-2.5">
-                  <Link
-                    to={card.roiHref}
-                    className="w-full sm:w-1/2 h-11 px-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all duration-200 active:scale-[0.98] shadow-md shadow-orange-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 cursor-pointer"
-                  >
-                    <span>Calculer le ROI</span>
-                    <ArrowRight size={14} />
-                  </Link>
-
-                  <Link
-                    to={card.href}
-                    className="w-full sm:w-1/2 h-11 px-4 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 cursor-pointer"
-                  >
-                    <span>Découvrir</span>
-                    <ChevronRight size={14} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
-                </div>
-
+                </ul>
               </div>
-            );
-          })}
+
+              {/* CTAs Double Conformes (Standard Case & whitespace-nowrap) */}
+              <div className="pt-4 border-t border-slate-200/70 flex flex-col sm:flex-row gap-3">
+                <Link
+                  to={range.roiHref}
+                  className="flex-1 whitespace-nowrap px-4 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98] shadow-md shadow-orange-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 cursor-pointer"
+                >
+                  <span>Estimer le ROI</span>
+                  <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+
+                <Link
+                  to={range.discoverHref}
+                  className="whitespace-nowrap px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 font-semibold text-sm flex items-center justify-center gap-1.5 transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 cursor-pointer"
+                >
+                  <span>Découvrir la gamme</span>
+                  <ChevronRight size={15} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+                </Link>
+              </div>
+
+            </article>
+          ))}
         </div>
+
       </div>
     </section>
   );
