@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "../Header";
 import { Hero } from "../Hero";
 import { PreviewRobotsCatalogSection } from "./PreviewRobotsCatalogSection";
@@ -11,6 +11,16 @@ import { FinalContactSection } from "../FinalContactSection";
 import { Footer } from "../Footer";
 
 export const HomeHeroFleetPreview: React.FC = () => {
+  const [hideHeader, setHideHeader] = useState(false);
+
+  useEffect(() => {
+    // Allows playwright scripts to inject a flag to hide the header for clean screenshots
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('hideHeader')) {
+      setHideHeader(true);
+    }
+  }, []);
+
   const handleScrollToSegment = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -32,51 +42,56 @@ export const HomeHeroFleetPreview: React.FC = () => {
 
       {/* Corporate header and Hero */}
       <main className="w-full">
-        <div className="bg-[#0a0f1c] relative pt-24 sm:pt-28">
-          <Header />
+        {!hideHeader && (
+          <div className="bg-[#0a0f1c] relative pt-24 sm:pt-28">
+            <Header />
 
-          <section className="phoenix-section-alt text-white pb-6">
-            <Hero
-              onDiscoverClick={() => handleScrollToSegment("robots-catalog")}
-              onDemoClick={() => handleScrollToSegment("prediagnostic")}
-            />
-          </section>
-        </div>
+            <section className="phoenix-section-alt text-white pb-6">
+              <Hero
+                onDiscoverClick={() => handleScrollToSegment("preview-robots-catalog")}
+                onDemoClick={() => handleScrollToSegment("prediagnostic")}
+              />
+            </section>
+          </div>
+        )}
 
         {/* 2. Robots Catalog Bento Grid (Fleet BEFORE Industries) */}
         <PreviewRobotsCatalogSection />
 
-        {/* 3. Industries & Business Use Cases */}
-        <section>
-          <IndustriesSection />
-        </section>
+        {!hideHeader && (
+          <>
+            {/* 3. Industries & Business Use Cases */}
+            <section>
+              <IndustriesSection />
+            </section>
 
-        {/* 4. Robots in Action (Videos) */}
-        <section>
-          <PreviewRobotInActionSection />
-        </section>
+            {/* 4. Robots in Action (Videos) */}
+            <section>
+              <PreviewRobotInActionSection />
+            </section>
 
-        {/* 5. Logo Slider Section (placed directly below videos) */}
-        <PreviewLogoSliderSection />
+            {/* 5. Logo Slider Section (placed directly below videos) */}
+            <PreviewLogoSliderSection />
 
-        {/* 6. Services & Support */}
-        <section>
-          <ServicesKargoSection />
-        </section>
+            {/* 6. Services & Support */}
+            <section>
+              <ServicesKargoSection />
+            </section>
 
-        {/* 7. Methodology & Integration Process */}
-        <section>
-          <ProcessSection />
-        </section>
+            {/* 7. Methodology & Integration Process */}
+            <section>
+              <ProcessSection />
+            </section>
 
-        {/* 8. Final Contact Form */}
-        <section>
-          <FinalContactSection />
-        </section>
+            {/* 8. Final Contact Form */}
+            <section>
+              <FinalContactSection />
+            </section>
+
+            <Footer />
+          </>
+        )}
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

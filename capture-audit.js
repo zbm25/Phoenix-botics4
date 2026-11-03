@@ -47,33 +47,21 @@ async function main() {
     await desktopPage.goto(PREVIEW_URL, { waitUntil: "networkidle" });
     await desktopPage.waitForTimeout(1500);
 
-    await desktopPage.screenshot({
-      path: path.join(SCREENSHOT_DIR, "desktop-1440.png"),
-      fullPage: true,
-    });
-
-    // 2. Bento Grid 3 Ranges Detail
-    console.log("Capturing Bento 3 Ranges...");
-    const bentoElem = await desktopPage.$("#robots-catalog");
+    // Capture complete section
+    const bentoElem = await desktopPage.$("section.py-20.lg\\:py-28");
     if (bentoElem) {
       await bentoElem.scrollIntoViewIfNeeded();
       await desktopPage.waitForTimeout(500);
       await bentoElem.screenshot({
-        path: path.join(SCREENSHOT_DIR, "bento-3-ranges.png"),
+        path: path.join(SCREENSHOT_DIR, "bento-fleet-1440px.png"),
       });
+    } else {
+        await desktopPage.screenshot({
+          path: path.join(SCREENSHOT_DIR, "bento-fleet-1440px-fallback.png"),
+          fullPage: true,
+        });
     }
 
-    // 3. Videos -> Logos -> Services Transition
-    console.log("Capturing Videos -> Logos -> Services transition...");
-    const videoElem = await desktopPage.$("#robots-in-action");
-    if (videoElem) {
-      await videoElem.scrollIntoViewIfNeeded();
-      await desktopPage.waitForTimeout(500);
-      await desktopPage.screenshot({
-        path: path.join(SCREENSHOT_DIR, "videos-logos-services.png"),
-        // Capture viewport starting at videos section
-      });
-    }
 
     // 4. Mobile Full Page 390px
     console.log("Capturing Mobile 390px...");
@@ -86,10 +74,14 @@ async function main() {
     await mobilePage.goto(PREVIEW_URL, { waitUntil: "networkidle" });
     await mobilePage.waitForTimeout(1500);
 
-    await mobilePage.screenshot({
-      path: path.join(SCREENSHOT_DIR, "mobile-390.png"),
-      fullPage: true,
-    });
+    const mobileBentoElem = await mobilePage.$("section.py-20.lg\\:py-28");
+    if (mobileBentoElem) {
+      await mobileBentoElem.scrollIntoViewIfNeeded();
+      await mobilePage.waitForTimeout(500);
+      await mobileBentoElem.screenshot({
+        path: path.join(SCREENSHOT_DIR, "bento-fleet-mobile-390px.png"),
+      });
+    }
 
     console.log("All screenshots successfully captured into:", SCREENSHOT_DIR);
     await browser.close();
