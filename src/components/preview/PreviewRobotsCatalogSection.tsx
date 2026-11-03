@@ -1,156 +1,229 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
-import { ArrowRight, Calculator, CheckCircle2 } from "lucide-react";
-import { ROBOT_RANGE_SHOWCASES } from "../../data/robotRangeShowcase";
+import { motion, AnimatePresence } from "motion/react";
+import { ArrowRight, TrendingUp, Calculator, X } from "lucide-react";
 
 export const PreviewRobotsCatalogSection: React.FC = () => {
+  const [showRoiSelector, setShowRoiSelector] = useState(false);
+
   return (
-    <section
-      id="robots-catalog"
-      className="py-16 sm:py-24 bg-slate-900 border-t border-slate-800 relative z-20 overflow-hidden text-white"
-    >
-      {/* Background ambient light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-r from-orange-500/10 via-blue-500/5 to-transparent rounded-full blur-[140px] pointer-events-none" />
+    <section className="py-20 lg:py-28 bg-[#ffffff] text-[#0C111D] font-sans" id="preview-robots-catalog">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-orange-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase font-semibold mb-3 block"
-          >
-            - GAMMES DE ROBOTS AMRs & COBOTS -
-          </motion.span>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display tracking-tight text-white leading-tight"
-          >
-            Une ingénierie de pointe pour <span className="text-orange-500">chaque défi opérationnel.</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-sm sm:text-base text-slate-300 font-light max-w-xl mx-auto mt-4"
-          >
-            Trois gammes spécialisées conçues pour automatiser le nettoyage, la manutention litière/lourde et l'accueil en cohabitation sécurisée.
-          </motion.p>
+        {/* En-tête centré avec badge pilule */}
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-bold tracking-wider uppercase">
+            Nos Gammes de Robots
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0C111D]">
+            Une flotte unifiée pour <br />
+            <span className="text-[#F97316]">transformer vos opérations.</span>
+          </h2>
         </div>
 
-        {/* Bento Grid: 3 Range Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+        {/* Grille Bento principale (12 colonnes, gap 2rem) */}
+        <div className="space-y-8">
 
-          {ROBOT_RANGE_SHOWCASES.map((range, index) => {
-            const isLarge = range.id === "range-uclean" || range.id === "range-ulog";
-            const colSpan = isLarge ? "lg:col-span-6" : "lg:col-span-12";
+          {/* LIGNE 1 : uClean (7 cols) + ROI (5 cols) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bento-row-1">
 
-            return (
-              <motion.div
-                key={range.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.1 }}
-                className={`${colSpan} group relative bg-slate-950/80 rounded-3xl border border-slate-800 p-6 sm:p-8 flex flex-col justify-between hover:border-orange-500/60 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 hover:-translate-y-1.5`}
-              >
-                {/* Header info */}
-                <div>
-                  <div className="flex items-center justify-between gap-4 mb-3">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 font-mono text-xs font-bold uppercase tracking-wider">
-                      {range.title}
-                    </span>
-                    <span className="text-xs font-mono text-slate-400">
-                      {range.subtitle}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
-                    Gamme {range.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-6">
-                    {range.tagline}
-                  </p>
-
-                  {/* Highlight Metric Card */}
-                  <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-6 flex items-center justify-between gap-4">
-                    <div>
-                      <span className="block text-xl sm:text-2xl font-display font-black text-orange-400">
-                        {range.metricValue}
-                      </span>
-                      <span className="block text-[11px] text-slate-300 font-medium mt-0.5">
-                        {range.metricLabel}
-                      </span>
-                    </div>
-                    <div className="hidden sm:block text-right text-[10px] text-slate-500 font-mono max-w-[180px]">
-                      {range.metricSourceNote}
-                    </div>
-                  </div>
-
-                  {/* Product Visual Area */}
-                  <div className="relative bg-slate-900/50 rounded-2xl p-4 sm:p-6 mb-6 flex items-center justify-center min-h-[220px] sm:min-h-[260px] border border-slate-800/60 group-hover:bg-slate-900/80 transition-colors">
-                    {/* Dominant Model */}
-                    <div className="flex flex-col items-center text-center">
-                      <img
-                        src={range.dominantModel.image}
-                        alt={range.dominantModel.alt}
-                        className="h-36 sm:h-44 object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                      <span className="text-xs font-bold text-slate-200 mt-3 block">
-                        Modèle de référence : {range.dominantModel.name}
-                      </span>
-                    </div>
-
-                    {/* Secondary Models Thumbnails if present */}
-                    {range.secondaryModels && range.secondaryModels.length > 0 && (
-                      <div className="absolute bottom-3 right-3 flex items-center gap-2 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800 backdrop-blur-md">
-                        {range.secondaryModels.map((sec) => (
-                          <img
-                            key={sec.name}
-                            src={sec.image}
-                            alt={sec.alt}
-                            title={sec.name}
-                            className="w-9 h-9 object-contain rounded-lg bg-slate-900 p-0.5"
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* CTA Action Buttons */}
-                <div className="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            {/* CARTE 1 — uClean (Col 7) */}
+            <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden min-h-[420px] border border-slate-200/60 shadow-sm group">
+              <div className="relative w-full h-56 sm:h-64 mb-6 flex items-center justify-center overflow-hidden rounded-2xl bg-white">
+                <img
+                  src="https://res.cloudinary.com/df1x718yw/image/upload/v1793705586/Gemini_Generated_Image_tnr3t6tnr3t6tnr3_nhjogh.jpg"
+                  alt="Flotte robotique uClean"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="space-y-4 z-10">
+                <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
+                  Hygiène & Propreté Autonome
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+                  Série uClean
+                </h3>
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">
+                  Des aspirateurs compacts aux autolaveuses industrielles (jusqu'à 3 000 m²/h).
+                  Libérez vos équipes des tâches répétitives avec une régularité irréprochable.
+                </p>
+                <div className="pt-2 flex flex-wrap gap-3">
                   <Link
-                    to={range.primaryCta.href}
-                    className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs sm:text-sm transition-all duration-200 shadow-md shadow-orange-500/20 active:scale-[0.98]"
+                    to="/robots/uclean-series"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200"
                   >
-                    <span>{range.primaryCta.label}</span>
-                    <ArrowRight size={14} />
-                  </Link>
-
-                  <Link
-                    to={range.secondaryCta.href}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs sm:text-sm border border-slate-700 hover:border-slate-600 transition-all duration-200 active:scale-[0.98]"
-                  >
-                    <Calculator size={14} className="text-orange-400" />
-                    <span>{range.secondaryCta.label}</span>
+                    Découvrir la gamme uClean
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
+              </div>
+            </div>
 
-              </motion.div>
-            );
-          })}
+            {/* CARTE 2 — Module Simulateur ROI (Col 5) */}
+            <div className="lg:col-span-5 bg-[#F2F4F7] rounded-3xl p-8 sm:p-10 flex flex-col justify-between border border-slate-200/60 shadow-sm group relative">
+              <div className="w-full h-44 sm:h-52 flex items-end justify-between gap-3 px-4 pb-4 bg-white/70 rounded-2xl border border-slate-200/50 mb-6">
+                <div className="w-1/4 bg-slate-200 rounded-t-lg h-[25%]" />
+                <div className="w-1/4 bg-slate-300 rounded-t-lg h-[50%]" />
+                <div className="w-1/4 bg-slate-400 rounded-t-lg h-[75%]" />
+                <div className="w-1/4 bg-[#F97316] rounded-t-lg h-[95%] relative flex items-center justify-center shadow-lg shadow-orange-500/20">
+                  <TrendingUp className="w-5 h-5 text-white -mt-2" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <span className="text-xs font-bold tracking-widest text-slate-500 uppercase">
+                  Rentabilité & Économies
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+                  Simulateurs de rentabilité
+                </h3>
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                  Estimez vos gains de productivité et votre seuil de rentabilité grâce à nos calculateurs de retour sur investissement dédiés par gamme.
+                </p>
+                <div className="pt-2">
+                  <button
+                    id="open-roi-selector"
+                    onClick={() => setShowRoiSelector(true)}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200 w-full justify-center sm:w-auto sm:justify-start cursor-pointer"
+                  >
+                    <Calculator className="w-4 h-4" />
+                    Choisir un simulateur
+                  </button>
+                </div>
+              </div>
+
+              {/* Sélecteur ROI Modale in-card */}
+              <AnimatePresence>
+                {showRoiSelector && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="absolute inset-0 bg-white/95 backdrop-blur-sm z-20 rounded-3xl p-8 flex flex-col justify-center border border-slate-200"
+                  >
+                    <button
+                      onClick={() => setShowRoiSelector(false)}
+                      className="absolute top-6 right-6 text-slate-400 hover:text-slate-900 cursor-pointer"
+                    >
+                      <X className="w-6 h-6" />
+                    </button>
+                    <h4 className="text-xl font-bold mb-6 text-center">Sélectionnez une gamme</h4>
+                    <div className="space-y-3">
+                      <Link to="/robots/uclean-series#simulateur-roi" className="block w-full py-3 px-4 rounded-xl bg-[#F2F4F7] hover:bg-orange-50 border border-slate-200 hover:border-orange-200 text-center font-semibold text-slate-800 transition-colors">
+                        Simulateur uClean (Propreté)
+                      </Link>
+                      <Link to="/robots/ulog-series#simulateur-roi" className="block w-full py-3 px-4 rounded-xl bg-[#F2F4F7] hover:bg-orange-50 border border-slate-200 hover:border-orange-200 text-center font-semibold text-slate-800 transition-colors">
+                        Simulateur uLog (Logistique)
+                      </Link>
+                      <Link to="/robots/userve-series#simulateur-roi" className="block w-full py-3 px-4 rounded-xl bg-[#F2F4F7] hover:bg-orange-50 border border-slate-200 hover:border-orange-200 text-center font-semibold text-slate-800 transition-colors">
+                        Simulateur uServe (Accueil)
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* LIGNE 2 : uLog (5 cols) + uServe (7 cols) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bento-row-2">
+
+            {/* CARTE 3 — uLog (Col 5) */}
+            <div className="lg:col-span-5 bg-[#F2F4F7] rounded-3xl p-8 sm:p-10 flex flex-col justify-between border border-slate-200/60 shadow-sm group">
+              <div className="relative w-full h-52 mb-6 flex items-center justify-center bg-white/60 rounded-2xl p-4">
+                <img
+                  src="https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png"
+                  alt="Robot uLog Lift 600"
+                  className="max-h-full object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="space-y-4">
+                <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
+                  Intralogistique & Manutention AMR
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+                  Série uLog
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Transport autonome de charges (jusqu'à 600 kg pour certains modèles). Intégration aux flux logistiques existants et options de franchissement d'ascenseurs.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    to="/robots/ulog-series"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200"
+                  >
+                    Découvrir la gamme uLog
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* CARTE 4 — uServe (Col 7) */}
+            <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-8 sm:p-10 flex flex-col justify-between border border-slate-200/60 shadow-sm group">
+              <div className="relative w-full h-52 mb-6 flex items-center justify-center bg-white/60 rounded-2xl p-4">
+                <img
+                  src="https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png"
+                  alt="Robot d'accueil uServe"
+                  className="max-h-full object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="space-y-4">
+                <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
+                  Accueil & Service Interactif
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+                  Série uServe
+                </h3>
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">
+                  Assistance à l'accueil et à l'orientation. Guidage physique et interaction dans de nombreuses langues pour les espaces ouverts au public.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    to="/robots/userve-series"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200"
+                  >
+                    Découvrir la gamme uServe
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* LIGNE 3 : uLab Mobile (Pleine Largeur 12 colonnes) */}
+          <div className="bg-[#F2F4F7] rounded-3xl p-8 sm:p-12 border border-slate-200/60 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group bento-row-3">
+            <div className="lg:col-span-7 space-y-4 order-2 lg:order-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-[#F97316] text-xs font-bold tracking-wider uppercase">
+                Sciences de la Vie & Laboratoires
+              </div>
+              <h3 className="text-2xl sm:text-4xl font-bold text-[#0C111D]">
+                Série uLab Mobile
+              </h3>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                Automatisation de la logistique de laboratoire. Le cobot mobile conçu pour le transfert d'échantillons et l'interaction avec des équipements spécialisés (spécifications exactes à valider selon modèle).
+              </p>
+              <div className="pt-4 flex flex-wrap gap-4">
+                <Link
+                  to="/robots/ulab-series"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm sm:text-base font-bold transition-colors duration-200 shadow-sm"
+                >
+                  Découvrir la gamme uLab Mobile
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 flex items-center justify-center order-1 lg:order-2">
+              <div className="w-full max-w-md h-64 sm:h-72 bg-white/80 rounded-2xl p-6 flex items-center justify-center border border-slate-200/50 shadow-inner">
+                <img
+                  src="https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"
+                  alt="uLab Mobile Cobot"
+                  className="max-h-full object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
+                />
+              </div>
+            </div>
+          </div>
 
         </div>
 
