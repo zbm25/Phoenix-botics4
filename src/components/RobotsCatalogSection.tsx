@@ -198,17 +198,17 @@ export const RobotsCatalogSection: React.FC = () => {
                 Sciences de la Vie & Laboratoires
               </div>
               <h3 className="text-2xl sm:text-4xl font-bold text-[#0C111D]">
-                Série uLab Mobile
+                uLab Mobile
               </h3>
               <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
-                Automatisation de la logistique de laboratoire. Le cobot mobile conçu pour le transfert d'échantillons et l'interaction avec des équipements spécialisés (spécifications exactes à valider selon modèle).
+                Automatisez le transport de tubes et de portoirs entre vos postes, ainsi que le chargement d’analyseurs selon les workflows intégrés.
               </p>
               <div className="pt-4 flex flex-wrap gap-4">
                 <Link
                   to="/robots/ulab-series"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm sm:text-base font-bold transition-colors duration-200 shadow-sm"
                 >
-                  Découvrir la gamme uLab Mobile
+                  Découvrir uLab Mobile
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

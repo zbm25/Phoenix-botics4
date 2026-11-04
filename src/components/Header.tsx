@@ -50,7 +50,7 @@ const ROBOT_GAMMES: DropdownGamme[] = [
         name: "uLab Mobile",
         tagline: "Cobot manipulateur mobile omnidirectionnel",
         description: "Bras robotique 7 axes sur base mobile pour la manipulation et le transport d'échantillons avec précision.",
-        photo: "https://res.cloudinary.com/df1x718yw/image/upload/v1789039451/ChatGPT_Image_10_sept._2026_13_19_56_xujlb2.png"
+        photo: "https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"
       }
     ]
   },

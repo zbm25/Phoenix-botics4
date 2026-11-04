@@ -66,12 +66,21 @@ export interface RobotSeriesPageData {
 }
 
 export const ROBOT_SERIES_DATA: Record<string, RobotSeriesPageData> = {
-  "ulab-series": {
+    "ulab-series": {
     id: "ulab-series",
     title: "uLab Mobile",
+    heroTitle: "L'automatisation des laboratoires",
+    heroSubtitle: "Automatisez le transport de tubes et de portoirs entre vos postes",
+    heroDescription: "Robot collaboratif mobile conçu pour manipuler, transporter et automatiser les tâches complexes en laboratoire et environnement de précision.",
+    heroImage: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"),
+    introTitle: "La robotique mobile au service de vos flux",
+    introParagraphs: [
+      "uLab Mobile est conçu pour soulager le personnel de laboratoire des tâches répétitives telles que le transport d'échantillons ou le chargement d'analyseurs.",
+      "L'intégration d'un bras robotique sur une base mobile permet une navigation autonome sécurisée au sein des laboratoires."
+    ],
     description: "Robot collaboratif mobile (Cobot) conçu pour manipuler, transporter et automatiser les tâches complexes en laboratoire et environnement de précision.",
-    shortDesc: "Le premier robot mobile collaboratif pour l'automatisation des laboratoires.",
-    image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1789039451/ChatGPT_Image_10_sept._2026_13_19_56_xujlb2.png"),
+    shortDesc: "Robotique mobile pour l'automatisation des flux de laboratoire.",
+    image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"),
     benefits: [
       {
         title: "Manipulation d'échantillons",
@@ -89,6 +98,32 @@ export const ROBOT_SERIES_DATA: Record<string, RobotSeriesPageData> = {
         iconName: "Layers"
       }
     ],
+    applications: [
+      {
+        id: "transfert",
+        title: "Transfert inter-laboratoires",
+        description: "Transport autonome d'échantillons en toute sécurité.",
+        image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"),
+        icon: "TrendingUp"
+      },
+      {
+        id: "chargement",
+        title: "Chargement d'analyseurs",
+        description: "Alimentation des machines grâce au bras robotique.",
+        image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"),
+        icon: "Cpu"
+      }
+    ],
+    faq: [
+      {
+        question: "Pour quels environnements uLab est-il conçu ?",
+        answer: "Il est conçu pour les laboratoires et environnements de précision (Santé, Industrie)."
+      },
+      {
+        question: "Le robot peut-il manipuler des échantillons fragiles ?",
+        answer: "Oui, le bras robotique permet une manipulation fine et un transport sécurisé."
+      }
+    ],
     models: [
       {
         id: "ulab-mobile",
@@ -101,7 +136,7 @@ export const ROBOT_SERIES_DATA: Record<string, RobotSeriesPageData> = {
         segmentLabel: "Laboratoire",
         shortDesc: "Automatise le transport et la manipulation des échantillons entre les différents postes d'analyse.",
         description: "uLab Mobile intègre un bras robotique à 7 axes sur une base mobile omnidirectionnelle. Il saisit, transporte et dépose les échantillons, libérant les techniciens de laboratoire pour les analyses complexes.",
-        image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1789039451/ChatGPT_Image_10_sept._2026_13_19_56_xujlb2.png"),
+        image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"),
         link: "/robots/ulab-series",
         industries: ["Santé", "Industrie"],
         specs: [
