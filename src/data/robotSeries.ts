@@ -66,6 +66,58 @@ export interface RobotSeriesPageData {
 }
 
 export const ROBOT_SERIES_DATA: Record<string, RobotSeriesPageData> = {
+  "ulab-series": {
+    id: "ulab-series",
+    title: "uLab Mobile",
+    description: "Robot collaboratif mobile (Cobot) conçu pour manipuler, transporter et automatiser les tâches complexes en laboratoire et environnement de précision.",
+    shortDesc: "Le premier robot mobile collaboratif pour l'automatisation des laboratoires.",
+    image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1789039451/ChatGPT_Image_10_sept._2026_13_19_56_xujlb2.png"),
+    benefits: [
+      {
+        title: "Manipulation d'échantillons",
+        description: "Intègre un bras robotique 7 axes.",
+        iconName: "ShieldCheck"
+      },
+      {
+        title: "Navigation autonome",
+        description: "Se déplace de manière autonome.",
+        iconName: "Cpu"
+      },
+      {
+        title: "Précision millimétrique",
+        description: "Positionnement avec une précision de ±0.1 mm.",
+        iconName: "Layers"
+      }
+    ],
+    models: [
+      {
+        id: "ulab-mobile",
+        canonicalId: "ulab-mobile",
+        seriesId: "ulab-series",
+        name: "uLab Mobile",
+        tag: "Nouveau",
+        tagline: "Le cobot mobile de précision",
+        subtitle: "Automatisation de manipulation",
+        segmentLabel: "Laboratoire",
+        shortDesc: "Automatise le transport et la manipulation des échantillons entre les différents postes d'analyse.",
+        description: "uLab Mobile intègre un bras robotique à 7 axes sur une base mobile omnidirectionnelle. Il saisit, transporte et dépose les échantillons, libérant les techniciens de laboratoire pour les analyses complexes.",
+        image: optimizeCloudinaryUrl("https://res.cloudinary.com/df1x718yw/image/upload/v1789039451/ChatGPT_Image_10_sept._2026_13_19_56_xujlb2.png"),
+        link: "/robots/ulab-series",
+        industries: ["Santé", "Industrie"],
+        specs: [
+          { label: "Charge utile", value: "3 kg (Bras) / 100 kg (Base)" },
+          { label: "Autonomie", value: "Jusqu'à 8h" },
+          { label: "Précision", value: "±0.1 mm" }
+        ],
+        useCases: [
+          "Transfert d'échantillons",
+          "Alimentation de machines d'analyse",
+          "Transport inter-laboratoires"
+        ]
+      }
+    ]
+  },
+
   "uclean-series": {
     id: "uclean-series",
     title: "Série uClean",

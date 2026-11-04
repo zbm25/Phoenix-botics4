@@ -38,6 +38,24 @@ interface DropdownGamme {
 
 const ROBOT_GAMMES: DropdownGamme[] = [
   {
+    id: "ulab-series",
+    title: "Gamme uLab",
+    subtitle: "Cobots mobiles de laboratoire",
+    description: "Robot mobile collaboratif pour l'automatisation des manipulations et transports de précision.",
+    iconName: "Cpu",
+    models: [
+      {
+        id: "ulab-mobile",
+        canonicalId: "ulab-mobile",
+        name: "uLab Mobile",
+        tagline: "Cobot manipulateur mobile omnidirectionnel",
+        description: "Bras robotique 7 axes sur base mobile pour la manipulation et le transport d'échantillons avec précision.",
+        photo: "https://res.cloudinary.com/df1x718yw/image/upload/v1789039451/ChatGPT_Image_10_sept._2026_13_19_56_xujlb2.png"
+      }
+    ]
+  },
+
+  {
     id: "uclean-series",
     title: "Gamme uClean",
     subtitle: "Nettoyage & Hygiène autonome",

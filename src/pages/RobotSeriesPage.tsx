@@ -624,12 +624,14 @@ export const RobotSeriesPage: React.FC = () => {
                 : seriesData.heroSubtitle || seriesData.heroDescription}
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <button
+              {seriesId !== "ulab-series" && (
+                  <button
                 onClick={() => handleScrollToId("simulateur-roi")}
                 className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full transition-colors text-sm shadow-lg flex items-center gap-2 cursor-pointer"
               >
                 Estimer le ROI de cette gamme
               </button>
+                )}
               <button
                 onClick={() => handleScrollToId("modeles")}
                 className="text-white border border-white/30 hover:bg-white/10 font-bold py-4 px-8 rounded-full transition-colors text-sm backdrop-blur-sm cursor-pointer"
@@ -1070,6 +1072,7 @@ export const RobotSeriesPage: React.FC = () => {
                           transition={{ duration: 0.45, delay: 0.20, ease: [0.22, 1, 0.36, 1] }}
                           className="mt-auto flex flex-wrap items-center gap-3 pt-5 border-t border-gray-200/60"
                         >
+                            {seriesId !== "ulab-series" && (
                           <button
                             type="button"
                             onClick={() => {
@@ -1082,6 +1085,7 @@ export const RobotSeriesPage: React.FC = () => {
                             <span>Estimer le ROI de ce modèle</span>
                             <ArrowRight size={14} aria-hidden="true" />
                           </button>
+                            )}
                           <button
                             type="button"
                             onClick={() => {
@@ -1121,6 +1125,7 @@ export const RobotSeriesPage: React.FC = () => {
       </section>
 
       {/* ==================== SECTION SIMULATEUR ROI OPTIMISÉ ==================== */}
+      {seriesId !== "ulab-series" && (
       <section id="simulateur-roi" className="py-24 bg-white border-t border-gray-100 overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-10">
 
@@ -1288,6 +1293,7 @@ export const RobotSeriesPage: React.FC = () => {
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* ==================== 6. APPLICATIONS (PREUVE D'USAGE) ==================== */}
       <section id="applications" className="py-24 bg-white border-t border-gray-100 overflow-hidden">
