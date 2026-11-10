@@ -25,7 +25,7 @@ export const RobotsCatalogSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
 
           {/* 1. CARTE VERTICALE HAUTE : uLab Mobile (5 cols, 2 rangées) */}
-          <div className="lg:col-span-5 lg:row-span-2 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-200/60 shadow-sm group min-h-[520px]">
+          <div className="lg:col-span-5 lg:row-span-2 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-200/60 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300 group min-h-[520px]">
             <div className="space-y-3 z-10">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-[#F97316] text-xs font-bold tracking-wider uppercase">
                 Sciences de la Vie & Laboratoires
@@ -39,11 +39,11 @@ export const RobotsCatalogSection: React.FC = () => {
             </div>
 
             {/* Illustration verticale robot debout */}
-            <div className="my-6 flex-1 flex items-center justify-center p-4 bg-white/70 rounded-2xl border border-slate-200/50 overflow-hidden min-h-[260px]">
+            <div className="my-6 flex-1 h-80 sm:h-96 w-full flex items-center justify-center overflow-hidden">
               <img
                 src="https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"
                 alt="uLab Mobile Cobot"
-                className="max-h-64 sm:max-h-72 object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
+                className="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out drop-shadow-xl"
               />
             </div>
 
@@ -59,7 +59,7 @@ export const RobotsCatalogSection: React.FC = () => {
           </div>
 
           {/* 2. CARTE : Série uClean (7 cols) */}
-          <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-200/60 shadow-sm group">
+          <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-200/60 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300 group">
             <div className="space-y-3 flex-1 order-2 sm:order-1">
               <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
                 Hygiène & Propreté Autonome
@@ -81,17 +81,17 @@ export const RobotsCatalogSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-full sm:w-64 h-56 sm:h-64 flex-shrink-0 rounded-2xl overflow-hidden flex items-center justify-center p-0 order-1 sm:order-2">
+            <div className="w-full sm:w-64 h-56 sm:h-64 flex-shrink-0 overflow-hidden flex items-center justify-center order-1 sm:order-2">
               <img
                 src="https://res.cloudinary.com/df1x718yw/image/upload/v1793705586/Gemini_Generated_Image_tnr3t6tnr3t6tnr3_nhjogh.jpg"
                 alt="Flotte robotique uClean"
-                className="w-full h-full object-contain rounded-xl group-hover:scale-105 transition-transform duration-500 mix-blend-multiply"
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out mix-blend-multiply"
               />
             </div>
           </div>
 
           {/* 3. CARTE : Série uServe (7 cols) - previously 4 cols, expanded to sit next to uLab */}
-          <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-200/60 shadow-sm group">
+          <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-200/60 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300 group">
             <div className="space-y-3 flex-1 order-2 sm:order-1">
               <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
                 Accueil & Service
@@ -113,17 +113,17 @@ export const RobotsCatalogSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-full sm:w-48 h-40 sm:h-48 flex-shrink-0 flex items-center justify-center bg-white/60 rounded-xl p-2 order-1 sm:order-2">
+            <div className="w-full sm:w-48 h-48 sm:h-56 flex-shrink-0 flex items-center justify-center order-1 sm:order-2">
               <img
                 src="https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png"
                 alt="Robot d'accueil uServe"
-                className="max-h-full object-contain drop-shadow group-hover:scale-105 transition-transform duration-300"
+                className="max-h-full w-full object-contain drop-shadow group-hover:scale-105 transition-transform duration-500 ease-out"
               />
             </div>
           </div>
 
           {/* 4. CARTE PLEINE LARGEUR BAS : Série uLog avec la flotte (12 cols) */}
-          <div className="lg:col-span-12 bg-[#F2F4F7] rounded-3xl p-6 sm:p-10 border border-slate-200/60 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group overflow-hidden">
+          <div className="lg:col-span-12 bg-[#F2F4F7] rounded-3xl p-6 sm:p-10 border border-slate-200/60 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group overflow-hidden">
             <div className="lg:col-span-5 space-y-4 z-10 relative">
               <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
                 Intralogistique & Manutention AMR
@@ -149,7 +149,7 @@ export const RobotsCatalogSection: React.FC = () => {
               <img
                 src="https://res.cloudinary.com/df1x718yw/image/upload/v1794219645/Gemini_Generated_Image_cxpg34cxpg34cxpg_leiybf.jpg"
                 alt="Flotte robotique uLog complète"
-                className="w-full h-full object-cover sm:object-contain object-right group-hover:scale-105 transition-transform duration-700 mix-blend-multiply"
+                className="w-full h-full object-cover sm:object-contain object-right group-hover:scale-105 transition-transform duration-500 ease-out mix-blend-multiply"
               />
             </div>
           </div>
@@ -187,34 +187,44 @@ export const RobotsCatalogSection: React.FC = () => {
               </button>
             </div>
 
-            {/* Modale In-Card modifiée pour le bandeau */}
+            {/* Modale In-Card modifiée pour le bandeau - overlay centré sur mobile, dropdown vers le haut sur desktop */}
             <AnimatePresence>
               {showRoiSelector && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute right-0 bottom-0 md:bottom-full md:mb-4 bg-white shadow-xl z-20 rounded-2xl p-6 flex flex-col border border-slate-200 w-full md:w-72 m-4 md:m-0 text-[#0C111D]"
-                >
-                  <button
+                <>
+                  {/* Overlay background sur mobile pour empêcher le clic ailleurs */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-40 bg-black/50 md:hidden"
                     onClick={() => setShowRoiSelector(false)}
-                    className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 cursor-pointer"
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="fixed md:absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:top-auto md:left-auto md:transform-none md:right-0 md:bottom-full md:mb-3 bg-white shadow-xl z-50 rounded-2xl p-6 flex flex-col border border-slate-200 w-[calc(100%-2rem)] max-w-sm md:w-72 text-[#0C111D]"
                   >
-                    <X className="w-5 h-5" />
-                  </button>
-                  <h4 className="text-sm font-bold mb-4 text-center">Sélectionnez une gamme</h4>
-                  <div className="space-y-2">
-                    <Link to="/robots/uclean-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
-                      uClean (Propreté)
-                    </Link>
-                    <Link to="/robots/ulog-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
-                      uLog (Logistique)
-                    </Link>
-                    <Link to="/robots/userve-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
-                      uServe (Accueil)
-                    </Link>
-                  </div>
-                </motion.div>
+                    <button
+                      onClick={() => setShowRoiSelector(false)}
+                      className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 cursor-pointer"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                    <h4 className="text-sm font-bold mb-4 text-center">Sélectionnez une gamme</h4>
+                    <div className="space-y-2">
+                      <Link to="/robots/uclean-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
+                        uClean (Propreté)
+                      </Link>
+                      <Link to="/robots/ulog-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
+                        uLog (Logistique)
+                      </Link>
+                      <Link to="/robots/userve-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
+                        uServe (Accueil)
+                      </Link>
+                    </div>
+                  </motion.div>
+                </>
               )}
             </AnimatePresence>
           </div>
