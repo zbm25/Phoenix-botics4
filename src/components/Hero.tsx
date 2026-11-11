@@ -36,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onDiscoverClick, onDemoClick }) => {
   return (
     <section 
       id="hero" 
-      className="relative mb-12 mx-4 sm:mx-6 rounded-[2rem] overflow-hidden min-h-[62vh] sm:min-h-[68vh] md:min-h-[72vh] flex items-center bg-slate-950 shadow-2xl animate-none"
+      className="relative mb-12 mx-4 sm:mx-6 rounded-[2rem] overflow-hidden min-h-[62vh] sm:min-h-[68vh] md:min-h-[72vh] flex items-center bg-[#000000] shadow-2xl animate-none"
     >
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
@@ -75,10 +75,10 @@ export const Hero: React.FC<HeroProps> = ({ onDiscoverClick, onDemoClick }) => {
           <motion.div variants={fadeUp}>
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 mb-4 sm:mb-6 border border-white/20">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400/60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F97316]/60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#F97316]" />
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.18em] uppercase text-orange-400">
+              <span className="text-[10px] sm:text-xs font-semibold tracking-[0.18em] uppercase text-[#F97316]">
                 ROBOTIQUE DE SERVICE
               </span>
             </div>
@@ -87,16 +87,16 @@ export const Hero: React.FC<HeroProps> = ({ onDiscoverClick, onDemoClick }) => {
           {/* H1 Title */}
           <motion.h1
             variants={fadeUp}
-            className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight font-display tracking-tight"
+            className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#FEFCF8] leading-tight font-display tracking-tight"
           >
             Libérer le potentiel humain<br />
-            <span className="text-orange-400">par la robotique.</span>
+            <span className="text-[#F97316]">par la robotique.</span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             variants={fadeUp}
-            className="text-base sm:text-xl text-white/90 font-light mt-3 sm:mt-5 max-w-2xl leading-relaxed"
+            className="text-base sm:text-xl text-[#FEFCF8]/90 font-light mt-3 sm:mt-5 max-w-2xl leading-relaxed"
           >
             L'automatisation intelligente au service de votre croissance.
           </motion.p>
@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = ({ onDiscoverClick, onDemoClick }) => {
             <button
               id="hero-discover-btn"
               onClick={onDiscoverClick}
-              className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm md:text-base px-6 py-3 rounded-full transition-colors duration-200 cursor-pointer flex items-center justify-center min-h-[44px]"
+              className="w-full sm:w-auto bg-[#F97316] hover:bg-orange-600 text-[#FEFCF8] font-semibold text-sm md:text-base px-6 py-3 rounded-full transition-colors duration-200 cursor-pointer flex items-center justify-center min-h-[44px]"
             >
               Découvrir notre catalogue →
             </button>
@@ -114,7 +114,7 @@ export const Hero: React.FC<HeroProps> = ({ onDiscoverClick, onDemoClick }) => {
             <button
               id="hero-demo-btn"
               onClick={onDemoClick}
-              className="w-full sm:w-auto bg-white/10 border border-white/20 text-white hover:bg-white/20 font-semibold text-sm md:text-base px-6 py-3 rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm min-h-[44px]"
+              className="w-full sm:w-auto bg-white/10 border border-white/20 text-[#FEFCF8] hover:bg-white/20 font-semibold text-sm md:text-base px-6 py-3 rounded-full transition-all duration-200 cursor-pointer flex items-center justify-center backdrop-blur-sm min-h-[44px]"
             >
               Évaluer mon projet
             </button>
@@ -135,15 +135,15 @@ export const Hero: React.FC<HeroProps> = ({ onDiscoverClick, onDemoClick }) => {
             <div
               className={`h-0.5 rounded-full transition-all duration-300 ${
                 index === activeIndex
-                  ? "bg-orange-400 w-14 lg:w-20"
+                  ? "bg-[#F97316] w-14 lg:w-20"
                   : "bg-white/40 w-10 lg:w-16 group-hover:bg-white/70"
               }`}
             />
             <span
               className={`text-[9px] sm:text-[10px] font-semibold tracking-widest uppercase transition-colors duration-200 ${
                 index === activeIndex
-                  ? "text-orange-300"
-                  : "text-white/50 group-hover:text-white/80"
+                  ? "text-[#F97316]"
+                  : "text-[#FEFCF8]/50 group-hover:text-[#FEFCF8]/80"
               }`}
             >
               {video.title}

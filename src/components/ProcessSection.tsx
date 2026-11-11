@@ -43,10 +43,10 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
   titleLine1 = "Méthode de déploiement en 4 phases,",
   titleLine2 = "du diagnostic au suivi opérationnel.",
   eyebrow = "MÉTHODOLOGIE D'INTÉGRATION",
-  className = "bg-white py-12 sm:py-16"
+  className = "bg-[#000000] py-12 sm:py-16"
 }) => {
   return (
-    <section id="process" className={`${className} relative overflow-hidden border-t border-slate-100 z-20`}>
+    <section id="process" className={`${className} relative overflow-hidden border-t border-white/10 z-20`}>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Centered header */}
@@ -56,9 +56,9 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-xs font-semibold tracking-widest text-orange-500 uppercase flex items-center justify-center gap-2 font-mono"
+            className="text-xs font-semibold tracking-widest text-[#F97316] uppercase flex items-center justify-center gap-2 font-mono"
           >
-            <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+            <div className="w-2 h-2 rounded-full bg-[#F97316]"></div>
             {eyebrow}
           </motion.span>
           
@@ -67,7 +67,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl sm:text-4xl font-bold font-display mt-3 text-slate-900 text-center tracking-tight"
+            className="text-2xl sm:text-4xl font-bold font-display mt-3 text-[#FEFCF8] text-center tracking-tight"
           >
             {titleLine1} <span className="text-slate-400 font-light">{titleLine2}</span>
           </motion.h2>
@@ -82,17 +82,17 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ duration: 0.45, delay: idx * 0.1 }}
-              className="bg-slate-50/80 border border-slate-200/80 p-5 rounded-2xl flex flex-col group hover:border-orange-500/50 hover:bg-white hover:shadow-md transition-all duration-300 relative"
+              className="bg-[#0D0D0D] border border-white/10 p-5 rounded-2xl flex flex-col group hover:border-white/30 hover:bg-[#111111] hover:shadow-md transition-all duration-300 relative"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-mono font-bold text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200 tracking-wider">
+                <span className="text-[10px] font-mono font-bold text-[#F97316] bg-[#F97316]/10 px-2.5 py-0.5 rounded-full border border-[#F97316]/20 tracking-wider">
                   PHASE {step.number}
                 </span>
               </div>
-              <h3 className="text-base font-bold mb-2 text-slate-900 group-hover:text-orange-600 transition-colors duration-200 font-display">
+              <h3 className="text-base font-bold mb-2 text-[#FEFCF8] group-hover:text-[#F97316] transition-colors duration-200 font-display">
                 {step.title}
               </h3>
-              <p className="text-slate-600 leading-relaxed font-light text-xs">
+              <p className="text-[#E5E3E0] leading-relaxed font-light text-xs">
                 {step.text}
               </p>
             </motion.div>

@@ -129,7 +129,7 @@ export const RobotInActionSection: React.FC = () => {
     <section 
       id="robots-in-action" 
       ref={sectionRef}
-      className="bg-slate-50 py-12 sm:py-20 border-b border-slate-200/60 relative overflow-hidden text-slate-800"
+      className="bg-[#000000] py-12 sm:py-20 border-b border-white/10 relative overflow-hidden text-[#FEFCF8]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -139,7 +139,7 @@ export const RobotInActionSection: React.FC = () => {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-black/5 border border-black/10 rounded-full mb-3 text-[10px] uppercase tracking-[0.2em] font-mono font-bold text-slate-600"
+            className="inline-flex items-center gap-2 px-3 py-1 bg-[#111111]/5 border border-white/10 rounded-full mb-3 text-[10px] uppercase tracking-[0.2em] font-mono font-bold text-[#E5E3E0]"
           >
             <span>- RETOURS D'EXPÉRIENCE TERRAIN -</span>
           </motion.div>
@@ -149,9 +149,9 @@ export const RobotInActionSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-2xl sm:text-4xl font-display font-extrabold tracking-tight text-slate-900 mb-3 leading-tight"
+            className="text-2xl sm:text-4xl font-display font-extrabold tracking-tight text-[#FEFCF8] mb-3 leading-tight"
           >
-            Nos robots en action : <span className="text-orange-500">l'autonomie en conditions réelles.</span>
+            Nos robots en action : <span className="text-[#F97316]">l'autonomie en conditions réelles.</span>
           </motion.h2>
 
           <motion.p 
@@ -159,7 +159,7 @@ export const RobotInActionSection: React.FC = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-sm sm:text-base text-slate-600 font-light max-w-xl mx-auto"
+            className="text-sm sm:text-base text-[#E5E3E0] font-light max-w-xl mx-auto"
           >
             Découvrez comment nos clients améliorent leur productivité et sécurisent leurs opérations au quotidien.
           </motion.p>
@@ -175,7 +175,7 @@ export const RobotInActionSection: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 aspect-video group shadow-xl"
+              className="relative w-full rounded-2xl overflow-hidden border border-white/10 bg-[#000000] aspect-video group shadow-xl"
             >
               <video
                 key={activeCase.id}
@@ -202,7 +202,7 @@ export const RobotInActionSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={togglePlay}
-                      className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center cursor-pointer transition-transform active:scale-95 shadow-md shadow-orange-500/30 shrink-0"
+                      className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#F97316] hover:bg-[#EA580C] text-white flex items-center justify-center cursor-pointer transition-transform active:scale-95 shadow-md shadow-orange-500/30 shrink-0"
                       aria-label={isPlaying ? "Pause" : "Lecture"}
                     >
                       {isPlaying ? (
@@ -222,7 +222,7 @@ export const RobotInActionSection: React.FC = () => {
                     onClick={toggleMute}
                     aria-label={isMuted ? "Activer le son" : "Couper le son"}
                     className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors backdrop-blur-md shrink-0 ${
-                      isMuted ? "bg-white/20 hover:bg-white/30 text-white" : "bg-orange-500 text-white shadow-md"
+                      isMuted ? "bg-[#111111]/20 hover:bg-[#111111]/30 text-white" : "bg-[#F97316] text-white shadow-md"
                     }`}
                   >
                     {isMuted ? <VolumeX size={15} aria-hidden="true" /> : <Volume2 size={15} aria-hidden="true" />}
@@ -248,18 +248,18 @@ export const RobotInActionSection: React.FC = () => {
                     aria-pressed={isActive}
                     className={`snap-start shrink-0 px-4 py-2.5 rounded-xl text-left transition-all duration-200 border flex items-center gap-2.5 cursor-pointer ${
                       isActive
-                        ? "bg-white border-orange-500 shadow-sm text-slate-900"
-                        : "bg-white/70 border-slate-200/80 text-slate-600 hover:bg-white"
+                        ? "bg-[#111111] border-orange-500 shadow-sm text-[#FEFCF8]"
+                        : "bg-[#0D0D0D] border-white/10 text-[#E5E3E0] hover:bg-[#111111]"
                     }`}
                   >
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
-                      isActive ? "bg-orange-500 text-white" : "bg-slate-100 text-slate-400"
+                      isActive ? "bg-[#F97316] text-white" : "bg-white/10 text-[#E5E3E0]"
                     }`}>
                       <Play className="w-2.5 h-2.5 fill-current translate-x-0.5" />
                     </div>
                     <div className="flex flex-col">
                       <span className="text-xs font-bold leading-tight">{item.title}</span>
-                      <span className="text-[10px] text-slate-400 leading-tight">{item.badge}</span>
+                      <span className="text-[10px] text-[#E5E3E0] leading-tight">{item.badge}</span>
                     </div>
                   </button>
                 );
@@ -279,18 +279,18 @@ export const RobotInActionSection: React.FC = () => {
                     aria-label={`Afficher la vidéo : ${item.title}`}
                     className={`w-full p-3.5 sm:p-4 rounded-xl text-left transition-all duration-200 relative overflow-hidden flex items-center justify-between gap-3 cursor-pointer group ${
                       isActive
-                        ? "bg-white border-l-4 border-l-orange-500 border border-slate-200/80 shadow-md shadow-orange-500/5 translate-x-1"
-                        : "bg-white/70 border border-slate-200/50 hover:bg-white hover:border-slate-300"
+                        ? "bg-[#111111] border-l-4 border-l-orange-500 border border-white/10 shadow-md shadow-orange-500/5 translate-x-1"
+                        : "bg-[#0D0D0D] border border-white/10 hover:bg-[#111111] hover:border-white/20"
                     }`}
                   >
                     <div className="flex flex-col gap-0.5 relative z-10 text-left">
                       <span className={`text-[9px] font-mono font-bold uppercase tracking-widest ${
-                        isActive ? "text-orange-600" : "text-slate-400 group-hover:text-slate-500"
+                        isActive ? "text-orange-600" : "text-[#E5E3E0] group-hover:text-slate-500"
                       } transition-colors`}>
                         {item.badge}
                       </span>
                       <span className={`text-sm sm:text-base font-bold font-display tracking-tight transition-colors ${
-                        isActive ? "text-slate-900" : "text-slate-600 group-hover:text-slate-900"
+                        isActive ? "text-[#FEFCF8]" : "text-[#E5E3E0] group-hover:text-[#FEFCF8]"
                       }`}>
                         {item.title}
                       </span>
@@ -301,8 +301,8 @@ export const RobotInActionSection: React.FC = () => {
 
                     <div className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
                       isActive
-                        ? "bg-orange-500 text-white shadow-sm scale-105"
-                        : "bg-slate-100 text-slate-400 group-hover:bg-orange-50 group-hover:text-orange-500"
+                        ? "bg-[#F97316] text-white shadow-sm scale-105"
+                        : "bg-white/10 text-[#E5E3E0] group-hover:bg-[#F97316]/10 group-hover:text-[#F97316]"
                     }`}>
                       <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" aria-hidden="true" />
                     </div>
@@ -325,7 +325,7 @@ export const RobotInActionSection: React.FC = () => {
         >
           <a 
             href="#contact" 
-            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-full transition-all duration-200 shadow-md shadow-orange-500/20 hover:shadow-orange-500/35 hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm font-bold text-white bg-[#F97316] hover:bg-[#EA580C] rounded-full transition-all duration-200 shadow-md shadow-orange-500/20 hover:shadow-orange-500/35 hover:-translate-y-0.5 cursor-pointer"
           >
             <span>Demander une étude d'implantation</span>
             <ArrowRight size={15} aria-hidden="true" />

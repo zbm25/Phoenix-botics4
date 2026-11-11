@@ -14,7 +14,7 @@ const PARTNERS: Partner[] = [
     id: "partner-1", 
     name: "GEODIS", 
     logoUrl: "", 
-    fontStyle: "font-display font-black tracking-[0.2em] text-slate-700 italic" 
+    fontStyle: "font-display font-black tracking-[0.2em] text-[#FEFCF8] italic"
   },
   { 
     id: "partner-2", 
@@ -25,7 +25,7 @@ const PARTNERS: Partner[] = [
     id: "partner-3", 
     name: "SODEXO", 
     logoUrl: "", 
-    fontStyle: "font-sans font-bold tracking-widest text-slate-500" 
+    fontStyle: "font-sans font-bold tracking-widest text-[#E5E3E0]/80"
   },
   { 
     id: "partner-4", 
@@ -36,19 +36,19 @@ const PARTNERS: Partner[] = [
     id: "partner-5", 
     name: "AIRBUS", 
     logoUrl: "", 
-    fontStyle: "font-sans font-medium tracking-[0.3em] text-slate-600" 
+    fontStyle: "font-sans font-medium tracking-[0.3em] text-[#E5E3E0]/90"
   },
   { 
     id: "partner-6", 
     name: "ACCOR", 
     logoUrl: "", 
-    fontStyle: "font-serif font-light tracking-[0.25em] text-slate-500 italic" 
+    fontStyle: "font-serif font-light tracking-[0.25em] text-[#E5E3E0]/80 italic"
   },
   { 
     id: "partner-7", 
     name: "BOLLORÉ", 
     logoUrl: "", 
-    fontStyle: "font-mono font-bold tracking-widest text-slate-700" 
+    fontStyle: "font-mono font-bold tracking-widest text-[#FEFCF8]"
   },
   { 
     id: "partner-8", 
@@ -67,21 +67,21 @@ export function LogoSliderSection() {
   return (
     <section 
       id="logo-slider-section" 
-      className="py-10 bg-white border-b border-slate-100 overflow-hidden relative"
+      className="py-10 bg-[#000000] border-b border-white/10 overflow-hidden relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="max-w-7xl mx-auto px-4">
         {/* Section header title */}
-        <div className="text-sm font-mono text-slate-400 uppercase tracking-[0.2em] text-center mb-8">
+        <div className="text-sm font-mono text-[#E5E3E0] uppercase tracking-[0.2em] text-center mb-8">
           // SOLUTIONS CERTIFIÉES & DÉPLOYÉES SUR LE TERRAIN
         </div>
 
         {/* Marquee slider container */}
         <div className="relative w-full overflow-hidden flex items-center py-2 mask-gradient-x">
           {/* Subtle gradient overlays on sides for a beautiful fade-out effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
           {/* Sliding Track */}
           <motion.div
@@ -105,11 +105,11 @@ export function LogoSliderSection() {
                     src={partner.logoUrl}
                     alt={`${partner.name} logo`}
                     referrerPolicy="no-referrer"
-                    className="h-9 w-auto object-contain max-w-[140px] grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                    className="h-9 w-auto object-contain max-w-[140px] grayscale opacity-60 hover:opacity-100 transition-all duration-300"
                   />
                 ) : (
                   <span 
-                    className={`${partner.fontStyle || "font-sans font-semibold text-slate-500"} text-base md:text-lg grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 select-none`}
+                    className={`${partner.fontStyle || "font-sans font-semibold text-[#E5E3E0]/80"} text-base md:text-lg grayscale opacity-60 hover:opacity-100 transition-all duration-300 select-none`}
                   >
                     {partner.name}
                   </span>

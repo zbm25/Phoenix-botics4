@@ -141,7 +141,7 @@ export const IndustriesSection: React.FC = () => {
   return (
     <section 
       id="industries" 
-      className="py-24 bg-slate-50 border-b border-slate-100 relative overflow-hidden"
+      className="py-24 bg-[#000000] border-b border-white/10 relative overflow-hidden"
     >
       {/* Visual ambient gradients */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-100/10 to-transparent rounded-full blur-[120px] pointer-events-none" />
@@ -156,7 +156,7 @@ export const IndustriesSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 shadow-xs rounded-full mb-4 text-[10px] uppercase tracking-[0.2em] font-mono font-bold text-slate-400"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0D0D0D] border border-white/10 shadow-xs rounded-full mb-4 text-[10px] uppercase tracking-[0.2em] font-mono font-bold text-[#E5E3E0]"
           >
             <span>- VERTICALES D'INTÉGRATION -</span>
           </motion.div>
@@ -166,9 +166,9 @@ export const IndustriesSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900 mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-[#FEFCF8] mb-6"
           >
-            Des industries clés équipées en <span className="text-orange-500 font-extrabold">robots de service</span>
+            Des industries clés équipées en <span className="text-[#F97316] font-extrabold">robots de service</span>
           </motion.h2>
           
           <motion.p 
@@ -176,7 +176,7 @@ export const IndustriesSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base sm:text-lg text-slate-600 font-light leading-relaxed"
+            className="text-base sm:text-lg text-[#E5E3E0] font-light leading-relaxed"
           >
             Découvrez comment nos cobots mobiles résolvent les pénibilités opérationnelles et optimisent la productivité de chaque secteur.
           </motion.p>
@@ -199,16 +199,16 @@ export const IndustriesSection: React.FC = () => {
                     onClick={() => handleSelectIndustry(index)}
                     className={`text-left w-full p-5 sm:p-6 rounded-2xl border transition-all duration-300 relative overflow-hidden select-none cursor-pointer flex items-center justify-between gap-4 ${
                       isActive 
-                        ? "bg-white border-slate-200 shadow-md translate-x-1.5" 
-                        : "bg-transparent border-transparent hover:bg-white/40 hover:border-slate-200/40"
+                        ? "bg-[#0D0D0D] border-white/10 shadow-md translate-x-1.5"
+                        : "bg-transparent border-transparent hover:bg-white/5 hover:border-white/10"
                     }`}
                   >
                     <div className="flex items-center gap-4">
                       {/* Icon with state-dependent color accent */}
                       <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
                         isActive 
-                          ? "bg-orange-50 text-orange-500 border border-orange-100" 
-                          : "bg-slate-200/50 text-slate-400"
+                          ? "bg-orange-500/10 text-[#F97316] border border-orange-100"
+                          : "bg-white/5 text-[#E5E3E0]"
                       }`}>
                         {INDUSTRY_ICONS[industry.id]}
                       </div>
@@ -216,15 +216,15 @@ export const IndustriesSection: React.FC = () => {
                       {/* Headings with orange accent transition when active, subtitle remains gray */}
                       <div>
                         <span className={`text-base font-bold block leading-tight mb-1 transition-colors duration-300 ${
-                          isActive ? "text-orange-500" : "text-slate-800"
+                          isActive ? "text-[#F97316]" : "text-[#FEFCF8]"
                         }`}>
                           {industry.title}
                         </span>
-                        <span className="text-xs block leading-snug font-light text-slate-500 mb-1.5">
+                        <span className="text-xs block leading-snug font-light text-[#E5E3E0] mb-1.5">
                           {industry.subtitle}
                         </span>
                         <span className={`text-xs font-semibold block leading-none transition-colors duration-300 ${
-                          isActive ? "text-orange-500" : "text-slate-400"
+                          isActive ? "text-[#F97316]" : "text-[#E5E3E0]"
                         }`}>
                           {industry.metric}
                         </span>
@@ -232,7 +232,7 @@ export const IndustriesSection: React.FC = () => {
                     </div>
 
                     <ChevronRight className={`w-5 h-5 transition-all duration-300 ${
-                      isActive ? "text-orange-500 translate-x-1" : "text-slate-300"
+                      isActive ? "text-[#F97316] translate-x-1" : "text-slate-300"
                     }`} />
 
                     {/* Accent border highlight on the left */}
@@ -242,9 +242,9 @@ export const IndustriesSection: React.FC = () => {
 
                     {/* Progress Bar Line at the bottom of active tab (if autoplay is not permanently paused) */}
                     {isActive && !autoplayPaused && (
-                      <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-slate-100 overflow-hidden">
+                      <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-white/10 overflow-hidden">
                         <div 
-                          className="h-full bg-orange-500 transition-all duration-75 ease-linear"
+                          className="h-full bg-orange-500/100 transition-all duration-75 ease-linear"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -264,26 +264,26 @@ export const IndustriesSection: React.FC = () => {
                     onClick={() => handleSelectIndustry(index)}
                     className={`snap-center shrink-0 flex items-center gap-3 px-5 py-4 rounded-xl border transition-all duration-300 select-none cursor-pointer relative overflow-hidden ${
                       isActive 
-                        ? "bg-white border-slate-200 shadow-sm" 
-                        : "bg-slate-200/30 border-transparent text-slate-600"
+                        ? "bg-[#0D0D0D] border-white/10 shadow-sm"
+                        : "bg-white/5 border-transparent text-[#E5E3E0]"
                     }`}
                   >
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300 ${
-                      isActive ? "bg-orange-50 text-orange-500" : "bg-slate-200 text-slate-400"
+                      isActive ? "bg-orange-500/10 text-[#F97316]" : "bg-white/10 text-[#E5E3E0]"
                     }`}>
                       {INDUSTRY_ICONS[industry.id]}
                     </div>
                     <div className="text-left">
                       <p className={`text-xs font-bold whitespace-nowrap transition-colors duration-300 ${
-                        isActive ? "text-orange-500" : "text-slate-800"
+                        isActive ? "text-[#F97316]" : "text-[#FEFCF8]"
                       }`}>
                         {industry.title}
                       </p>
-                      <span className="text-[9px] block whitespace-nowrap text-slate-500 my-0.5">
+                      <span className="text-[9px] block whitespace-nowrap text-[#E5E3E0] my-0.5">
                         {industry.subtitle}
                       </span>
                       <span className={`text-[10px] font-semibold block whitespace-nowrap transition-colors duration-300 ${
-                        isActive ? "text-orange-500" : "text-slate-400"
+                        isActive ? "text-[#F97316]" : "text-[#E5E3E0]"
                       }`}>
                         {industry.metric}
                       </span>
@@ -291,9 +291,9 @@ export const IndustriesSection: React.FC = () => {
 
                     {/* Mobile Progress Bar Line */}
                     {isActive && !autoplayPaused && (
-                      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-slate-100 overflow-hidden">
+                      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white/10 overflow-hidden">
                         <div 
-                          className="h-full bg-orange-500 transition-all duration-75 ease-linear"
+                          className="h-full bg-orange-500/100 transition-all duration-75 ease-linear"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -304,12 +304,12 @@ export const IndustriesSection: React.FC = () => {
             </div>
 
             {/* Interactive Control indicator panel */}
-            <div className="bg-white border border-slate-200/60 rounded-2xl p-4 flex items-center justify-between shadow-xs">
+            <div className="bg-[#0D0D0D] border border-white/10 rounded-2xl p-4 flex items-center justify-between shadow-xs">
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setAutoplayPaused(!autoplayPaused)}
                   className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer shrink-0 ${
-                    autoplayPaused ? "bg-amber-500 text-white" : "bg-orange-500 text-white animate-pulse"
+                    autoplayPaused ? "bg-amber-500 text-white" : "bg-orange-500/100 text-white animate-pulse"
                   }`}
                   title={autoplayPaused ? "Relancer l'auto-défilement" : "Suspendre l'auto-défilement"}
                 >
@@ -320,10 +320,10 @@ export const IndustriesSection: React.FC = () => {
                   )}
                 </button>
                 <div>
-                  <p className="text-xs font-bold text-slate-800">
+                  <p className="text-xs font-bold text-[#FEFCF8]">
                     {autoplayPaused ? "Défilement figé" : "Auto-défilement Actif (12s)"}
                   </p>
-                  <p className="text-[10px] text-slate-400">
+                  <p className="text-[10px] text-[#E5E3E0]">
                     {autoplayPaused 
                       ? "Le carrousel est stabilisé sur votre choix." 
                       : "S'arrête au survol du panneau ou clic onglet."}
@@ -337,7 +337,7 @@ export const IndustriesSection: React.FC = () => {
                     key={idx}
                     onClick={() => handleSelectIndustry(idx)}
                     className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      idx === activeIndex ? "w-6 bg-orange-500" : "w-1.5 bg-slate-200 hover:bg-slate-300"
+                      idx === activeIndex ? "w-6 bg-orange-500/100" : "w-1.5 bg-white/10 hover:bg-white/20"
                     }`}
                   />
                 ))}
@@ -358,7 +358,7 @@ export const IndustriesSection: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="relative lg:absolute lg:inset-0 w-full h-auto lg:h-full bg-slate-900 rounded-3xl overflow-hidden shadow-xl border border-slate-200/10 flex flex-col justify-between p-6 sm:p-10 lg:p-12 text-white group"
+                className="relative lg:absolute lg:inset-0 w-full h-auto lg:h-full bg-[#080808] rounded-3xl overflow-hidden shadow-xl border border-white/10/10 flex flex-col justify-between p-6 sm:p-10 lg:p-12 text-white group"
               >
                 {/* 3. Image de fond avec assombrissement fort (bg-slate-950/80 et backdrop-blur-xs) */}
                 <div className="absolute inset-0 z-0 select-none pointer-events-none">
@@ -375,7 +375,7 @@ export const IndustriesSection: React.FC = () => {
 
                 {/* Badge métrique en haut */}
                 <div className="relative z-20 flex items-center">
-                  <span className="text-xs font-mono font-bold tracking-wider px-3.5 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/10 text-orange-400">
+                  <span className="text-xs font-mono font-bold tracking-wider px-3.5 py-1.5 bg-[#0D0D0D]/10 backdrop-blur-md rounded-full border border-white/10 text-orange-400">
                     {activeIndustry.metric}
                   </span>
                 </div>
@@ -388,7 +388,7 @@ export const IndustriesSection: React.FC = () => {
                   
                   {/* Section DÉFI */}
                   <div className="mb-6 max-w-xl">
-                    <span className="text-[10px] text-orange-500 font-bold tracking-widest uppercase block mb-1.5 font-mono">
+                    <span className="text-[10px] text-[#F97316] font-bold tracking-widest uppercase block mb-1.5 font-mono">
                       DÉFI
                     </span>
                     <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed">
@@ -400,7 +400,7 @@ export const IndustriesSection: React.FC = () => {
 
                   {/* Section RÉPONSE PHOENIX */}
                   <div className="max-w-xl">
-                    <span className="text-[10px] text-orange-500 font-bold tracking-widest uppercase block mb-1.5 font-mono">
+                    <span className="text-[10px] text-[#F97316] font-bold tracking-widest uppercase block mb-1.5 font-mono">
                       RÉPONSE PHOENIX
                     </span>
                     <p className="text-base sm:text-lg text-slate-100 font-normal leading-relaxed">
@@ -419,7 +419,7 @@ export const IndustriesSection: React.FC = () => {
                       {activeIndustry.cobots.map((cobot, idx) => (
                         <span 
                           key={idx} 
-                          className="bg-black/50 border border-white/10 px-3 py-1 text-xs rounded-full font-mono text-slate-200 select-none hover:bg-orange-500/30 hover:border-orange-500/50 transition-colors duration-200"
+                          className="bg-black/50 border border-white/10 px-3 py-1 text-xs rounded-full font-mono text-[#E5E3E0] select-none hover:bg-orange-500/100/30 hover:border-orange-500/50 transition-colors duration-200"
                         >
                           {cobot}
                         </span>
@@ -430,7 +430,7 @@ export const IndustriesSection: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => navigate(`/industries/${activeIndustry.id}`)}
-                    className="w-full sm:w-auto justify-center px-5 py-3 bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-orange-500/20 shrink-0 cursor-pointer"
+                    className="w-full sm:w-auto justify-center px-5 py-3 bg-orange-500/100 hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-orange-500/20 shrink-0 cursor-pointer"
                   >
                     <span>Découvrir ce secteur</span>
                     <ArrowRight className="w-4 h-4" />
@@ -449,23 +449,23 @@ export const IndustriesSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 bg-white rounded-2xl border border-slate-200/80 p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-sm relative overflow-hidden text-left"
+          className="mt-16 bg-[#0D0D0D] rounded-2xl border border-white/10 p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-sm relative overflow-hidden text-left"
         >
           {/* Subtle line decoration on top */}
           <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-orange-500 via-rose-500 to-indigo-500" />
           
           <div className="relative z-10 max-w-2xl">
-            <h4 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
+            <h4 className="text-base sm:text-lg font-bold text-[#FEFCF8] mb-1.5">
               Vous faites face à d'autres problématiques de pénibilité ou de recrutement ?
             </h4>
-            <p className="text-xs sm:text-sm text-slate-500 font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#E5E3E0] font-light leading-relaxed">
               Nos ingénieurs d’application réalisent un prédiagnostic de vos flux et de vos contraintes d’exploitation sous 48 heures.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 relative z-10 w-full lg:w-auto shrink-0">
             {/* Integrated sector selector pills */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100/80 rounded-xl border border-slate-200/60">
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-white/10/80 rounded-xl border border-white/10">
               {PREDIAGNOSTIC_SECTORS.map((sec) => {
                 const isSelected = selectedPrediagnosticSector === sec.id;
                 return (
@@ -475,8 +475,8 @@ export const IndustriesSection: React.FC = () => {
                     onClick={() => setSelectedPrediagnosticSector(sec.id)}
                     className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                       isSelected
-                        ? "bg-orange-500 text-white shadow-xs"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
+                        ? "bg-orange-500/100 text-white shadow-xs"
+                        : "text-[#E5E3E0] hover:text-[#FEFCF8] hover:bg-white/10/60"
                     }`}
                   >
                     {sec.label}
@@ -490,7 +490,7 @@ export const IndustriesSection: React.FC = () => {
               onClick={() => {
                 navigate(`/industries/${selectedPrediagnosticSector}#prequalification`);
               }}
-              className="shrink-0 px-5 py-3 bg-slate-900 hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 text-center cursor-pointer shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+              className="shrink-0 px-5 py-3 bg-[#080808] hover:bg-orange-600 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all duration-300 text-center cursor-pointer shadow-sm hover:shadow-md flex items-center justify-center gap-2"
             >
               <span>Obtenir un prédiagnostic</span>
               <ArrowRight className="w-4 h-4" />

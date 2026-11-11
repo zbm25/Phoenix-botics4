@@ -7,15 +7,15 @@ export const RobotsCatalogSection: React.FC = () => {
   const [showRoiSelector, setShowRoiSelector] = useState(false);
 
   return (
-    <section className="py-16 lg:py-24 bg-[#ffffff] text-[#0C111D] font-sans" id="robots-catalog">
+    <section className="py-16 lg:py-24 bg-[#000000] text-[#FEFCF8] font-sans" id="robots-catalog">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
 
         {/* En-tête centré */}
         <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-bold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F97316]/10 text-[#F97316] text-xs font-bold tracking-wider uppercase">
             Nos Gammes de Robots
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0C111D]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#FEFCF8]">
             Une flotte unifiée pour <br />
             <span className="text-[#F97316]">transformer vos opérations.</span>
           </h2>
@@ -25,32 +25,32 @@ export const RobotsCatalogSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
 
           {/* 1. CARTE VERTICALE HAUTE : uLab Mobile (5 cols, 2 rangées) */}
-          <div className="lg:col-span-5 lg:row-span-2 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-200/60 shadow-sm group min-h-[520px]">
+          <div className="lg:col-span-5 lg:row-span-2 bg-[#0D0D0D] rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/10 shadow-sm group min-h-[520px]">
             <div className="space-y-3 z-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-[#F97316] text-xs font-bold tracking-wider uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F97316]/10 text-[#F97316] text-xs font-bold tracking-wider uppercase">
                 Sciences de la Vie & Laboratoires
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#FEFCF8]">
                 uLab Mobile
               </h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="text-[#E5E3E0] text-sm leading-relaxed">
                 Automatisez le transport de tubes et de portoirs entre vos postes, ainsi que le chargement d’analyseurs selon les workflows intégrés.
               </p>
             </div>
 
             {/* Illustration verticale robot debout */}
-            <div className="my-6 flex-1 flex items-center justify-center p-4 bg-white/70 rounded-2xl border border-slate-200/50 overflow-hidden min-h-[260px]">
+            <div className="my-6 flex-1 flex items-center justify-center p-4  rounded-2xl border  overflow-hidden min-h-[260px]">
               <img
                 src="https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"
                 alt="uLab Mobile Cobot"
-                className="max-h-64 sm:max-h-72 object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-md"
+                className="max-h-64 sm:max-h-72 object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_20px_25px_rgba(0,0,0,0.6)]"
               />
             </div>
 
             <div className="pt-2">
               <Link
                 to="/robots/ulab-series"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200 w-full justify-center sm:w-auto"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F97316] hover:bg-orange-600 text-white text-sm font-bold transition-colors duration-200 w-full justify-center sm:w-auto"
               >
                 Découvrir uLab Mobile
                 <ArrowRight className="w-4 h-4" />
@@ -59,21 +59,21 @@ export const RobotsCatalogSection: React.FC = () => {
           </div>
 
           {/* 2. CARTE : Série uClean (7 cols) */}
-          <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-200/60 shadow-sm group">
+          <div className="lg:col-span-7 bg-[#0D0D0D] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-white/10 shadow-sm group">
             <div className="space-y-3 flex-1 order-2 sm:order-1">
               <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
                 Hygiène & Propreté Autonome
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#FEFCF8]">
                 Série uClean
               </h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="text-[#E5E3E0] text-sm leading-relaxed">
                 Des aspirateurs compacts aux autolaveuses industrielles (jusqu'à 3 000 m²/h). Libérez vos équipes avec une régularité irréprochable.
               </p>
               <div className="pt-2">
                 <Link
                   to="/robots/uclean-series"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F97316] hover:bg-orange-600 text-white text-sm font-bold transition-colors duration-200"
                 >
                   Découvrir uClean
                   <ArrowRight className="w-4 h-4" />
@@ -91,21 +91,21 @@ export const RobotsCatalogSection: React.FC = () => {
           </div>
 
           {/* 3. CARTE : Série uServe (7 cols) - previously 4 cols, expanded to sit next to uLab */}
-          <div className="lg:col-span-7 bg-[#F2F4F7] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-slate-200/60 shadow-sm group">
+          <div className="lg:col-span-7 bg-[#0D0D0D] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 border border-white/10 shadow-sm group">
             <div className="space-y-3 flex-1 order-2 sm:order-1">
               <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
                 Accueil & Service
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#FEFCF8]">
                 Série uServe
               </h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="text-[#E5E3E0] text-sm leading-relaxed">
                 Guidage physique, assistance et interaction multilingue en espaces recevant du public.
               </p>
               <div className="pt-2">
                 <Link
                   to="/robots/userve-series"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F97316] hover:bg-orange-600 text-white text-sm font-bold transition-colors duration-200"
                 >
                   Découvrir uServe
                   <ArrowRight className="w-4 h-4" />
@@ -113,7 +113,7 @@ export const RobotsCatalogSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-full sm:w-48 h-40 sm:h-48 flex-shrink-0 flex items-center justify-center bg-white/60 rounded-xl p-2 order-1 sm:order-2">
+            <div className="w-full sm:w-48 h-40 sm:h-48 flex-shrink-0 flex items-center justify-center  rounded-xl p-2 order-1 sm:order-2">
               <img
                 src="https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png"
                 alt="Robot d'accueil uServe"
@@ -123,21 +123,21 @@ export const RobotsCatalogSection: React.FC = () => {
           </div>
 
           {/* 4. CARTE PLEINE LARGEUR BAS : Série uLog avec la flotte (12 cols) */}
-          <div className="lg:col-span-12 bg-[#F2F4F7] rounded-3xl p-6 sm:p-10 border border-slate-200/60 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group overflow-hidden">
+          <div className="lg:col-span-12 bg-[#0D0D0D] rounded-3xl p-6 sm:p-10 border border-white/10 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group overflow-hidden">
             <div className="lg:col-span-5 space-y-4 z-10 relative">
               <span className="text-xs font-bold tracking-widest text-[#F97316] uppercase">
                 Intralogistique & Manutention AMR
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0C111D]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#FEFCF8]">
                 Série uLog
               </h3>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              <p className="text-[#E5E3E0] text-sm sm:text-base leading-relaxed">
                 Transport autonome de charges industrielles (jusqu'à 600 kg). Intégration transparente aux flux logistiques, convoyeurs et ascenseurs connectés.
               </p>
               <div className="pt-2">
                 <Link
                   to="/robots/ulog-series"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C111D] hover:bg-[#F97316] text-white text-sm font-bold transition-colors duration-200"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F97316] hover:bg-orange-600 text-white text-sm font-bold transition-colors duration-200"
                 >
                   Découvrir la gamme uLog
                   <ArrowRight className="w-4 h-4" />
@@ -155,8 +155,8 @@ export const RobotsCatalogSection: React.FC = () => {
           </div>
 
           {/* 5. BANDEAU D'ACTION ROI (12 cols) - transversale bottom */}
-          <div className="lg:col-span-12 bg-[#F97316] rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm group relative overflow-hidden text-white">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div className="lg:col-span-12 bg-[#111111] rounded-3xl border border-white/10 p-6 sm:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm group relative overflow-hidden text-white">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500 opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-black opacity-10 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4" />
 
             <div className="flex items-center gap-4 z-10 w-full md:w-auto">
@@ -180,7 +180,7 @@ export const RobotsCatalogSection: React.FC = () => {
               <button
                 id="open-roi-selector"
                 onClick={() => setShowRoiSelector(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#0C111D] hover:bg-orange-50 text-sm font-bold transition-colors duration-200 w-full sm:w-auto justify-center cursor-pointer shadow-sm hover:shadow"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F97316] text-[#FEFCF8] hover:bg-orange-600 text-sm font-bold transition-colors duration-200 w-full sm:w-auto justify-center cursor-pointer shadow-sm hover:shadow"
               >
                 <Calculator className="w-4 h-4 text-[#F97316]" />
                 Calculer mon ROI
@@ -194,7 +194,7 @@ export const RobotsCatalogSection: React.FC = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute right-0 bottom-0 md:bottom-full md:mb-4 bg-white shadow-xl z-20 rounded-2xl p-6 flex flex-col border border-slate-200 w-full md:w-72 m-4 md:m-0 text-[#0C111D]"
+                  className="absolute right-0 bottom-0 md:bottom-full md:mb-4 bg-black/95 backdrop-blur-md shadow-xl shadow-black/50 z-20 rounded-2xl p-6 flex flex-col border border-white/10 w-full md:w-72 m-4 md:m-0 text-[#FEFCF8]"
                 >
                   <button
                     onClick={() => setShowRoiSelector(false)}
@@ -204,13 +204,13 @@ export const RobotsCatalogSection: React.FC = () => {
                   </button>
                   <h4 className="text-sm font-bold mb-4 text-center">Sélectionnez une gamme</h4>
                   <div className="space-y-2">
-                    <Link to="/robots/uclean-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
+                    <Link to="/robots/uclean-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#0D0D0D] hover:bg-orange-600 hover:text-white text-sm font-semibold text-[#E5E3E0] border border-white/10 text-center transition-colors">
                       uClean (Propreté)
                     </Link>
-                    <Link to="/robots/ulog-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
+                    <Link to="/robots/ulog-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#0D0D0D] hover:bg-orange-600 hover:text-white text-sm font-semibold text-[#E5E3E0] border border-white/10 text-center transition-colors">
                       uLog (Logistique)
                     </Link>
-                    <Link to="/robots/userve-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#F2F4F7] hover:bg-orange-50 hover:text-[#F97316] text-sm font-semibold text-slate-800 text-center transition-colors">
+                    <Link to="/robots/userve-series#simulateur-roi" className="block w-full py-2 px-3 rounded-lg bg-[#0D0D0D] hover:bg-orange-600 hover:text-white text-sm font-semibold text-[#E5E3E0] border border-white/10 text-center transition-colors">
                       uServe (Accueil)
                     </Link>
                   </div>

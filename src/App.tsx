@@ -45,7 +45,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen text-[color:var(--color-text-main)] selection:bg-brand-primary selection:text-white relative overflow-x-hidden bg-[color:var(--color-surface-page)]">
+    <div className="min-h-screen text-[color:var(--color-text-main)] selection:bg-brand-primary selection:text-white relative overflow-x-hidden bg-[#000000]">
       {/* Sleek Interface Ambient Background Bulbs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-500/10 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-orange-500/5 to-transparent rounded-full blur-[100px] pointer-events-none -z-10" />
@@ -57,7 +57,7 @@ function HomePage() {
 
       {/* Corporate sticky header */}
       <main className="w-full">
-        <div className="bg-[#0a0f1c] relative pt-24 sm:pt-28">
+        <div className="bg-[#000000] relative pt-24 sm:pt-28">
           <Header />
 
           <section className="phoenix-section-alt text-white pb-6">
@@ -66,7 +66,7 @@ function HomePage() {
               onDemoClick={() => handleScrollToSegment("prediagnostic")}
             />
           </section>
-          <div className="h-16 bg-gradient-to-b from-[#0a0f1c] to-[#f5f5f7] -mt-1" />
+          <div className="h-16 bg-gradient-to-b from-[#000000] to-[#000000] -mt-1" />
         </div>
 
         <LogoSliderSection />
