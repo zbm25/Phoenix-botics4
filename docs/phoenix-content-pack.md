@@ -2,7 +2,93 @@
 
 Ce document synthétise l'intégralité des contenus textuels (copywriting) et médias du dépôt Phoenix-botics. Il est formaté pour servir de prompt de données direct pour l'intégration de nos contenus sur la maquette haute fidélité AI Studio.
 
-## 1. Identité & Accroches Globales
+## 1. Plan de Mapping (Maquette Standard Bots)
+
+Ce plan fait correspondre les blocs de la maquette "Standard Bots" avec les données et le contexte de Phoenix-Botics.
+
+| Bloc Maquette Standard Bots | Données Phoenix-Botics à intégrer |
+| :--- | :--- |
+| **Header & Navigation** | - **Logo:** Phoenix-Botics<br>- **Menus:** Gammes (uClean, uLog, uServe, uLab Mobile), Industries, Étude de faisabilité<br>- **Bouton Principal (ex: Book a Demo):** "Parler à un expert" (Ancre vers #contact) |
+| **Hero Section** | - **Vidéo de fond:** Vidéo Hero uLog ou uClean (`https://res.cloudinary.com/df1x718yw/video/upload/v1782758795/ULog_tlu9tt.mp4` ou `https://res.cloudinary.com/df1x718yw/video/upload/v1782758788/uClean_hsvmvx.mp4`)<br>- **Slogan principal:** "Libérer le potentiel humain par la robotique."<br>- **Sous-titre:** "L'automatisation intelligente au service de votre croissance."<br>- **4 Vignettes Interactives (Bas de Hero):** uClean (Nettoyage), uLog (Logistique), uServe (Accueil), uLab Mobile (Laboratoire) |
+| **Bandeau Mission / Accroche** | - **Texte:** Partenaire de distribution et d'intégration des solutions United Robotics Group en France. Déployons l'automatisation pour recentrer vos équipes sur l'essentiel. |
+| **Benchmark / Métriques** | - **SLA:** 99.4% de disponibilité<br>- **Déploiement:** 100+ robots de service en exploitation<br>- **Couverture:** 4 secteurs clés d'expertise |
+| **Démonstrateur d'applications (Carrousel)** | Mapper sur nos 4 secteurs avec leurs images Hero et cas d'usage :<br>1. **Retail:** Accueil interactif, réassort (+20% d'engagement client)<br>2. **Hôtellerie/Restauration:** Portage, assistance service (3-4h gagnées/jour)<br>3. **Santé & Médical:** Routage autonome, logistique 24/7 (-35% déplacements perdus)<br>4. **Logistique/Industrie:** Liaison de lignes, transport régulier (+15% productivité) |
+| **Section "Gap Industriel" / Problématique** | - **Thèmes à aborder:** Pénurie de personnel, tâches pénibles (TMS), déplacements à faible valeur ajoutée, difficultés de recrutement. <br>- **Message clé:** La robotique ne remplace pas l'humain, elle l'assiste en absorbant les tâches répétitives pour libérer du temps opérationnel. |
+| **Grille Hardware Produits** | Catalogue des 4 gammes (uClean, uLog, uServe, uLab) utilisant la structure JSON fournie dans la section 5. <br>- Inclure les images détourées Cloudinary pour chaque robot.<br>- **CTA par produit:** "Estimer le ROI" (sauf uLab) / "Voir la gamme" |
+| **Calculateur ROI interactif** | Utiliser les ancres et hypothèses du ROI Phoenix-botics (Section 6) :<br>- uClean: m² / jour (Base 400m²/h, 20€/h)<br>- uLog: transferts / jour (Base 15min/transfert, 20€/h)<br>- uServe: déplacements / jour (Base 8min/déplacement, 20€/h)<br>- *Note: Pas de simulateur pour uLab.* |
+| **Preuves de terrain, Témoignages & Logos** | - **Logos Partenaires:** Utiliser la liste existante (Section 8) avec Carrefour, Geodis, Sodexo, Airbus, etc.<br>- **Bandeau de réassurance:** "Solutions certifiées & déployées sur le terrain" (Intégrer les ProofBlocks: 'Spécification constructeur', 'Estimation indicative', 'Résultat client') |
+| **Formulaire de simulation / Lead capture** | - **Titre:** "Recevoir ma recommandation" ou "Demander une étude de site"<br>- **Champs clés:** Secteur d'activité, Surface/Flux, Coordonnées professionnelles.<br>- **Disclaimer:** "Estimation indicative calculée sur la base de vos paramètres. Une étude de site permet de valider..." |
+| **Footer** | - **Liens:** Mentions Légales, Politique de Confidentialité, Contact.<br>- **Copyright:** © 2026 Phoenix-Botics. Partenaire URG.<br>- **Mention:** ISO 10218-1 Compliant (selon la maquette) |
+
+## 2. Arborescence & Cartographie complète du Site
+
+Voici la structure des routes du site Phoenix-Botics, issue de `src/App.tsx` et des pages associées.
+
+| Route / Path | Composant Principal (Page) | Rôle de la Page | H1 Principal (ou titre Hero) |
+| :--- | :--- | :--- | :--- |
+| `/` | `HomePage` (`App.tsx`) | Page d'accueil vitrine (Hero, Industries, Catalogue, Vidéo, Services, Process, Contact). | "Libérer le potentiel humain par la robotique." |
+| `/robots/:seriesId` | `RobotSeriesPage` | Page de détail d'une gamme de robots (uClean, uLog, uServe, uLab Mobile). Affiche les modèles, specs, simulateur ROI (sauf uLab). | *Dynamique selon gamme (ex: "Gamme uClean")* |
+| `/industries/:industryId` | `IndustryPage` | Page détaillée d'un secteur (Retail, Hôtellerie, Santé, Industrie). Affiche les cas d'usage, le flux de préqualification. | *Dynamique selon secteur (ex: "Robotique pour le Retail")* |
+| `/technologie` | `TechnologyPage` | Page de présentation des technologies (navigation, capteurs). | "Notre Technologie" (à vérifier) |
+| `/a-propos` | `AboutPage` | Page de présentation de l'entreprise Phoenix-Botics, son équipe et son ADN. | "À Propos de Phoenix-Botics" (à vérifier) |
+| `/services` | `ServicesPage` | Page détaillant l'offre de services, maintenance et déploiement. | "Nos Services & Accompagnement" (à vérifier) |
+| `/*` | `NotFoundPage` | Page 404 standard. | "Page introuvable" (à vérifier) |
+
+## 3. Inventaire Média Exhaustif
+
+Liste complète de tous les médias Cloudinary utilisés dans la base de code Phoenix-botics, extraite depuis les données, composants et pages.
+
+### Vidéos (.mp4)
+- **uClean Hero/Intro:** `https://res.cloudinary.com/df1x718yw/video/upload/v1782758788/uClean_hsvmvx.mp4`
+- **uLog Hero/Intro:** `https://res.cloudinary.com/df1x718yw/video/upload/v1782758795/ULog_tlu9tt.mp4`
+- **uClean Cas d'Usage (KFC Venise):** `https://res.cloudinary.com/df1x718yw/video/upload/v1783460477/uClean_Compact_-_Use_case_KFC_Venise_pbnpdk.mp4`
+- **uServe Cas d'Usage (Plato à l'Henriette):** `https://res.cloudinary.com/df1x718yw/video/upload/v1783504966/Plato_%C3%A0_l_Henriette_Restaurant_VO_FR_Sous-titres_en_fran%C3%A7ais_zo3d1o.mp4`
+- **uServe Cas d'Usage (Kili Beach):** `https://res.cloudinary.com/df1x718yw/video/upload/v1783504963/uServe_en_Action___Le_Retour_d_Exp%C3%A9rience_du_Kili_Beach_u8ykj6.mp4`
+- **Démo AQN 1:** `https://res.cloudinary.com/df1x718yw/video/upload/v1783504930/AQN186O-b3MNcwG13bVdWBzkfIni-dlAw80J18tUykayxG8VZKE1waTNjDuZTbzk00HagIEaJNOxJPn33Zegc2JhlmtV5wVKNSs_m50ixj.mp4`
+- **Démo AQN 2:** `https://res.cloudinary.com/df1x718yw/video/upload/v1783504948/AQN6nSJ8lH-1Rcr_yTkG4FwArxweFvyz1k6ApifEXQnEpn-rUhW-00k1WFoS0y3eBzpJLpychG4ZOW7U4SGmxPcoqGEyR8MfMzA_rnjzhs.mp4`
+
+### Images Gammes et Robots Détourés (.png / .webp / .jpg)
+- **uClean Scrub 75:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782745753/Scrub75_cyuy2d.png`
+- **uClean Scrub 50 Disc:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782745593/Scrub50Disc_iwqmbf.png`
+- **uClean Scrub 50 Roller:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782745734/Scrub50Roller_iqgbqn.png`
+- **uClean Compact:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782745472/Compact_wyrf5v.png`
+- **uClean Vacuum 40:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782745773/Vacuum40_xhxlps.png`
+- **uClean Visuel (Généré):** `https://res.cloudinary.com/df1x718yw/image/upload/v1793705586/Gemini_Generated_Image_tnr3t6tnr3t6tnr3_nhjogh.jpg`
+- **uLog Lift 600:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png`
+- **uLog Lift 600 Base / 300 XL:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782747963/uLogLIFT600BASE_LIFT300XL_URGlogo_01_uv1lwf.png`
+- **uLog Deliver 300 / 300 XL:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782747948/uLogDELIVER300_URGlogo_01_face_pihxaa.png`, `https://res.cloudinary.com/df1x718yw/image/upload/v1782747951/uLogDELIVER300XL_LIFT300XL_URGlogo_01_face_m95qag.png`
+- **uLog Deliver 150:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782747959/uLogDELIVER150_URGlogo_01_face_Box_Admin_tprnbn.png`
+- **uLog Deliver 80:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782747971/uLogDELIVER80_URGlogo_01_face_ktme3v.png`
+- **uLog Visuel Panoramique (Généré):** `https://res.cloudinary.com/df1x718yw/image/upload/v1794219645/Gemini_Generated_Image_cxpg34cxpg34cxpg_leiybf.jpg`
+- **uServe:** `https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png`
+- **uLab Mobile:** `https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp`
+
+### Images Cas d'Usage, Secteurs et Services (.png / .jpg)
+- **Retail & Commerce:** `https://res.cloudinary.com/df1x718yw/image/upload/v1786706254/ChatGPT_Image_14_ao%C3%BBt_2026_13_14_25_hbto5m.png`
+- **Hôtellerie & Restauration:** `https://res.cloudinary.com/df1x718yw/image/upload/v1784567142/ChatGPT_Image_20_juil._2026_19_03_52_azmgk0.png`
+- **Santé & Médical:** `https://res.cloudinary.com/df1x718yw/image/upload/v1786449000/ChatGPT_Image_11_ao%C3%BBt_2026_13_48_55_bhfnwm.png`
+- **Logistique & Industrie:** `https://res.cloudinary.com/df1x718yw/image/upload/v1786019271/ChatGPT_Image_6_ao%C3%BBt_2026_14_27_13_myx8mn.png`
+- **Divers Cas / Services:**
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1783684832/ChatGPT_Image_10_juil._2026_13_56_40_bm8sbx.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1783684833/uClean_Compact_-_H%C3%B4pital_ay0pxa.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1783684834/ChatGPT_Image_10_juil._2026_13_49_37_zzk9ba.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1783684835/ChatGPT_Image_10_juil._2026_13_20_41_h38epx.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1785153876/ChatGPT_Image_27_juil._2026_14_03_53_pqkzw7.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1785324418/ChatGPT_Image_28_juil._2026_13_22_38_zqkyx1.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1785324422/ChatGPT_Image_28_juil._2026_13_45_43_d6fm1m.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1785933725/Gemini_Generated_Image_ncnba4ncnba4ncnb_tmywdz.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1785933751/Gemini_Generated_Image_ehix26ehix26ehix_vcxjhs.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1785933757/ChatGPT_Image_5_ao%C3%BBt_2026_14_12_02_glwn9v.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1786443278/Gemini_Generated_Image_e0xc1ke0xc1ke0xc_n0quzz.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1786443283/Gemini_Generated_Image_vqi2bwvqi2bwvqi2_obkh6h.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1786443284/Gemini_Generated_Image_xao0i0xao0i0xao0_hbe4v6.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1786538785/ChatGPT_Image_12_ao%C3%BBt_2026_14_20_10_chhifv.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1786538787/ChatGPT_Image_12_ao%C3%BBt_2026_14_44_30_vo5p1c.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1786538828/ChatGPT_Image_12_ao%C3%BBt_2026_14_33_42_tnmnoc.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1788439746/ChatGPT_Image_3_sept._2026_14_47_24_khevxq.png`
+  - `https://res.cloudinary.com/df1x718yw/image/upload/v1788866233/ChatGPT_Image_8_sept._2026_11_48_19_kvssfw.png`
+
+## 4. Identité & Accroches Globales
 
 ### Hero Section (Page d'accueil)
 - **Badge :** ROBOTIQUE DE SERVICE
@@ -19,7 +105,7 @@ Ce document synthétise l'intégralité des contenus textuels (copywriting) et m
 - **4 secteurs clés** (Retail, hôtellerie, santé, laboratoires & industrie.)
 - **99,4 % de SLA respecté** (Disponibilité contractuelle de vos robots.)
 
-## 2. Les 4 Gammes de Robots
+## 5. Les 4 Gammes de Robots
 
 Voici la structure JSON demandée pour la section des robots afin de faciliter l'intégration via un LLM :
 
@@ -87,7 +173,7 @@ Voici la structure JSON demandée pour la section des robots afin de faciliter l
 - **uLog Deliver 150 :** `https://res.cloudinary.com/df1x718yw/image/upload/v1782747959/uLogDELIVER150_URGlogo_01_face_Box_Admin_tprnbn.png`
 - **uLog Deliver 80 :** `https://res.cloudinary.com/df1x718yw/image/upload/v1782747971/uLogDELIVER80_URGlogo_01_face_ktme3v.png`
 
-## 3. Simulateurs de Rentabilité (ROI)
+## 6. Simulateurs de Rentabilité (ROI)
 
 **Arguments Généraux :**
 - **Titre :** Simulez vos gains et votre rentabilité.
@@ -109,7 +195,7 @@ Voici la structure JSON demandée pour la section des robots afin de faciliter l
 - **Temps opérationnel réallouable :** Exprimé en "~X h / mois" (Estimation du temps d'équipe potentiellement libéré).
 - **Potentiel économique indicatif :** Exprimé en "~X € / mois" (À confirmer lors de l'étude de vos flux, contraintes et niveaux de service).
 
-## 4. Secteurs d'Activité & Applications Métier
+## 7. Secteurs d'Activité & Applications Métier
 
 ### Retail & Commerce
 - **Sous-titre :** Grande distribution, boutiques
@@ -151,7 +237,7 @@ Voici la structure JSON demandée pour la section des robots afin de faciliter l
 - `https://res.cloudinary.com/df1x718yw/image/upload/v1785933757/ChatGPT_Image_5_ao%C3%BBt_2026_14_12_02_glwn9v.png`
 - `https://res.cloudinary.com/df1x718yw/image/upload/v1785933725/Gemini_Generated_Image_ncnba4ncnba4ncnb_tmywdz.png`
 
-## 5. Logos Partenaires & Réassurance
+## 8. Logos Partenaires & Réassurance
 
 **Slogan Slider :** SOLUTIONS CERTIFIÉES & DÉPLOYÉES SUR LE TERRAIN
 
