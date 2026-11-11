@@ -12,9 +12,9 @@ Ce plan fait correspondre les blocs de la maquette "Standard Bots" avec les donn
 | **Hero Section** | - **Vidéo de fond:** Vidéo Hero uLog ou uClean (`https://res.cloudinary.com/df1x718yw/video/upload/v1782758795/ULog_tlu9tt.mp4` ou `https://res.cloudinary.com/df1x718yw/video/upload/v1782758788/uClean_hsvmvx.mp4`)<br>- **Slogan principal:** "Libérer le potentiel humain par la robotique."<br>- **Sous-titre:** "L'automatisation intelligente au service de votre croissance."<br>- **4 Vignettes Interactives (Bas de Hero):** uClean (Nettoyage), uLog (Logistique), uServe (Accueil), uLab Mobile (Laboratoire) |
 | **Bandeau Mission / Accroche** | - **Texte:** Partenaire de distribution et d'intégration des solutions United Robotics Group en France. Déployons l'automatisation pour recentrer vos équipes sur l'essentiel. |
 | **Benchmark / Métriques** | - **SLA:** 99.4% de disponibilité<br>- **Déploiement:** 100+ robots de service en exploitation<br>- **Couverture:** 4 secteurs clés d'expertise |
-| **Démonstrateur d'applications (Carrousel)** | Mapper sur nos 4 secteurs avec leurs images Hero et cas d'usage :<br>1. **Retail:** Accueil interactif, réassort (+20% d'engagement client)<br>2. **Hôtellerie/Restauration:** Portage, assistance service (3-4h gagnées/jour)<br>3. **Santé & Médical:** Routage autonome, logistique 24/7 (-35% déplacements perdus)<br>4. **Logistique/Industrie:** Liaison de lignes, transport régulier (+15% productivité) |
+| **Démonstrateur d'applications (Carrousel)** | Mapper sur nos 4 secteurs avec les vidéos à lancer :<br>1. **Retail & Food:** `https://res.cloudinary.com/df1x718yw/video/upload/v1783460477/uClean_Compact_-_Use_case_KFC_Venise_pbnpdk.mp4`<br>2. **Hôtellerie / Restaurant:** `https://res.cloudinary.com/df1x718yw/video/upload/v1783504966/Plato_%C3%A0_l_Henriette_Restaurant_VO_FR_Sous-titres_en_fran%C3%A7ais_zo3d1o.mp4`<br>3. **Santé / Nettoyage:** `https://res.cloudinary.com/df1x718yw/video/upload/v1782758788/uClean_hsvmvx.mp4`<br>4. **Logistique / Entrepôt:** `https://res.cloudinary.com/df1x718yw/video/upload/v1782758795/ULog_tlu9tt.mp4` |
 | **Section "Gap Industriel" / Problématique** | - **Thèmes à aborder:** Pénurie de personnel, tâches pénibles (TMS), déplacements à faible valeur ajoutée, difficultés de recrutement. <br>- **Message clé:** La robotique ne remplace pas l'humain, elle l'assiste en absorbant les tâches répétitives pour libérer du temps opérationnel. |
-| **Grille Hardware Produits** | Catalogue des 4 gammes (uClean, uLog, uServe, uLab) utilisant la structure JSON fournie dans la section 5. <br>- Inclure les images détourées Cloudinary pour chaque robot.<br>- **CTA par produit:** "Estimer le ROI" (sauf uLab) / "Voir la gamme" |
+| **Grille Hardware Produits** | Catalogue des 4 gammes (uClean, uLog, uServe, uLab) formatées avec 3 tags techniques par carte (voir structure JSON section 5).<br>- **CTA par produit:** "Estimer le ROI" (sauf uLab) / "Voir la gamme" |
 | **Calculateur ROI interactif** | Utiliser les ancres et hypothèses du ROI Phoenix-botics (Section 6) :<br>- uClean: m² / jour (Base 400m²/h, 20€/h)<br>- uLog: transferts / jour (Base 15min/transfert, 20€/h)<br>- uServe: déplacements / jour (Base 8min/déplacement, 20€/h)<br>- *Note: Pas de simulateur pour uLab.* |
 | **Preuves de terrain, Témoignages & Logos** | - **Logos Partenaires:** Utiliser la liste existante (Section 8) avec Carrefour, Geodis, Sodexo, Airbus, etc.<br>- **Bandeau de réassurance:** "Solutions certifiées & déployées sur le terrain" (Intégrer les ProofBlocks: 'Spécification constructeur', 'Estimation indicative', 'Résultat client') |
 | **Formulaire de simulation / Lead capture** | - **Titre:** "Recevoir ma recommandation" ou "Demander une étude de site"<br>- **Champs clés:** Secteur d'activité, Surface/Flux, Coordonnées professionnelles.<br>- **Disclaimer:** "Estimation indicative calculée sur la base de vos paramètres. Une étude de site permet de valider..." |
@@ -116,39 +116,29 @@ Voici la structure JSON demandée pour la section des robots afin de faciliter l
     "title": "uClean",
     "subtitle": "Nettoyage & Propreté Autonome",
     "tagline": "Autolaveuses et aspirateurs industriels autonomes pour grandes surfaces et espaces exigus.",
-    "metric": "Jusqu'à 3 000 m²/h (Rendement max uClean Scrub 75)",
-    "specs": {
-      "rendement": "Jusqu'à 3 000 m²/h",
-      "poids_vitesse": "Vitesse 1.2 m/s"
-    },
-    "image_url": "https://res.cloudinary.com/df1x718yw/image/upload/v1782745753/Scrub75_cyuy2d.png"
+    "stat_1": "RENDEMENT : 3 000 m²/h",
+    "stat_2": "VITESSE : 1.2 m/s",
+    "stat_3": "MODÈLES : Scrub 75, 50, Vacuum 40",
+    "image_url": "https://res.cloudinary.com/df1x718yw/image/upload/v1793705586/Gemini_Generated_Image_tnr3t6tnr3t6tnr3_nhjogh.jpg"
   },
   {
     "id": "range-ulog",
     "title": "uLog",
     "subtitle": "Intralogistique & Manutention AMR",
     "tagline": "Robots mobiles autonomes de levage et de livraison pour ateliers, entrepôts et santé.",
-    "metric": "Jusqu'à 600 kg (Charge utile max uLog Lift 600)",
-    "specs": {
-      "charge_utile": "Jusqu'à 600 kg",
-      "autonomie": "10 heures (Li-FePO4)",
-      "vitesse": "1.2 m/s - Précision ± 5 mm",
-      "dimensions": "950 x 650 x 365 mm"
-    },
-    "image_url": "https://res.cloudinary.com/df1x718yw/image/upload/v1782747964/uLogLIFT600_URGlogo_01_face_xgxuh0.png"
+    "stat_1": "CHARGE UTILE : Jusqu'à 600 kg",
+    "stat_2": "PRÉCISION : ±5 mm",
+    "stat_3": "AUTONOMIE : 10 h",
+    "image_url": "https://res.cloudinary.com/df1x718yw/image/upload/v1794219645/Gemini_Generated_Image_cxpg34cxpg34cxpg_leiybf.jpg"
   },
   {
     "id": "range-userve",
     "title": "uServe",
     "subtitle": "Accueil, Orientation & Service Interactif",
     "tagline": "Assistant cobotique d'orientation et de guidage interactif pour établissements ouverts au public.",
-    "metric": "Jusqu'à 10h (Autonomie continue & 20+ langues)",
-    "specs": {
-      "charge_maximale": "40 kg (4 x 10 kg)",
-      "autonomie": "> 10h en continu",
-      "dimensions": "580 x 490 x 1290 mm",
-      "vitesse": "0.3 à 1.2 m/s - Passage min. 65 cm"
-    },
+    "stat_1": "CHARGE : 40 kg (4 plateaux)",
+    "stat_2": "PASSAGE MIN : 65 cm",
+    "stat_3": "LANGUES : 20+ langues",
     "image_url": "https://res.cloudinary.com/df1x718yw/image/upload/v1782748309/uServe_URGlogo_02_face-mirror_cc_1_ayohed.png"
   },
   {
@@ -156,12 +146,9 @@ Voici la structure JSON demandée pour la section des robots afin de faciliter l
     "title": "uLab Mobile",
     "subtitle": "L'automatisation des laboratoires",
     "tagline": "Automatisez le transport de tubes et de portoirs entre vos postes.",
-    "metric": "Précision millimétrique (±0.1 mm)",
-    "specs": {
-      "fonctionnalite": "Intègre un bras robotique 7 axes.",
-      "precision": "Positionnement avec une précision de ±0.1 mm.",
-      "autonomie": "Se déplace de manière autonome."
-    },
+    "stat_1": "BRAS : Cobot 7 axes",
+    "stat_2": "PRÉCISION : ±0.1 mm",
+    "stat_3": "WORKFLOW : Tubes, portoirs & analyseurs",
     "image_url": "https://res.cloudinary.com/df1x718yw/image/upload/v1793705292/20a60af5-4139-430a-b193-c89c8ce08f73_ckcv71.webp"
   }
 ]
