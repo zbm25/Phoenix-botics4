@@ -423,12 +423,12 @@ export const Header: React.FC = () => {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-3 sm:top-4 left-3 right-3 sm:left-6 sm:right-6 max-w-7xl mx-auto z-50 transition-all duration-300 rounded-full bg-white/95 backdrop-blur-md border px-4 sm:px-6 py-2.5 flex items-center justify-between ${
+        className={`fixed top-3 sm:top-4 left-3 right-3 sm:left-6 sm:right-6 max-w-7xl mx-auto z-50 transition-all duration-300 rounded-full bg-black/80 backdrop-blur-md border px-4 sm:px-6 py-2.5 flex items-center justify-between ${
           showNavbar ? "translate-y-0" : "-translate-y-[200%]"
         } ${
           isScrolled
-            ? "border-slate-200/90 shadow-xl shadow-slate-900/5"
-            : "border-slate-200/60 shadow-md"
+            ? "border-white/10/90 shadow-xl shadow-slate-900/5"
+            : "border-white/10 shadow-md"
         }`}
       >
         <div className="flex items-center justify-between w-full">
@@ -470,8 +470,8 @@ export const Header: React.FC = () => {
                 }}
                 className={`relative text-sm font-semibold px-3.5 py-2 transition-all rounded-full cursor-pointer group flex items-center gap-1.5 outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
                   location.pathname.startsWith("/robots") || activeDropdown === "robots"
-                    ? "text-slate-900 bg-slate-100/80"
-                    : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                    ? "text-[#FEFCF8] bg-white/10"
+                    : "text-[#E5E3E0] hover:text-[#FEFCF8] hover:bg-white/5"
                 }`}
               >
                 <span>Robots</span>
@@ -490,10 +490,10 @@ export const Header: React.FC = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.99 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[1020px] max-w-[calc(100vw-2rem)] bg-white/98 backdrop-blur-2xl border border-slate-200/80 rounded-3xl shadow-2xl shadow-slate-900/15 p-6 z-50 grid grid-cols-12 gap-5 before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[1020px] max-w-[calc(100vw-2rem)] bg-black/98 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl shadow-black/50 p-6 z-50 grid grid-cols-12 gap-5 before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
                   >
                     {/* Column 1: Gammes (3 Series) */}
-                    <div className="col-span-3 flex flex-col gap-1.5 pr-3 border-r border-slate-100">
+                    <div className="col-span-3 flex flex-col gap-1.5 pr-3 border-r border-white/10">
                       <div className="flex items-center justify-between px-2 mb-1">
                         <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
                           Gammes de robots
@@ -514,13 +514,13 @@ export const Header: React.FC = () => {
                             }}
                             className={`flex flex-col p-3 rounded-2xl transition-all text-left w-full cursor-pointer group/item border ${
                               isGammeActive
-                                ? "bg-slate-100/80 border-slate-200 text-slate-900"
-                                : "bg-transparent border-transparent hover:bg-slate-50 text-slate-700"
+                                ? "bg-white/10 border-white/10 text-[#FEFCF8]"
+                                : "bg-transparent border-transparent hover:bg-white/5 text-[#E5E3E0]"
                             }`}
                           >
                             <div
                               className={`font-bold text-sm transition-colors ${
-                                isGammeActive ? "text-slate-900" : "text-slate-800 group-hover/item:text-slate-900"
+                                isGammeActive ? "text-[#FEFCF8]" : "text-[#E5E3E0] group-hover/item:text-[#FEFCF8]"
                               }`}
                             >
                               {gamme.title}
@@ -534,7 +534,7 @@ export const Header: React.FC = () => {
                     </div>
 
                     {/* Column 2: Models & Sub-families */}
-                    <div className="col-span-4 flex flex-col gap-1 pr-3 border-r border-slate-100">
+                    <div className="col-span-4 flex flex-col gap-1 pr-3 border-r border-white/10">
                       <div className="flex items-center justify-between px-2 mb-1">
                         <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
                           {activeGammeObj.title}
@@ -549,7 +549,7 @@ export const Header: React.FC = () => {
                           // Render subfamilies (uLog)
                           activeGammeObj.subfamilies.map((subfamily) => (
                             <div key={subfamily.title} className="mb-2">
-                              <div className="text-xs font-semibold text-slate-800 px-2 py-1 mb-1 border-b border-slate-100">
+                              <div className="text-xs font-semibold text-[#E5E3E0] px-2 py-1 mb-1 border-b border-white/10">
                                 {subfamily.title}
                               </div>
                               <div className="flex flex-col gap-1">
@@ -565,14 +565,14 @@ export const Header: React.FC = () => {
                                       }}
                                       className={`flex flex-col p-2 rounded-xl transition-all text-left w-full cursor-pointer border ${
                                         isSelected
-                                          ? "bg-orange-50 border-orange-200 text-slate-900 shadow-sm"
-                                          : "bg-transparent border-transparent hover:bg-slate-50 text-slate-700"
+                                          ? "bg-orange-50 border-orange-200 text-[#FEFCF8] shadow-sm"
+                                          : "bg-transparent border-transparent hover:bg-white/5 text-[#E5E3E0]"
                                       }`}
                                     >
                                       <div className="flex items-center justify-between w-full">
                                         <span
                                           className={`font-bold text-xs transition-colors ${
-                                            isSelected ? "text-orange-600" : "text-slate-900"
+                                            isSelected ? "text-orange-600" : "text-[#FEFCF8]"
                                           }`}
                                         >
                                           {model.name}
@@ -607,14 +607,14 @@ export const Header: React.FC = () => {
                                 }}
                                 className={`flex flex-col p-2.5 rounded-xl transition-all text-left w-full cursor-pointer border ${
                                   isSelected
-                                    ? "bg-orange-50 border-orange-200 text-slate-900 shadow-sm"
-                                    : "bg-transparent border-transparent hover:bg-slate-50 text-slate-700"
+                                    ? "bg-orange-50 border-orange-200 text-[#FEFCF8] shadow-sm"
+                                    : "bg-transparent border-transparent hover:bg-white/5 text-[#E5E3E0]"
                                 }`}
                               >
                                 <div className="flex items-center justify-between w-full">
                                   <span
                                     className={`font-bold text-xs transition-colors ${
-                                      isSelected ? "text-orange-600" : "text-slate-900"
+                                      isSelected ? "text-orange-600" : "text-[#FEFCF8]"
                                     }`}
                                   >
                                     {model.name}
@@ -637,9 +637,9 @@ export const Header: React.FC = () => {
                     </div>
 
                     {/* Column 3: Active Model Preview */}
-                    <div className="col-span-2 flex flex-col justify-between h-full min-h-[320px] bg-slate-50/70 p-3.5 rounded-2xl border border-slate-200/60">
+                    <div className="col-span-2 flex flex-col justify-between h-full min-h-[320px] bg-white/5 p-3.5 rounded-2xl border border-white/10">
                       <div className="flex flex-col gap-2">
-                        <div className="w-full h-36 bg-white rounded-xl flex items-center justify-center p-2 border border-slate-200/60 overflow-hidden relative shadow-sm">
+                        <div className="w-full h-36 bg-transparent rounded-xl flex items-center justify-center p-2 border border-white/10 overflow-hidden relative shadow-sm">
                           <AnimatePresence mode="wait">
                             <motion.img
                               key={activeModel.id || activeModel.canonicalId}
@@ -664,7 +664,7 @@ export const Header: React.FC = () => {
                               exit={{ opacity: 0, y: 3 }}
                               transition={{ duration: 0.12 }}
                             >
-                              <h4 className="text-slate-900 font-bold text-xs leading-snug">
+                              <h4 className="text-[#FEFCF8] font-bold text-xs leading-snug">
                                 {activeModel.name}
                               </h4>
                               <p className="text-[11px] text-slate-500 font-medium mt-0.5">
@@ -692,9 +692,9 @@ export const Header: React.FC = () => {
                     </div>
 
                     {/* Column 4: Selection Tool Side Panel Card (Dark Technical Contrast) */}
-                    <div className="col-span-3 bg-[#0B1121] text-white p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between shadow-xl relative overflow-hidden group">
+                    <div className="col-span-3 bg-[#0B1121] text-[#FEFCF8] p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between shadow-xl relative overflow-hidden group">
                       <div>
-                        <h3 className="text-white font-bold text-sm leading-snug mt-1">
+                        <h3 className="text-[#FEFCF8] font-bold text-sm leading-snug mt-1">
                           Étude de faisabilité
                         </h3>
 
@@ -718,7 +718,7 @@ export const Header: React.FC = () => {
                                   className={`px-2 py-1.5 rounded-lg text-[11px] font-medium text-center transition-all cursor-pointer border ${
                                     isSelected
                                       ? "bg-orange-500/20 border-orange-500 text-orange-400 font-bold"
-                                      : "bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:text-white"
+                                      : "bg-transparent/5 border-white/10 text-slate-300 hover:bg-transparent/10 hover:text-[#FEFCF8]"
                                   }`}
                                 >
                                   {sec.label}
@@ -733,7 +733,7 @@ export const Header: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => handleLaunchPrequalification(selectedSector)}
-                          className="w-full py-2.5 px-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer group-hover:scale-[1.02]"
+                          className="w-full py-2.5 px-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-[#FEFCF8] font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer group-hover:scale-[1.02]"
                         >
                           <span>Évaluer mon projet</span>
                           <ArrowRight size={14} />
@@ -764,8 +764,8 @@ export const Header: React.FC = () => {
                 }}
                 className={`relative text-sm font-semibold px-3.5 py-2 transition-all rounded-full cursor-pointer group flex items-center gap-1.5 outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
                   location.pathname.startsWith("/industries") || activeDropdown === "industries"
-                    ? "text-slate-900 bg-slate-100/80"
-                    : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                    ? "text-[#FEFCF8] bg-white/10"
+                    : "text-[#E5E3E0] hover:text-[#FEFCF8] hover:bg-white/5"
                 }`}
               >
                 <span>Industries</span>
@@ -784,9 +784,9 @@ export const Header: React.FC = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.99 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[720px] max-w-[calc(100vw-2rem)] bg-white/98 backdrop-blur-2xl border border-slate-200/80 rounded-3xl shadow-2xl shadow-slate-900/15 p-6 z-50 grid grid-cols-12 gap-5 before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[720px] max-w-[calc(100vw-2rem)] bg-black/98 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl shadow-black/50 p-6 z-50 grid grid-cols-12 gap-5 before:content-[''] before:absolute before:-top-4 before:left-0 before:right-0 before:h-4"
                   >
-                    <div className="col-span-7 flex flex-col gap-1.5 pr-3 border-r border-slate-100">
+                    <div className="col-span-7 flex flex-col gap-1.5 pr-3 border-r border-white/10">
                       <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2 mb-1">
                         Secteurs d'activité
                       </span>
@@ -803,8 +803,8 @@ export const Header: React.FC = () => {
                             }}
                             className={`flex items-start gap-3 p-2.5 rounded-2xl transition-all text-left w-full cursor-pointer group/item border ${
                               isIndActive
-                                ? "bg-slate-100/80 border-slate-200 text-slate-900"
-                                : "bg-transparent border-transparent hover:bg-slate-50 text-slate-700"
+                                ? "bg-white/10 border-white/10 text-[#FEFCF8]"
+                                : "bg-transparent border-transparent hover:bg-white/5 text-[#E5E3E0]"
                             }`}
                           >
                             <div className="shrink-0 pt-0.5">
@@ -813,15 +813,15 @@ export const Header: React.FC = () => {
                                 size={18}
                                 className={`transition-colors ${
                                   isIndActive
-                                    ? "text-slate-900"
-                                    : "text-slate-500 group-hover/item:text-slate-900"
+                                    ? "text-[#FEFCF8]"
+                                    : "text-slate-500 group-hover/item:text-[#FEFCF8]"
                                 }`}
                               />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div
                                 className={`font-bold text-xs transition-colors ${
-                                  isIndActive ? "text-slate-900" : "text-slate-900 group-hover/item:text-orange-600"
+                                  isIndActive ? "text-[#FEFCF8]" : "text-[#FEFCF8] group-hover/item:text-orange-600"
                                 }`}
                               >
                                 {ind.title}
@@ -835,7 +835,7 @@ export const Header: React.FC = () => {
                       })}
                     </div>
 
-                    <div className="col-span-5 flex flex-col justify-between h-full min-h-[260px] bg-slate-50/80 p-4 rounded-2xl border border-slate-200/60">
+                    <div className="col-span-5 flex flex-col justify-between h-full min-h-[260px] bg-white/5 p-4 rounded-2xl border border-white/10">
                       <div className="flex flex-col gap-2">
                         <AnimatePresence mode="wait">
                           <motion.div
@@ -847,9 +847,9 @@ export const Header: React.FC = () => {
                             className="flex flex-col gap-2.5"
                           >
                             <div className="flex items-center gap-2">
-                              <IconRenderer name={activeIndustryObj.iconName} size={18} className="text-slate-700 shrink-0" />
+                              <IconRenderer name={activeIndustryObj.iconName} size={18} className="text-[#E5E3E0] shrink-0" />
                               <div>
-                                <h4 className="text-slate-900 font-bold text-xs leading-tight">
+                                <h4 className="text-[#FEFCF8] font-bold text-xs leading-tight">
                                   {activeIndustryObj.title}
                                 </h4>
                                 <p className="text-[11px] text-slate-500 leading-tight mt-0.5">
@@ -862,7 +862,7 @@ export const Header: React.FC = () => {
                               {activeIndustryObj.description}
                             </p>
 
-                            <div className="mt-2 pt-2 border-t border-slate-200/80">
+                            <div className="mt-2 pt-2 border-t border-white/10">
                               <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1.5">
                                 Flotte recommandée :
                               </span>
@@ -870,7 +870,7 @@ export const Header: React.FC = () => {
                                 {activeIndustryObj.supportedRobots.map((robot) => (
                                   <span
                                     key={robot}
-                                    className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 shadow-2xs"
+                                    className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-transparent border border-white/10 text-[#E5E3E0] shadow-2xs"
                                   >
                                     {robot}
                                   </span>
@@ -907,8 +907,8 @@ export const Header: React.FC = () => {
               }}
               className={`relative text-sm font-semibold px-3.5 py-2 transition-all rounded-full cursor-pointer group outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
                 location.pathname === "/services"
-                  ? "text-slate-900 bg-slate-100/80"
-                  : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                  ? "text-[#FEFCF8] bg-white/10"
+                  : "text-[#E5E3E0] hover:text-[#FEFCF8] hover:bg-white/5"
               }`}
             >
               <span>Services</span>
@@ -923,8 +923,8 @@ export const Header: React.FC = () => {
               }}
               className={`relative text-sm font-semibold px-3.5 py-2 transition-all rounded-full cursor-pointer group outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
                 location.pathname === "/technologie"
-                  ? "text-slate-900 bg-slate-100/80"
-                  : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                  ? "text-[#FEFCF8] bg-white/10"
+                  : "text-[#E5E3E0] hover:text-[#FEFCF8] hover:bg-white/5"
               }`}
             >
               <span>Technologie</span>
@@ -939,8 +939,8 @@ export const Header: React.FC = () => {
               }}
               className={`relative text-sm font-semibold px-3.5 py-2 transition-all rounded-full cursor-pointer group outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
                 location.pathname === "/a-propos"
-                  ? "text-slate-900 bg-slate-100/80"
-                  : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
+                  ? "text-[#FEFCF8] bg-white/10"
+                  : "text-[#E5E3E0] hover:text-[#FEFCF8] hover:bg-white/5"
               }`}
             >
               <span>À propos</span>
@@ -953,7 +953,7 @@ export const Header: React.FC = () => {
               id="header-cta-quote"
               type="button"
               onClick={() => goToSection("contact")}
-              className="px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-full transition-all duration-200 shadow-sm cursor-pointer bg-slate-900 text-white hover:bg-orange-500 hover:shadow-orange-500/20 hover:shadow-md hover:-translate-y-[1px] active:translate-y-0"
+              className="px-5 py-2.5 text-xs font-bold tracking-wide uppercase rounded-full transition-all duration-200 shadow-sm cursor-pointer bg-[#F97316] text-[#FEFCF8] hover:bg-orange-600 hover:shadow-orange-500/20 hover:shadow-md hover:-translate-y-[1px] active:translate-y-0"
             >
               Parler à un expert
             </button>
@@ -964,7 +964,7 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="focus:outline-none p-2 min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer transition-colors text-slate-800 hover:text-black active:bg-slate-100 rounded-full"
+              className="focus:outline-none p-2 min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer transition-colors text-[#E5E3E0] hover:text-[#F97316] active:bg-slate-100 rounded-full"
               aria-label="Ouvrir le menu de navigation"
             >
               <IconRenderer name={isMobileMenuOpen ? "X" : "Menu"} size={26} />
@@ -981,16 +981,16 @@ export const Header: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-x-3 sm:inset-x-6 top-[76px] z-45 bg-white/98 backdrop-blur-xl border border-slate-200 p-4 sm:p-6 flex flex-col justify-between rounded-3xl shadow-2xl h-[calc(100vh-96px)] max-h-[720px] overflow-y-auto"
+            className="fixed inset-x-3 sm:inset-x-6 top-[76px] z-45 bg-black/98 backdrop-blur-xl border border-white/10 p-4 sm:p-6 flex flex-col justify-between rounded-3xl shadow-2xl h-[calc(100vh-96px)] max-h-[720px] overflow-y-auto"
           >
             <div className="flex flex-col gap-3 py-1">
 
               {/* Accordion 1: Robots */}
-              <div className="border-b border-slate-100 pb-2">
+              <div className="border-b border-white/10 pb-2">
                 <button
                   type="button"
                   onClick={() => setMobileRobotsOpen(!mobileRobotsOpen)}
-                  className="w-full text-left py-3 min-h-[44px] text-base font-bold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer"
+                  className="w-full text-left py-3 min-h-[44px] text-base font-bold text-[#FEFCF8] hover:text-orange-600 flex items-center justify-between cursor-pointer"
                 >
                   <span>Robots & Gammes</span>
                   <ChevronDown
@@ -1010,7 +1010,7 @@ export const Header: React.FC = () => {
                       className="overflow-hidden pl-1 pt-1 pb-2 flex flex-col gap-3"
                     >
                       {ROBOT_GAMMES.map((gamme) => (
-                        <div key={gamme.id} className="bg-slate-50/90 rounded-2xl p-3 border border-slate-100">
+                        <div key={gamme.id} className="bg-white/5 rounded-2xl p-3 border border-white/10">
                           <button
                             type="button"
                             onClick={() => {
@@ -1020,7 +1020,7 @@ export const Header: React.FC = () => {
                             className="w-full text-left flex items-center justify-between group cursor-pointer"
                           >
                             <div>
-                              <div className="text-sm font-bold text-slate-900 group-hover:text-orange-600 flex items-center gap-1.5">
+                              <div className="text-sm font-bold text-[#FEFCF8] group-hover:text-orange-600 flex items-center gap-1.5">
                                 <span>{gamme.title}</span>
                                 <ChevronRight className="w-3.5 h-3.5 text-orange-500 transition-transform group-hover:translate-x-0.5" />
                               </div>
@@ -1031,7 +1031,7 @@ export const Header: React.FC = () => {
                           </button>
 
                           {/* List of models in mobile view */}
-                          <div className="flex flex-col gap-1.5 mt-2.5 pt-2.5 border-t border-slate-200/60">
+                          <div className="flex flex-col gap-1.5 mt-2.5 pt-2.5 border-t border-white/10">
                             {gamme.models.map((m) => (
                               <button
                                 key={m.id}
@@ -1040,9 +1040,9 @@ export const Header: React.FC = () => {
                                   setIsMobileMenuOpen(false);
                                   navigate(`/robots/${gamme.id}?model=${m.canonicalId || m.id}#model-${m.canonicalId || m.id}`);
                                 }}
-                                className="w-full flex items-center gap-3 p-2 rounded-xl bg-white hover:bg-orange-50/60 border border-slate-200/80 hover:border-orange-200 text-left transition-all group cursor-pointer shadow-2xs"
+                                className="w-full flex items-center gap-3 p-2 rounded-xl bg-transparent hover:bg-orange-50/60 border border-white/10 hover:border-orange-200 text-left transition-all group cursor-pointer shadow-2xs"
                               >
-                                <div className="w-10 h-10 shrink-0 bg-slate-50 rounded-lg p-0.5 flex items-center justify-center overflow-hidden border border-slate-100">
+                                <div className="w-10 h-10 shrink-0 bg-white/5 rounded-lg p-0.5 flex items-center justify-center overflow-hidden border border-white/10">
                                   <img
                                     src={optimizeCloudinaryUrl(m.photo, 150)}
                                     alt={m.name}
@@ -1051,7 +1051,7 @@ export const Header: React.FC = () => {
                                   />
                                 </div>
                                 <div className="min-w-0 flex-1">
-                                  <div className="text-xs font-bold text-slate-900 group-hover:text-orange-600 transition-colors truncate">
+                                  <div className="text-xs font-bold text-[#FEFCF8] group-hover:text-orange-600 transition-colors truncate">
                                     {m.name}
                                   </div>
                                   <div className="text-[10px] text-slate-500 line-clamp-1 mt-0.5">
@@ -1070,11 +1070,11 @@ export const Header: React.FC = () => {
               </div>
 
               {/* Accordion 2: Industries */}
-              <div className="border-b border-slate-100 pb-2">
+              <div className="border-b border-white/10 pb-2">
                 <button
                   type="button"
                   onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
-                  className="w-full text-left py-3 min-h-[44px] text-base font-bold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer"
+                  className="w-full text-left py-3 min-h-[44px] text-base font-bold text-[#FEFCF8] hover:text-orange-600 flex items-center justify-between cursor-pointer"
                 >
                   <span>Industries & Secteurs</span>
                   <ChevronDown
@@ -1101,12 +1101,12 @@ export const Header: React.FC = () => {
                             setIsMobileMenuOpen(false);
                             navigate(`/industries/${ind.id}`);
                           }}
-                          className="w-full text-left p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-all group flex items-center justify-between cursor-pointer"
+                          className="w-full text-left p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all group flex items-center justify-between cursor-pointer"
                         >
                           <div className="flex items-center gap-2.5">
                             <IconRenderer name={ind.iconName} size={18} className="text-slate-500 shrink-0" />
                             <div>
-                              <div className="text-xs font-bold text-slate-900 group-hover:text-orange-600">
+                              <div className="text-xs font-bold text-[#FEFCF8] group-hover:text-orange-600">
                                 {ind.title}
                               </div>
                               <div className="text-[10px] text-slate-500">
@@ -1129,7 +1129,7 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   navigate("/services");
                 }}
-                className="text-left py-3 min-h-[44px] text-base font-semibold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer border-b border-slate-100"
+                className="text-left py-3 min-h-[44px] text-base font-semibold text-[#FEFCF8] hover:text-orange-600 flex items-center justify-between cursor-pointer border-b border-white/10"
               >
                 <span>Services & Intégration</span>
                 <ChevronRight size={16} className="text-slate-400" />
@@ -1141,7 +1141,7 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   navigate("/technologie");
                 }}
-                className="text-left py-3 min-h-[44px] text-base font-semibold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer border-b border-slate-100"
+                className="text-left py-3 min-h-[44px] text-base font-semibold text-[#FEFCF8] hover:text-orange-600 flex items-center justify-between cursor-pointer border-b border-white/10"
               >
                 <span>Technologie & Normes</span>
                 <ChevronRight size={16} className="text-slate-400" />
@@ -1153,7 +1153,7 @@ export const Header: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   navigate("/a-propos");
                 }}
-                className="text-left py-3 min-h-[44px] text-base font-semibold text-slate-900 hover:text-orange-600 flex items-center justify-between cursor-pointer border-b border-slate-100"
+                className="text-left py-3 min-h-[44px] text-base font-semibold text-[#FEFCF8] hover:text-orange-600 flex items-center justify-between cursor-pointer border-b border-white/10"
               >
                 <span>À propos</span>
                 <ChevronRight size={16} className="text-slate-400" />
@@ -1162,18 +1162,18 @@ export const Header: React.FC = () => {
             </div>
 
             {/* Sticky Action CTAs at bottom of Mobile Drawer */}
-            <div className="flex flex-col gap-2 pt-3 border-t border-slate-100">
+            <div className="flex flex-col gap-2 pt-3 border-t border-white/10">
               <button
                 type="button"
                 onClick={handleLaunchPrequalification}
-                className="w-full py-3 min-h-[44px] text-center rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-orange-500/20 transition-all cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-3 min-h-[44px] text-center rounded-xl bg-orange-500 hover:bg-orange-600 text-[#FEFCF8] font-bold text-xs uppercase tracking-wider shadow-md shadow-orange-500/20 transition-all cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>Évaluer mon projet</span>
               </button>
               <button
                 type="button"
                 onClick={() => goToSection("contact")}
-                className="w-full py-3 min-h-[44px] text-center rounded-xl border border-slate-200 bg-slate-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-3 min-h-[44px] text-center rounded-xl border border-white/10 bg-[#F97316] text-[#FEFCF8] text-xs font-bold uppercase tracking-wider hover:bg-orange-600 transition-all cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>Parler à un expert</span>
               </button>

@@ -64,16 +64,16 @@ export const ServicesKargoSection: React.FC = () => {
   return (
     <section 
       id="services" 
-      className="bg-white py-24 border-b border-slate-100 relative overflow-hidden"
+      className="bg-[#000000] py-24 border-b border-white/10 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Header Layout */}
         <div className="mb-12 text-left">
-          <span className="text-orange-500 font-mono font-bold tracking-widest uppercase text-xs px-3 py-1 bg-orange-500/5 border border-orange-500/10 rounded-full">
+          <span className="text-[#F97316] font-mono font-bold tracking-widest uppercase text-xs px-3 py-1 bg-[#F97316]/10 border border-[#F97316]/20 rounded-full">
             Nos Services
           </span>
-          <h2 className="text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-slate-900 mt-4 leading-tight">
+          <h2 className="text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-[#FEFCF8] mt-4 leading-tight">
             Une offre modulaire,
             <span className="block text-slate-400 font-normal mt-1">pensée pour s'adapter</span>
           </h2>
@@ -89,7 +89,7 @@ export const ServicesKargoSection: React.FC = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               onClick={() => handleServiceClick(service.anchor)}
-              className={`${service.colSpan} ${service.height} relative overflow-hidden rounded-3xl w-full group cursor-pointer shadow-sm border border-slate-100`}
+              className={`${service.colSpan} ${service.height} relative overflow-hidden rounded-3xl w-full group cursor-pointer shadow-sm border border-white/10`}
             >
               {/* Background Image with Zoom */}
               <img
@@ -116,7 +116,7 @@ export const ServicesKargoSection: React.FC = () => {
                   </p>
 
                   {/* Diagonal Arrow Icon with custom brand orange background */}
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-orange-500 text-white shrink-0 shadow-lg group-hover:rotate-45 transition-transform duration-300">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#F97316] text-white shrink-0 shadow-lg group-hover:rotate-45 transition-transform duration-300">
                     <ArrowUpRight className="w-5 h-5" />
                   </div>
                 </div>
